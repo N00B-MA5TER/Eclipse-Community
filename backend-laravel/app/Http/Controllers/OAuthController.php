@@ -83,7 +83,7 @@ class OAuthController extends Controller
 
         if ($user) {
             // Existing user - Link identity if not already linked
-            $providers = $user->oauthProviders ?? [];
+            $providers = $user->oauth_providers ?? [];
             $alreadyLinked = false;
             foreach ($providers as $p) {
                 if ($p['provider'] === $provider && $p['provider_id'] === $socialUser->getId()) {
@@ -93,22 +93,23 @@ class OAuthController extends Controller
             }
 
             if (!$alreadyLinked) {
-                $user->push('oauthProviders', $providerData);
+                $providers[] = $providerData;
+                $user->oauth_providers = $providers;
+                $user->save();
             }
-            
+
             if (!$user->avatar && $socialUser->getAvatar()) {
                 $user->update(['avatar' => $socialUser->getAvatar()]);
             }
         } else {
             // New user
             $user = new User();
-            $user->_id = Str::random(28); // Match Firebase UID format length
-            $user->uid = $user->_id;
+            $user->uid = Str::random(28); // Match Firebase UID format length
             $user->email = $email;
             $user->name = $socialUser->getName() ?? $socialUser->getNickname() ?? 'User';
             $user->avatar = $socialUser->getAvatar();
             $user->email_verified_at = now();
-            $user->oauthProviders = [$providerData];
+            $user->oauth_providers = [$providerData];
             $user->save();
         }
 
@@ -139,7 +140,7 @@ class OAuthController extends Controller
         $hashedCode = hash('sha256', $request->code);
 
         // Find user with this handoff hash
-        $user = User::where('oauth_handoff.hash', $hashedCode)->first();
+        $user = User::whereJsonContains('oauth_handoff->hash', $hashedCode)->first();
 
         if (!$user) {
             return response()->json(['message' => 'Invalid or expired code'], 401);
@@ -148,15 +149,14 @@ class OAuthController extends Controller
         // Check expiration
         $expiresAt = \Carbon\Carbon::parse($user->oauth_handoff['expires_at']);
         if (now()->isAfter($expiresAt)) {
-            // Atomically unset if expired
-            $user->unset('oauth_handoff');
+            $user->update(['oauth_handoff' => null]);
             return response()->json(['message' => 'Invalid or expired code'], 401);
         }
 
         $intended = $user->oauth_handoff['intended'] ?? 'user';
 
-        // Atomically unset the handoff code so it cannot be reused
-        $user->unset('oauth_handoff');
+        // Unset the handoff code so it cannot be reused
+        $user->update(['oauth_handoff' => null]);
 
         // Create Sanctum Token
         $token = $user->createToken('auth_token')->plainTextToken;

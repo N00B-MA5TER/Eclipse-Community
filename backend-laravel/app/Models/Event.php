@@ -3,17 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
     use HasFactory;
-
-    protected $connection = 'mongodb';
-    protected $keyType = 'string';
-    public $incrementing = false;
-    protected $primaryKey = '_id';
-
 
     protected $fillable = [
         'title',
@@ -23,7 +17,16 @@ class Event extends Model
         'description',
         'status',
         'registered_count',
-        'team_count'
+        'team_count',
     ];
 
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
+
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
+    }
 }

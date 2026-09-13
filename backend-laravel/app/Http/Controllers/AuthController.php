@@ -101,9 +101,41 @@ class AuthController extends Controller
     public function me(Request $request)
     {
         $user = $request->user();
-        $user->uid = (string) $user->id;
+        $user->uid = $user->uid ?? (string) $user->id;
         $user->techSkills = $user->tech_skills;
-        
+
+        return response()->json($user, 200);
+    }
+
+    /**
+     * Update the authenticated user's profile.
+     * Equivalent to: PUT /api/auth/me
+     */
+    public function updateProfile(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'sometimes|required|string|max:255',
+            'phone' => 'nullable|string|max:50',
+            'bio' => 'nullable|string',
+            'course' => 'nullable|string|max:255',
+            'year' => 'nullable|string|max:50',
+            'techSkills' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()], 400);
+        }
+
+        $user = $request->user();
+        $user->fill($validator->safe()->only(['name', 'phone', 'bio', 'course', 'year']));
+        if ($request->has('techSkills')) {
+            $user->tech_skills = $request->techSkills;
+        }
+        $user->save();
+
+        $user->uid = $user->uid ?? (string) $user->id;
+        $user->techSkills = $user->tech_skills;
+
         return response()->json($user, 200);
     }
 

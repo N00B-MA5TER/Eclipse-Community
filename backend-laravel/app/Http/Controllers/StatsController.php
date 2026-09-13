@@ -12,7 +12,7 @@ class StatsController extends Controller
     {
         $builders = User::count();
         $teams = Team::count();
-        $projects = Team::whereNotNull('projectLink')->count();
+        $projects = Team::whereNotNull('project_link')->count();
 
         return response()->json([
             'builders' => $builders,

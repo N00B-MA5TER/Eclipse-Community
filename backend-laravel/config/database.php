@@ -44,12 +44,6 @@ return [
             'transaction_mode' => 'DEFERRED',
         ],
 
-        'mongodb' => [
-            'driver' => 'mongodb',
-            'dsn' => env('MONGODB_URI', 'mongodb://127.0.0.1:27017/local_server'),
-            'database' => env('MONGODB_DATABASE', 'local_server'),
-        ],
-
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),

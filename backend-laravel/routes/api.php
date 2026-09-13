@@ -16,7 +16,7 @@ use App\Http\Controllers\NotificationController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('mongo_auth');
+})->middleware('auth:sanctum');
 
 // Auth Routes
 Route::prefix('auth')->group(function () {
@@ -30,9 +30,10 @@ Route::prefix('auth')->group(function () {
     Route::get('/{provider}/callback', [\App\Http\Controllers\OAuthController::class, 'callback']);
     Route::post('/oauth/exchange', [\App\Http\Controllers\OAuthController::class, 'exchangeHandoff']);
     
-    Route::middleware('mongo_auth')->group(function () {
+    Route::middleware('auth:sanctum')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/me', [AuthController::class, 'me']);
+        Route::put('/me', [AuthController::class, 'updateProfile']);
     });
 });
 
@@ -49,7 +50,7 @@ use App\Http\Controllers\StatsController;
 Route::get('/stats/public', [StatsController::class, 'publicStats']);
 
 // Protected Routes
-Route::middleware('mongo_auth')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/events/{id}/participants', [EventController::class, 'participants']);
 
     // Admin

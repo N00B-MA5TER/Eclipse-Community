@@ -64,9 +64,8 @@ export default function ProfilePage() {
 
     try {
       const idToken = await user.getIdToken();
-      // The register endpoint doubles as a profile update endpoint for existing users
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api'}/auth/register`, {
-        method: "POST",
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api'}/auth/me`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${idToken}`

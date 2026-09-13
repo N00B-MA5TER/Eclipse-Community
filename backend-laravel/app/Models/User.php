@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use MongoDB\Laravel\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -16,10 +15,8 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $connection = 'mongodb';
-    protected $collection = 'users';
-    
     protected $fillable = [
+        'uid',
         'name',
         'email',
         'password',
@@ -27,32 +24,53 @@ class User extends Authenticatable
         'bio',
         'course',
         'year',
-        'techSkills',
+        'tech_skills',
         'role',
-        'teamId',
-        'registrationId',
-        'uid',
-        'oauthProviders',
-        'oauth_handoff',
         'avatar',
+        'oauth_providers',
+        'oauth_handoff',
         'email_verified_at',
     ];
 
-    protected $keyType = 'string';
-    public $incrementing = false;
-    protected $primaryKey = '_id';
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'oauth_providers' => 'array',
+            'oauth_handoff' => 'array',
         ];
     }
-    
+
+    public function registrations()
+    {
+        return $this->hasMany(Registration::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function team()
+    {
+        return $this->hasOneThrough(
+            Team::class,
+            TeamMember::class,
+            'user_id',
+            'id',
+            'id',
+            'team_id'
+        );
+    }
+
+    public function teamMembership()
+    {
+        return $this->hasOne(TeamMember::class);
+    }
+
+    public function ledTeams()
+    {
+        return $this->hasMany(Team::class, 'leader_id');
+    }
 }

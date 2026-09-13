@@ -3,28 +3,31 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use MongoDB\Laravel\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Notification extends Model
 {
     use HasFactory;
 
-    protected $connection = 'mongodb';
-    protected $keyType = 'string';
-    public $incrementing = false;
-    protected $primaryKey = '_id';
-
-    const CREATED_AT = 'createdAt';
-    const UPDATED_AT = 'updatedAt';
-
     protected $fillable = [
-        'userId',
-        'targetRole',
+        'user_id',
+        'target_role',
         'title',
         'message',
         'type',
         'read',
-        'link'
+        'link',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'read' => 'boolean',
+        ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

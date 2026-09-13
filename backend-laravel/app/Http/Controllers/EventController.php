@@ -19,7 +19,7 @@ class EventController extends Controller
             $data['id'] = (string) $event->id;
             return $data;
         });
-        
+
         return response()->json($events, 200);
     }
 
@@ -39,19 +39,18 @@ class EventController extends Controller
 
         // Calculate true participant count dynamically
         $participantUids = [];
-        $registrations = Registration::where('eventId', $id)->get();
+        $registrations = Registration::where('event_id', $id)->get();
         foreach ($registrations as $reg) {
-            $participantUids[(string)$reg->userId] = true;
+            $participantUids[(string)$reg->user_id] = true;
         }
 
-        $teams = Team::where('eventId', $id)->get();
+        $teams = Team::with('members')->where('event_id', $id)->get();
         foreach ($teams as $team) {
-            $members = $team->members ?? [];
-            foreach ($members as $member) {
-                $participantUids[(string)$member['uid']] = true;
+            foreach ($team->members as $member) {
+                $participantUids[(string)$member->id] = true;
             }
         }
-        
+
         $data['trueParticipantCount'] = count($participantUids);
 
         return response()->json($data, 200);
@@ -71,29 +70,28 @@ class EventController extends Controller
         $participantsMap = [];
 
         // 1. Get Individual Registrations
-        $registrations = Registration::where('eventId', $id)->get();
+        $registrations = Registration::with('user')->where('event_id', $id)->get();
         foreach ($registrations as $reg) {
-            $uid = (string) $reg->userId;
+            $uid = (string) $reg->user_id;
             if (!isset($participantsMap[$uid])) {
                 $participantsMap[$uid] = [
                     'uid' => $uid,
-                    'name' => $reg->name,
+                    'name' => $reg->user->name ?? '',
                     'type' => 'individual'
                 ];
             }
         }
 
         // 2. Get Team Members
-        $teams = Team::where('eventId', $id)->get();
+        $teams = Team::with('members')->where('event_id', $id)->get();
         foreach ($teams as $team) {
-            $members = $team->members ?? [];
-            foreach ($members as $member) {
-                $uid = (string) $member['uid'];
-                // Only take active members, not pending. Pending are in `pendingMembers`.
+            foreach ($team->members as $member) {
+                $uid = (string) $member->id;
+                // Only take active members, not pending. Pending are in `team_join_requests`.
                 if (!isset($participantsMap[$uid])) {
                     $participantsMap[$uid] = [
                         'uid' => $uid,
-                        'name' => $member['name'],
+                        'name' => $member->name,
                         'type' => 'team_member'
                     ];
                 }

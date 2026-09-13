@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Database\QueryException;
 use App\Models\Team;
+use App\Models\TeamMember;
+use App\Models\TeamJoinRequest;
 use App\Models\Event;
 use App\Models\Notification;
 use App\Models\User;
@@ -14,19 +17,19 @@ class TeamController extends Controller
     public function stream(Request $request)
     {
         $userId = $request->user()->id;
-        
+
         return response()->stream(function () use ($userId, $request) {
             $lastHash = '';
-            
+
             while (true) {
                 if (connection_aborted()) {
                     break;
                 }
 
                 $query = Team::query();
-                
+
                 if ($request->has('eventId') && trim($request->eventId) !== '') {
-                    $query->where('eventId', $request->eventId);
+                    $query->where('event_id', $request->eventId);
                 }
 
                 $teams = $query->get()->map(function ($team) use ($userId) {
@@ -34,12 +37,12 @@ class TeamController extends Controller
                 });
 
                 $currentHash = md5(json_encode($teams));
-                
+
                 if ($currentHash !== $lastHash) {
                     echo "data: " . json_encode($teams) . "\n\n";
                     ob_flush();
                     flush();
-                    
+
                     $lastHash = $currentHash;
                 }
 
@@ -52,31 +55,30 @@ class TeamController extends Controller
         ]);
     }
 
-    private function formatTeam($team, $userId)
+    private function formatTeam(Team $team, $userId)
     {
-        // memberIds is an array of string UIDs
-        $memberIds = $team->memberIds ?? [];
-        $isMember = in_array((string)$userId, (array)$memberIds);
-        
-        $leaderUid = $team->leader['uid'] ?? null;
+        $memberIds = $team->members->pluck('id')->map(fn ($id) => (string) $id)->values()->all();
+        $isMember = in_array((string) $userId, $memberIds);
+
+        $leaderUid = $team->leader_id;
         $isLeader = $leaderUid == $userId;
 
         $leaderData = [
             'uid' => (string) $leaderUid,
-            'name' => $team->leader['name'] ?? '',
+            'name' => $team->leader->name ?? '',
         ];
         if ($isMember) {
-            $leaderData['email'] = $team->leader['email'] ?? '';
+            $leaderData['email'] = $team->leader->email ?? '';
         }
 
-        $members = collect($team->members ?? [])->map(function ($m) use ($isMember, $leaderUid) {
+        $members = $team->members->map(function ($m) use ($isMember, $leaderUid) {
             $data = [
-                'uid' => (string) $m['uid'],
-                'name' => $m['name'],
-                'role' => $leaderUid == $m['uid'] ? 'leader' : 'member',
+                'uid' => (string) $m->id,
+                'name' => $m->name,
+                'role' => $leaderUid == $m->id ? 'leader' : 'member',
             ];
             if ($isMember) {
-                $data['email'] = $m['email'] ?? '';
+                $data['email'] = $m->email ?? '';
             }
             return $data;
         })->values();
@@ -84,24 +86,24 @@ class TeamController extends Controller
         $safeTeam = [
             'id' => (string) $team->id,
             'name' => $team->name,
-            'eventId' => (string) $team->eventId,
+            'eventId' => (string) $team->event_id,
             'leader' => $leaderData,
             'members' => $members,
-            'maxMembers' => $team->maxMembers ?? $team->max_members,
+            'maxMembers' => $team->max_members,
             'createdAt' => $team->created_at,
         ];
 
         if ($isMember) {
-            $safeTeam['projectLink'] = $team->projectLink ?? $team->project_link;
+            $safeTeam['projectLink'] = $team->project_link;
             $safeTeam['code'] = $team->code;
             $safeTeam['memberIds'] = $memberIds;
-            
+
             if ($isLeader) {
-                $safeTeam['pendingMembers'] = collect($team->pendingMembers ?? [])->map(function($m) {
+                $safeTeam['pendingMembers'] = $team->joinRequests->map(function ($jr) {
                     return [
-                        'uid' => (string) $m['uid'],
-                        'name' => $m['name'],
-                        'email' => $m['email'] ?? '',
+                        'uid' => (string) $jr->user_id,
+                        'name' => $jr->user->name ?? '',
+                        'email' => $jr->user->email ?? '',
                     ];
                 })->values();
             }
@@ -112,10 +114,10 @@ class TeamController extends Controller
 
     public function index(Request $request)
     {
-        $query = Team::query();
-        
+        $query = Team::with(['leader', 'members', 'joinRequests.user']);
+
         if ($request->has('eventId') && trim($request->eventId) !== '') {
-            $query->where('eventId', $request->eventId);
+            $query->where('event_id', $request->eventId);
         }
 
         $teams = $query->get()->map(function ($team) use ($request) {
@@ -145,7 +147,7 @@ class TeamController extends Controller
             }
 
             // Check if user is already in a team (Approved)
-            if (Team::where('memberIds', 'like', "%\"{$userId}\"%")->exists()) {
+            if (TeamMember::where('user_id', $userId)->exists()) {
                 throw new \Exception("409:You are already in a team. Leave your existing team to create a new one.");
             }
 
@@ -155,7 +157,7 @@ class TeamController extends Controller
             }
 
             // Check name uniqueness per event
-            if (Team::where('eventId', $eventId)->where('name', $request->name)->exists()) {
+            if (Team::where('event_id', $eventId)->where('name', $request->name)->exists()) {
                 throw new \Exception("409:A team with this name already exists for this event.");
             }
 
@@ -165,33 +167,26 @@ class TeamController extends Controller
             } while (Team::where('code', $code)->exists());
 
             $team = new Team();
-            $team->eventId = $eventId;
+            $team->event_id = $eventId;
             $team->name = $request->name;
             $team->code = $code;
-            $team->maxMembers = (int) $request->maxMembers;
-            $team->leader = [
-                'uid' => $userId,
-                'name' => $request->user()->name,
-                'email' => $request->user()->email,
-            ];
-            $team->members = [
-                [
-                    'uid' => $userId,
-                    'name' => $request->user()->name,
-                    'email' => $request->user()->email,
-                ]
-            ];
-            $team->memberIds = [$userId];
-            $team->pendingMembers = [];
+            $team->max_members = (int) $request->maxMembers;
+            $team->leader_id = $userId;
             $team->save();
 
+            TeamMember::create([
+                'team_id' => $team->id,
+                'user_id' => $userId,
+                'role' => 'leader',
+            ]);
+
             if ($event) {
-                $event->increment('registeredCount');
-                $event->increment('teamCount'); // Adjust based on exact MongoDB schema keys
+                $event->increment('registered_count');
+                $event->increment('team_count');
             }
 
             Notification::create([
-                'userId' => null, // null implies admin target
+                'user_id' => null, // null implies admin target
                 'target_role' => 'admin',
                 'title' => 'New Team Created',
                 'message' => 'Team "' . $request->name . '" was just created by ' . $request->user()->name . '.',
@@ -199,12 +194,16 @@ class TeamController extends Controller
                 'link' => '/admin/teams',
             ]);
 
+            $team->load(['leader', 'members', 'joinRequests.user']);
+
             return response()->json($this->formatTeam($team, $userId), 201);
-        } catch (\Exception $e) {
-            $message = $e->getMessage();
-            if (str_contains($message, 'E11000 duplicate key error')) {
+        } catch (QueryException $e) {
+            if (str_contains($e->getMessage(), 'Duplicate entry')) {
                 return response()->json(['error' => 'You have already created a team for this event.'], 409);
             }
+            return response()->json(['error' => $e->getMessage()], 500);
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
             if (str_contains($message, ':')) {
                 [$status, $msg] = explode(':', $message, 2);
                 return response()->json(['error' => $msg], (int) $status);
@@ -225,41 +224,37 @@ class TeamController extends Controller
         $userId = $request->user()->id;
 
         try {
-            if (Team::where('memberIds', $userId)->exists()) {
+            if (TeamMember::where('user_id', $userId)->exists()) {
                 throw new \Exception("409:You are already in a team. Leave your existing team to join a new one.");
             }
 
             $team = Team::where('code', $request->code)
-                ->where('eventId', $request->eventId)
+                ->where('event_id', $request->eventId)
                 ->first();
 
             if (!$team) {
                 throw new \Exception("404:Invalid join code or team not found for this event");
             }
 
-            $currentMembers = count((array)$team->memberIds);
-            if ($currentMembers >= ($team->maxMembers ?? 4)) {
+            $currentMembers = $team->members()->count();
+            if ($currentMembers >= ($team->max_members ?? 4)) {
                 throw new \Exception("400:This team is already full.");
             }
 
-            // Check if already in pendingMembers
-            $pendingUids = collect($team->pendingMembers ?? [])->pluck('uid')->toArray();
-            if (in_array($userId, $pendingUids)) {
+            // Check if already in pending join requests
+            if (TeamJoinRequest::where('team_id', $team->id)->where('user_id', $userId)->exists()) {
                 throw new \Exception("400:You have already requested to join this team.");
             }
 
-            // Push to pendingMembers atomically
-            $team->push('pendingMembers', [
-                'uid' => $userId,
-                'name' => $request->user()->name,
-                'email' => $request->user()->email
+            TeamJoinRequest::create([
+                'team_id' => $team->id,
+                'user_id' => $userId,
             ]);
 
             // Notify leader
-            $leaderUid = $team->leader['uid'] ?? null;
-            if ($leaderUid) {
+            if ($team->leader_id) {
                 Notification::create([
-                    'userId' => $leaderUid,
+                    'user_id' => $team->leader_id,
                     'target_role' => 'user',
                     'title' => 'New Join Request',
                     'message' => $request->user()->name . ' wants to join your team ' . $team->name . '.',
@@ -286,39 +281,42 @@ class TeamController extends Controller
         $userId = $request->user()->id;
 
         try {
-            if (Team::where('memberIds', $targetUserId)->exists()) {
+            if (TeamMember::where('user_id', $targetUserId)->exists()) {
                 throw new \Exception("409:This user has already joined another team.");
             }
 
             $team = Team::find($id);
             if (!$team) throw new \Exception("404:Team not found");
 
-            $leaderUid = $team->leader['uid'] ?? null;
-            if ($leaderUid != $userId) {
+            if ($team->leader_id != $userId) {
                 throw new \Exception("403:Only the team leader can approve requests.");
             }
 
-            $currentMembersCount = count((array)$team->memberIds);
-            if ($currentMembersCount >= ($team->maxMembers ?? 4)) {
+            $currentMembersCount = $team->members()->count();
+            if ($currentMembersCount >= ($team->max_members ?? 4)) {
                 throw new \Exception("400:Team is already full.");
             }
 
-            // Find user in pendingMembers
-            $pendingMembers = collect($team->pendingMembers ?? []);
-            $memberObj = $pendingMembers->firstWhere('uid', $targetUserId);
+            $joinRequest = TeamJoinRequest::where('team_id', $team->id)
+                ->where('user_id', $targetUserId)
+                ->first();
 
-            if (!$memberObj) {
+            if (!$joinRequest) {
                 throw new \Exception("400:User is not in pending requests.");
             }
 
-            // Remove from pending, add to members and memberIds atomically
-            $team->pull('pendingMembers', ['uid' => $targetUserId]);
-            $team->push('members', $memberObj);
-            $team->push('memberIds', $targetUserId);
+            \Illuminate\Support\Facades\DB::transaction(function () use ($joinRequest, $team, $targetUserId) {
+                $joinRequest->delete();
+                TeamMember::create([
+                    'team_id' => $team->id,
+                    'user_id' => $targetUserId,
+                    'role' => 'member',
+                ]);
+            });
 
-            if ($currentMembersCount + 1 >= ($team->maxMembers ?? 4)) {
+            if ($currentMembersCount + 1 >= ($team->max_members ?? 4)) {
                 Notification::create([
-                    'userId' => null,
+                    'user_id' => null,
                     'target_role' => 'admin',
                     'title' => 'Team Full',
                     'message' => 'Team "' . $team->name . '" has reached its maximum capacity.',
@@ -347,12 +345,11 @@ class TeamController extends Controller
         $team = Team::find($id);
         if (!$team) return response()->json(['error' => 'Team not found'], 404);
 
-        $leaderUid = $team->leader['uid'] ?? null;
-        if ($leaderUid != $userId) {
+        if ($team->leader_id != $userId) {
             return response()->json(['error' => 'Only the team leader can reject requests.'], 403);
         }
 
-        $team->pull('pendingMembers', ['uid' => $targetUserId]);
+        TeamJoinRequest::where('team_id', $team->id)->where('user_id', $targetUserId)->delete();
 
         return response()->json(['message' => 'Request rejected.'], 200);
     }
@@ -365,38 +362,38 @@ class TeamController extends Controller
             $team = Team::find($id);
             if (!$team) throw new \Exception("404:Team not found");
 
-            $memberIds = (array) $team->memberIds;
-            if (!in_array($userId, $memberIds)) {
+            $membership = TeamMember::where('team_id', $team->id)->where('user_id', $userId)->first();
+            if (!$membership) {
                 throw new \Exception("400:You are not in this team.");
             }
 
-            $leaderUid = $team->leader['uid'] ?? null;
-            $isLeader = $leaderUid == $userId;
+            $isLeader = $team->leader_id == $userId;
 
             if ($isLeader) {
-                // Find someone else to be leader
-                $otherMembers = collect($team->members ?? [])->where('uid', '!=', $userId)->values();
+                $otherMember = TeamMember::where('team_id', $team->id)
+                    ->where('user_id', '!=', $userId)
+                    ->first();
 
-                if ($otherMembers->isEmpty()) {
+                if (!$otherMember) {
                     // Delete team entirely
-                    $eventId = $team->eventId;
+                    $eventId = $team->event_id;
                     $team->delete();
-                    
+
                     $event = Event::find($eventId);
                     if ($event) {
-                        $event->decrement('teamCount');
+                        $event->decrement('team_count');
                     }
                 } else {
-                    // Assign new leader
-                    $newLeaderObj = $otherMembers->first();
-                    $team->leader = $newLeaderObj;
-                    $team->pull('members', ['uid' => $userId]);
-                    $team->pull('memberIds', $userId);
-                    $team->save(); // Save the leader update explicitly
+                    \Illuminate\Support\Facades\DB::transaction(function () use ($team, $otherMember, $membership) {
+                        $team->leader_id = $otherMember->user_id;
+                        $team->save();
+                        $otherMember->role = 'leader';
+                        $otherMember->save();
+                        $membership->delete();
+                    });
                 }
             } else {
-                $team->pull('members', ['uid' => $userId]);
-                $team->pull('memberIds', $userId);
+                $membership->delete();
             }
 
             return response()->json(['message' => 'Successfully left the team.'], 200);
@@ -416,20 +413,19 @@ class TeamController extends Controller
         $team = Team::find($id);
         if (!$team) return response()->json(['error' => 'Team not found'], 404);
 
-        $leaderUid = $team->leader['uid'] ?? null;
-        if ($leaderUid != $userId) {
+        if ($team->leader_id != $userId) {
             return response()->json(['error' => 'Only the team leader can edit the team.'], 403);
         }
 
         if ($request->has('maxMembers')) {
-            $currentMembersCount = count((array)$team->memberIds);
+            $currentMembersCount = $team->members()->count();
             if ($request->maxMembers < $currentMembersCount) {
                 return response()->json(['error' => 'Max members cannot be less than current member count.'], 400);
             }
         }
 
         if ($request->has('name') && $request->name != $team->name) {
-            $nameExists = Team::where('eventId', $team->eventId)->where('name', $request->name)->exists();
+            $nameExists = Team::where('event_id', $team->event_id)->where('name', $request->name)->exists();
             if ($nameExists) {
                 return response()->json(['error' => 'A team with this name already exists.'], 400);
             }
@@ -440,7 +436,7 @@ class TeamController extends Controller
             $updates['name'] = $request->name;
         }
         if ($request->has('maxMembers')) {
-            $updates['maxMembers'] = (int)$request->maxMembers;
+            $updates['max_members'] = (int) $request->maxMembers;
         }
 
         if (!empty($updates)) {
@@ -459,17 +455,16 @@ class TeamController extends Controller
             $team = Team::find($id);
             if (!$team) throw new \Exception("404:Team not found");
 
-            $leaderUid = $team->leader['uid'] ?? null;
-            if ($leaderUid != $userId && !$isAdmin) {
+            if ($team->leader_id != $userId && !$isAdmin) {
                 throw new \Exception("403:Not authorized to delete this team.");
             }
 
-            $eventId = $team->eventId;
+            $eventId = $team->event_id;
             $team->delete();
 
             $event = Event::find($eventId);
             if ($event) {
-                $event->decrement('teamCount');
+                $event->decrement('team_count');
             }
 
             return response()->json(['message' => 'Team deleted successfully.'], 200);
@@ -487,22 +482,21 @@ class TeamController extends Controller
     {
         $request->validate(['projectLink' => 'required|url']);
         $userId = $request->user()->id;
-        
+
         $team = Team::find($id);
         if (!$team) return response()->json(['error' => 'Team not found'], 404);
 
-        $leaderUid = $team->leader['uid'] ?? null;
-        if ($leaderUid != $userId) {
+        if ($team->leader_id != $userId) {
             return response()->json(['error' => 'Only the team leader can submit projects.'], 403);
         }
 
-        if (isset($team->projectLink) || isset($team->project_link)) {
+        if ($team->project_link) {
             return response()->json(['error' => 'A project has already been submitted for this team.'], 400);
         }
 
         $team->update([
-            'projectLink' => $request->projectLink,
-            'projectSubmittedAt' => now(),
+            'project_link' => $request->projectLink,
+            'project_submitted_at' => now(),
         ]);
 
         return response()->json(['message' => 'Project submitted successfully!'], 200);

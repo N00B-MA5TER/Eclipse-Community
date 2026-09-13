@@ -21,6 +21,9 @@ return new class extends Migration
             
             // Allow same team name across different events, but unique per event
             $table->unique(['event_id', 'name']);
+
+            // A user can lead at most one team per event
+            $table->unique(['event_id', 'leader_id']);
         });
     }
 

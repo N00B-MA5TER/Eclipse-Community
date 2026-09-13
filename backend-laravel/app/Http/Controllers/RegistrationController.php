@@ -12,17 +12,17 @@ class RegistrationController extends Controller
     public function index(Request $request)
     {
         $userId = $request->user()->id;
-        $query = Registration::where('userId', $userId);
-        
+        $query = Registration::where('user_id', $userId);
+
         if ($request->has('eventId') && trim($request->eventId) !== '') {
-            $query->where('eventId', $request->eventId);
+            $query->where('event_id', $request->eventId);
         }
 
         $registrations = $query->get()->map(function ($reg) use ($request) {
             return [
                 'id' => (string) $reg->id,
-                'eventId' => (string) $reg->eventId,
-                'userId' => (string) $reg->userId,
+                'eventId' => (string) $reg->event_id,
+                'userId' => (string) $reg->user_id,
                 'name' => $request->user()->name,
                 'email' => $request->user()->email,
                 'createdAt' => $reg->created_at,
@@ -38,8 +38,8 @@ class RegistrationController extends Controller
         $userId = $request->user()->id;
         $eventId = $request->eventId;
 
-        $existingRegistration = Registration::where('eventId', $eventId)
-            ->where('userId', $userId)
+        $existingRegistration = Registration::where('event_id', $eventId)
+            ->where('user_id', $userId)
             ->first();
 
         if ($existingRegistration) {
@@ -47,8 +47,10 @@ class RegistrationController extends Controller
         }
 
         // Check if user is in any team for this event
-        $userInTeam = Team::where('eventId', $eventId)
-            ->where('memberIds', $userId)
+        $userInTeam = Team::where('event_id', $eventId)
+            ->whereHas('members', function ($q) use ($userId) {
+                $q->where('users.id', $userId);
+            })
             ->exists();
 
         if ($userInTeam) {
@@ -56,21 +58,19 @@ class RegistrationController extends Controller
         }
 
         $registration = new Registration();
-        $registration->eventId = $eventId;
-        $registration->userId = $userId;
-        $registration->name = $request->user()->name;
-        $registration->email = $request->user()->email;
+        $registration->event_id = $eventId;
+        $registration->user_id = $userId;
         $registration->save();
 
         $event = Event::find($eventId);
         if ($event) {
-            $event->increment('registeredCount');
+            $event->increment('registered_count');
         }
 
         return response()->json([
             'id' => (string) $registration->id,
-            'eventId' => (string) $registration->eventId,
-            'userId' => (string) $registration->userId,
+            'eventId' => (string) $registration->event_id,
+            'userId' => (string) $registration->user_id,
             'name' => $request->user()->name,
             'email' => $request->user()->email,
             'createdAt' => $registration->created_at,

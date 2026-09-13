@@ -103,23 +103,24 @@ class AdminController extends Controller
                 return response()->json(['error' => 'targetId (event ID) is required for event broadcasts'], 400);
             }
             
-            $regs = Registration::where('eventId', $request->targetId)->pluck('userId')->toArray();
-            $teamMembers = Team::where('eventId', $request->targetId)
-                ->pluck('memberIds')
-                ->flatten()
+            $regs = Registration::where('event_id', $request->targetId)->pluck('user_id')->toArray();
+            $teamMembers = Team::where('event_id', $request->targetId)
+                ->with('members')
+                ->get()
+                ->flatMap(fn ($team) => $team->members->pluck('id'))
                 ->toArray();
-                
+
             $targetUserIds = array_unique(array_merge($regs, $teamMembers));
         } elseif ($request->target === 'team') {
             if (!$request->targetId) {
                 return response()->json(['error' => 'targetId (team ID) is required for team broadcasts'], 400);
             }
-            $team = Team::find($request->targetId);
+            $team = Team::with('members')->find($request->targetId);
             if (!$team) {
                 return response()->json(['error' => 'Team not found'], 404);
             }
-            
-            $targetUserIds = (array) ($team->memberIds ?? []);
+
+            $targetUserIds = $team->members->pluck('id')->toArray();
         } else {
             return response()->json(['error' => 'Invalid target type'], 400);
         }
@@ -132,14 +133,14 @@ class AdminController extends Controller
         $now = now();
         $notifications = array_map(function($id) use ($request, $now) {
             return [
-                'userId' => (string) $id,
-                'targetRole' => 'user',
+                'user_id' => $id,
+                'target_role' => 'user',
                 'title' => $request->title,
                 'message' => $request->message,
                 'type' => $request->type ?? 'info',
                 'read' => false,
-                'createdAt' => $now,
-                'updatedAt' => $now,
+                'created_at' => $now,
+                'updated_at' => $now,
             ];
         }, $targetUserIds);
 

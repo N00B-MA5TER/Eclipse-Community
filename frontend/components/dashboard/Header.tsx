@@ -7,6 +7,7 @@ import { NotificationsMenu } from "./NotificationsMenu";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -93,7 +94,9 @@ export function Header() {
             <ChevronDown className="w-3.5 h-3.5 text-black ml-1 mr-1" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56 rounded-none border border-black bg-white p-2 shadow-[4px_4px_0px_0px_#000000]">
-            <DropdownMenuLabel className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">My Account</DropdownMenuLabel>
+            <DropdownMenuGroup>
+              <DropdownMenuLabel className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">My Account</DropdownMenuLabel>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator className="bg-black my-1" />
             <Link href={profile?.role === 'admin' ? '/admin/dashboard' : '/dashboard/profile'}>
               <DropdownMenuItem className="cursor-pointer font-mono text-xs hover:bg-neutral-100 rounded-none focus:bg-neutral-100">
