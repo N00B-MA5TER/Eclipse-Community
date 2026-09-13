@@ -1,0 +1,21 @@
+frontend/public/zero-to-hackathon/videos/20260826_171816.mp4
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
+frontend/.env.*.local
+
+# Backend
+backend-laravel/vendor/
+backend-laravel/node_modules/
+backend-laravel/storage/*.key
+backend-laravel/.env
+backend-laravel/storage/logs/
+backend-laravel/storage/framework/cache/
+backend-laravel/storage/framework/sessions/
+backend-laravel/storage/framework/views/
+
+# OS
+.DS_Store
+Thumbs.db
