@@ -1,0 +1,741 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ecllipse — Official Tech Club of DIATM</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700&amp;family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+            "surface-container": "#eaedff",
+            "primary-fixed-dim": "#b6c4ff",
+            "on-background": "#131b2e",
+            "surface-dim": "#d2d9f4",
+            "tertiary-container": "#007b54",
+            "on-error-container": "#93000a",
+            "surface-tint": "#004fe5",
+            "on-tertiary-container": "#acffd4",
+            "error": "#ba1a1a",
+            "surface-container-low": "#f2f3ff",
+            "on-primary-fixed": "#00164f",
+            "on-tertiary-fixed": "#002113",
+            "surface-container-lowest": "#ffffff",
+            "primary-container": "#0d5bff",
+            "surface-container-high": "#e2e7ff",
+            "on-secondary-fixed": "#23005c",
+            "inverse-on-surface": "#eef0ff",
+            "on-error": "#ffffff",
+            "outline-variant": "#c3c5d9",
+            "primary": "#0045cc",
+            "on-primary": "#ffffff",
+            "surface-container-highest": "#dae2fd",
+            "outline": "#737688",
+            "primary-fixed": "#dce1ff",
+            "on-secondary": "#ffffff",
+            "tertiary": "#006040",
+            "on-secondary-container": "#fffbff",
+            "secondary-container": "#8455ef",
+            "tertiary-fixed": "#6ffbbe",
+            "on-surface": "#131b2e",
+            "background": "#faf8ff",
+            "surface-bright": "#faf8ff",
+            "secondary-fixed-dim": "#d0bcff",
+            "tertiary-fixed-dim": "#4edea3",
+            "inverse-surface": "#283044",
+            "inverse-primary": "#b6c4ff",
+            "secondary-fixed": "#e9ddff",
+            "surface-variant": "#dae2fd",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-surface-variant": "#434656",
+            "surface": "#faf8ff",
+            "on-primary-fixed-variant": "#003bb0",
+            "secondary": "#6b38d4",
+            "on-secondary-fixed-variant": "#5516be",
+            "on-primary-container": "#ebecff"
+          },
+          fontFamily: {
+            "serif-display": ["'Bodoni Moda'", "'Playfair Display'", "serif"],
+            "editorial-serif": ["'Playfair Display'", "serif"],
+            "mono-code": ["'Space Grotesk'", "monospace"],
+            "headline-lg": ["'Plus Jakarta Sans'", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "label-mono": ["'Space Grotesk'", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    .bracket-corner-tl {
+      position: relative;
+    }
+    .bracket-corner-tl::before {
+      content: "┌";
+      position: absolute;
+      top: -8px;
+      left: -6px;
+      font-family: monospace;
+      font-size: 16px;
+      color: #0c111d;
+      line-height: 1;
+    }
+    .bracket-corner-br::after {
+      content: "┘";
+      position: absolute;
+      bottom: -8px;
+      right: -6px;
+      font-family: monospace;
+      font-size: 16px;
+      color: #0c111d;
+      line-height: 1;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+  </style>
+</head>
+<body class="bg-[#fcfbf9] text-[#0c111d] font-['Plus_Jakarta_Sans',sans-serif] antialiased selection:bg-[#acffd4] selection:text-[#0c111d]">
+<!-- Top Metadata Hairline Bar -->
+<div class="border-b border-[#0c111d]/15 bg-[#f5f4ef] text-[10px] tracking-[0.18em] uppercase font-mono-code py-1.5 px-4 sm:px-8 flex flex-wrap items-center justify-between gap-2 text-[#434656]">
+<div class="flex items-center gap-2">
+<span class="inline-block w-1.5 h-1.5 bg-[#0c111d]"></span>
+<span class="font-bold text-[#0c111d]">DIATM / COLL. ARCHIVE / VOL. 26</span>
+</div>
+<div class="hidden md:block font-medium tracking-[0.25em] text-[#0c111d]/70">
+      OFFICIAL STUDENT TECH INITIATIVE
+    </div>
+<div class="flex items-center gap-3">
+<span class="text-[#007b54] font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#007b54] animate-pulse"></span> SYSTEM: ONLINE
+      </span>
+<span class="text-[#737688]">|</span>
+<span class="">EST. 2026</span>
+</div>
+</div>
+<!-- Primary BroadSheet Navbar -->
+<header class="border-b border-[#0c111d] bg-[#fcfbf9] sticky top-0 z-50 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<!-- Diamond Mark + Brand -->
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="w-6 h-6 bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center rotate-45 transform group-hover:rotate-90 transition-transform duration-300">
+<div class="w-2 h-2 bg-[#acffd4] -rotate-45"></div>
+</div>
+<span class="font-serif-display text-2xl font-black tracking-[-0.03em] text-[#0c111d] ml-1">
+          Ecllipse
+        </span>
+</a>
+<!-- Broadsheet Minimal Navlinks -->
+<nav class="hidden lg:flex items-center gap-1 font-mono-code text-[12px] tracking-[0.05em] uppercase font-medium">
+<a class="bg-[#0c111d] text-[#fcfbf9] px-3.5 py-1.5 rounded-full font-bold" href="#">Home</a>
+<a class="px-3 py-1.5 text-[#0c111d] hover:bg-[#0c111d]/5 rounded transition" href="#about">About Us</a>
+<a class="px-3 py-1.5 text-[#0c111d] hover:bg-[#0c111d]/5 rounded transition" href="#mission">Mission</a>
+<a class="px-3 py-1.5 text-[#0c111d] hover:bg-[#0c111d]/5 rounded transition" href="#vision">Vision</a>
+<a class="px-3 py-1.5 text-[#0c111d] hover:bg-[#0c111d]/5 rounded transition" href="#achievements">Achievements</a>
+<a class="px-3 py-1.5 text-[#0c111d] hover:bg-[#0c111d]/5 rounded transition" href="#gallery">Gallery</a>
+<a class="px-3 py-1.5 text-[#0c111d] hover:bg-[#0c111d]/5 rounded transition" href="#contact">Contact</a>
+</nav>
+</div>
+<!-- Nav Right Controls -->
+<div class="flex items-center gap-2.5">
+<button aria-label="Search" class="w-9 h-9 border border-[#0c111d] flex items-center justify-center hover:bg-[#0c111d] hover:text-[#fcfbf9] transition-colors" data-icon="search">
+<span class="material-symbols-outlined text-[18px]">search</span>
+</button>
+<a class="bg-[#0c111d] text-[#fcfbf9] font-mono-code text-[11px] font-bold tracking-[0.14em] uppercase px-4 h-9 flex items-center justify-center hover:bg-[#0045cc] transition-colors border border-[#0c111d]" href="#dashboard">
+        DASHBOARD
+      </a>
+</div>
+</header>
+<!-- Editorial Sub-Bar Wire -->
+<div class="border-b border-[#0c111d] px-4 sm:px-8 py-2 bg-[#fcfbf9] flex items-center justify-between text-[11px] font-mono-code text-[#434656]">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 bg-[#0c111d]"></span>
+<span class="font-bold text-[#0c111d] tracking-wider">SECTION // 00.1</span>
+<span class="text-[#737688]">/</span>
+<span class="">INDUCTION PORTAL // AUTUMN 2026</span>
+</div>
+<div class="hidden sm:flex items-center gap-4 text-[#737688]">
+<span class="">REG. LAT: 23.5204° N</span>
+<span class="">LON: 87.3119° E</span>
+</div>
+</div>
+<main class="max-w-[1440px] mx-auto px-4 sm:px-8 py-8 lg:py-12">
+<!-- VARIANT 3 HERO: CLASSIC NEWSPAPER MASTHEAD FORMAT -->
+<div class="border-b-2 border-[#0c111d] pb-8 mb-10 text-center">
+<!-- Top Subhead Wire & Tag Pill -->
+<div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#0c111d]/20 pb-3 mb-6 font-mono-code text-[11px] text-[#434656]">
+<div class="inline-flex items-center gap-2 bg-[#0c111d] text-[#fcfbf9] px-3.5 py-1 rounded-full font-bold tracking-widest uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#acffd4] inline-block animate-ping"></span>
+<span class="">• OFFICIAL TECH CLUB OF DIATM</span>
+</div>
+<div class="font-bold tracking-wider text-[#0c111d]">
+        COLLEGIATE ARCHITECTURAL EDITION
+      </div>
+<div class="text-[#737688]">
+        RELEASE CODENAME: BROAD-MONO-07
+      </div>
+</div>
+<!-- Full-Width Massive Centered Headline -->
+<div class="py-4">
+<h1 class="font-serif-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-[-0.04em] leading-[0.95] text-[#0c111d] uppercase">
+        Outshine the Ordinary.
+      </h1>
+<div class="mt-4 flex flex-wrap items-center justify-center gap-4">
+<span class="font-sans font-black text-2xl sm:text-4xl md:text-5xl tracking-[-0.02em] uppercase text-[#0c111d]">
+          DEFINE THE FUTURE.
+        </span>
+<span class="bg-[#acffd4] text-[#002113] border border-[#007b54] px-3 py-1 text-[11px] font-mono-code font-bold uppercase tracking-wider">
+          TECH INITIATIVE // ACTIVE RECRUITMENT
+        </span>
+</div>
+</div>
+<!-- Masthead Lower Hairline Rule -->
+<div class="border-t border-[#0c111d] pt-3 mt-4 flex flex-wrap items-center justify-between text-[11px] font-mono-code text-[#434656]">
+<span class="font-bold text-[#0c111d]">DEPARTMENT OF COMPUTER SCIENCE &amp; ENGINEERING</span>
+<span class="">COLLEGIATE BROADSHEET JOURNAL — ISSUE NO. 26</span>
+<span class="text-[#737688]">AUTUMN TERM 2026</span>
+</div>
+</div>
+<!-- BALANCED 3-COLUMN HERO LAYOUT -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 pb-16 border-b-2 border-[#0c111d]">
+<!-- LEFT COLUMN: Club Overview & CTAs -->
+<div class="lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#0c111d] pb-8 lg:pb-0 lg:pr-8">
+<div>
+<div class="flex items-center gap-2 border-b border-[#0c111d] pb-2 mb-4 font-mono-code text-[11px]">
+<span class="w-2 h-2 bg-[#0c111d]"></span>
+<span class="font-bold tracking-wider text-[#0c111d]">■ COLUMN 01 // OVERVIEW</span>
+</div>
+<div class="border-l-4 border-[#0c111d] pl-4 py-1 mb-6">
+<p class="font-body-lg text-base sm:text-lg text-[#0c111d] leading-relaxed font-normal">
+            Ecllipse is the official Tech Club of our college. Join a vibrant community of passionate developers and creators to host workshops, collaborate on epic projects, and push the boundaries of technology.
+          </p>
+<p class="mt-4 text-xs text-[#434656] font-mono-code">
+            // INCUBATING OPEN-SOURCE, SYSTEMS PROGRAMMING &amp; EXPERIMENTAL INTERACTION DESIGN.
+          </p>
+</div>
+</div>
+<div class="space-y-4 pt-4 border-t border-[#0c111d]/20">
+<div class="flex flex-wrap items-center gap-3">
+<a class="h-12 px-6 bg-[#0c111d] text-[#fcfbf9] font-mono-code text-xs font-bold uppercase tracking-wider flex items-center justify-center hover:bg-[#0045cc] transition-colors shadow-[3px_3px_0px_0px_#acffd4] border border-[#0c111d]" href="#register">
+            GET STARTED
+          </a>
+<button aria-label="Explore action" class="w-12 h-12 border border-[#0c111d] bg-[#ffffff] flex items-center justify-center hover:bg-[#0c111d] hover:text-[#fcfbf9] transition-colors" data-icon="north_east">
+<span class="material-symbols-outlined text-lg">north_east</span>
+</button>
+</div>
+<a class="inline-flex items-center gap-2 font-mono-code text-xs uppercase font-bold tracking-wider text-[#0c111d] hover:underline underline-offset-4 pt-2" href="#highlights">
+<span class="w-2 h-2 rounded-full bg-[#ba1a1a]"></span>
+<span class="">Watch club highlights</span>
+</a>
+</div>
+</div>
+<!-- CENTER COLUMN: Program Snapshot Card -->
+<div class="lg:col-span-5 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-[#0c111d] pb-8 lg:pb-0 lg:pr-8">
+<div class="relative border-2 border-[#0c111d] bg-[#ffffff] p-6 bracket-corner-tl bracket-corner-br shadow-[4px_4px_0px_0px_#0c111d]">
+<!-- Card Header Telemetry -->
+<div class="flex items-center justify-between border-b border-[#0c111d] pb-3 mb-5 font-mono-code text-[11px]">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-[#0c111d]"></span>
+<span class="font-bold tracking-wider text-[#0c111d]">■ PROGRAM SNAPSHOT</span>
+</div>
+<span class="text-[#737688] font-semibold">DIATM.DEV // 2026</span>
+</div>
+<!-- Event Headline & Visual Token -->
+<div class="flex items-start gap-4 mb-4">
+<div class="w-12 h-12 bg-[#0c111d] text-[#acffd4] flex items-center justify-center font-mono-code font-black text-xl shrink-0">
+            #01
+          </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-serif-display text-xl font-bold text-[#0c111d]">Hackathon 2026</h3>
+<span class="bg-[#acffd4] text-[#002113] text-[9px] font-mono-code font-bold uppercase px-2 py-0.5 rounded-full flex items-center gap-1 border border-[#007b54]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#007b54]"></span> LIVE
+              </span>
+</div>
+<p class="text-[13px] text-[#434656] mt-0.5">
+              Create, manage, and join epic events.
+            </p>
+</div>
+</div>
+<!-- Capacity Bar & Gauge -->
+<div class="space-y-1.5 my-5 bg-[#f5f4ef] p-3 border border-[#0c111d]/20">
+<div class="flex justify-between text-[11px] font-mono-code">
+<span class="text-[#434656]">COHORT CAPACITY</span>
+<span class="font-bold text-[#0c111d]">72% ALLOCATED</span>
+</div>
+<div class="h-3 w-full bg-[#e2e7ff] border border-[#0c111d] overflow-hidden flex">
+<div class="bg-[#0c111d] h-full w-[54%]"></div>
+<div class="bg-[#acffd4] h-full w-[18%]"></div>
+<div class="bg-transparent h-full w-[28%]"></div>
+</div>
+<div class="flex justify-between text-[10px] font-mono-code text-[#737688]">
+<span class="">[■ COMMITTED]</span>
+<span class="">[▨ RESERVED]</span>
+<span class="">[□ OPEN SLOTS]</span>
+</div>
+</div>
+<!-- Team Avatars & Full status -->
+<div class="border-t border-b border-[#0c111d] py-3.5 my-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="flex -space-x-1.5 font-mono-code text-[11px] font-bold">
+<span class="w-7 h-7 rounded bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center border border-[#ffffff]">AK</span>
+<span class="w-7 h-7 rounded bg-[#283044] text-[#fcfbf9] flex items-center justify-center border border-[#ffffff]">RD</span>
+<span class="w-7 h-7 rounded bg-[#434656] text-[#fcfbf9] flex items-center justify-center border border-[#ffffff]">PS</span>
+<span class="w-7 h-7 rounded bg-[#007b54] text-[#acffd4] flex items-center justify-center border border-[#ffffff]">MS</span>
+</div>
+<span class="text-[12px] font-mono-code font-semibold text-[#0c111d] ml-1">4 / 4 Team is full!</span>
+</div>
+<div class="text-right">
+<span class="font-mono-code font-bold text-sm text-[#0c111d]">2.4k</span>
+<p class="text-[10px] font-mono-code text-[#737688] uppercase">Registrations</p>
+</div>
+</div>
+<!-- Snapshot Telemetry Bottom Foot -->
+<div class="flex items-center justify-between text-[10px] font-mono-code text-[#434656] pt-1">
+<span class="font-bold text-[#0c111d]">■ NETWORK SYSTEM: ACTIVE</span>
+<span class="text-[#007b54] font-bold">01 // 03</span>
+</div>
+</div>
+<div class="mt-4 border border-[#0c111d] p-3 bg-[#f5f4ef] flex items-center justify-between text-[11px] font-mono-code">
+<span class="text-[#434656]">AFFILIATED COLLECTIVE</span>
+<span class="font-bold text-[#0c111d]">DIATM TECH FORUM // AUTUMN '26</span>
+</div>
+</div>
+<!-- RIGHT COLUMN: Affiliation & Campus Credentials -->
+<div class="lg:col-span-3 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 border-b border-[#0c111d] pb-2 mb-4 font-mono-code text-[11px]">
+<span class="w-2 h-2 bg-[#0c111d]"></span>
+<span class="font-bold tracking-wider text-[#0c111d]">■ DISPATCH CREDENTIALS</span>
+</div>
+<div class="border border-[#0c111d] bg-[#ffffff] divide-y divide-[#0c111d]">
+<div class="p-4">
+<p class="text-[10px] font-mono-code uppercase tracking-wider text-[#737688]">FOUNDED</p>
+<p class="text-base font-mono-code font-bold text-[#0c111d] mt-1">Durgapur, WB</p>
+</div>
+<div class="p-4">
+<p class="text-[10px] font-mono-code uppercase tracking-wider text-[#737688]">AFFILIATION</p>
+<p class="text-base font-mono-code font-bold text-[#0c111d] mt-1">Dept. of CSE &amp; IT</p>
+</div>
+<div class="p-4">
+<p class="text-[10px] font-mono-code uppercase tracking-wider text-[#737688]">STATUS</p>
+<div class="mt-1.5 flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-[#007b54]"></span>
+<span class="text-xs font-mono-code font-bold uppercase text-[#007b54] bg-[#acffd4] px-2 py-0.5 border border-[#007b54]">
+              Open Admissions
+            </span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 border border-[#0c111d] p-4 bg-[#f5f4ef] font-mono-code text-[11px] text-[#434656] space-y-2">
+<p class="font-bold text-[#0c111d] uppercase border-b border-[#0c111d]/20 pb-1.5">// DISPATCH VERIFICATION</p>
+<p class="">COLLEGIATE ARCHITECTURAL EDITION</p>
+<p class="">DEPARTMENT OF COMPUTER SCIENCE &amp; ENGINEERING</p>
+<p class="text-[#737688]">RELEASE CODENAME: BROAD-MONO-07</p>
+</div>
+</div>
+</div>
+<!-- SECTION 01: OUR IDENTITY (STACKED HORIZONTAL NARRATIVE CARDS) -->
+<section class="py-14 border-b-2 border-[#0c111d]" id="about">
+<!-- Section Header -->
+<div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#0c111d] pb-3 mb-8">
+<div class="flex items-center gap-3">
+<span class="font-mono-code font-bold text-sm text-[#0c111d]">01 / IDENTITY</span>
+<span class="text-[#737688]">/</span>
+<h2 class="font-serif-display text-3xl sm:text-4xl font-bold text-[#0c111d]">Who We Are &amp; Core Pillars</h2>
+</div>
+<span class="font-mono-code text-[11px] text-[#737688] uppercase tracking-widest">ARCHITECTURAL MANIFESTO</span>
+</div>
+<!-- Stacked Horizontal Narrative Cards with Vertical Divider Rules -->
+<div class="space-y-6">
+<!-- Narrative Card 1: Who We Are -->
+<div class="border border-[#0c111d] bg-[#ffffff] hover:shadow-[4px_4px_0px_0px_#0c111d] transition-shadow">
+<div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#0c111d]">
+<div class="lg:col-span-3 p-6 bg-[#f5f4ef] flex flex-col justify-between">
+<div class="font-mono-code text-[11px]">
+<span class="font-bold text-[#0c111d]">01 / ARCH</span>
+<span class="block text-[#737688] mt-1">FOUNDATIONAL</span>
+</div>
+<h3 class="font-serif-display text-2xl font-bold text-[#0c111d] mt-4">Who We Are</h3>
+</div>
+<div class="lg:col-span-5 p-6 flex flex-col justify-between">
+<p class="font-body-md text-sm sm:text-base text-[#434656] leading-relaxed">
+              A premier collegiate collective pushing technological boundaries, fostering peer mentorship and pioneering digital craft across systems, product design, and computation.
+            </p>
+<a class="inline-flex items-center gap-2 font-mono-code text-[11px] font-bold uppercase tracking-wider text-[#0c111d] hover:text-[#0045cc] mt-4 pt-4 border-t border-[#0c111d]/10" href="#discover">
+<span class="">DISCOVER WHO WE ARE</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="lg:col-span-4 p-6 bg-[#ffffff] flex items-center">
+<div class="w-full border-l-4 border-[#0c111d] pl-4 py-2 bg-[#f5f4ef] text-sm font-serif-display italic text-[#0c111d]">
+              "Autonomous learning through collective execution."
+            </div>
+</div>
+</div>
+</div>
+<!-- Narrative Card 2: Our Mission -->
+<div class="border border-[#0c111d] bg-[#ffffff] hover:shadow-[4px_4px_0px_0px_#0c111d] transition-shadow" id="mission">
+<div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#0c111d]">
+<div class="lg:col-span-3 p-6 bg-[#f5f4ef] flex flex-col justify-between">
+<div class="font-mono-code text-[11px]">
+<span class="font-bold text-[#0c111d]">02 / CORE</span>
+<span class="block text-[#737688] mt-1">TRAJECTORY</span>
+</div>
+<h3 class="font-serif-display text-2xl font-bold text-[#0c111d] mt-4">Our Mission</h3>
+</div>
+<div class="lg:col-span-5 p-6 flex flex-col justify-between">
+<p class="font-body-md text-sm sm:text-base text-[#434656] leading-relaxed">
+              To transform classroom theory into production-ready software and hardware engineering. We organize student sprints, hackathons, and technical bootcamps that cultivate industry readiness.
+            </p>
+<a class="inline-flex items-center gap-2 font-mono-code text-[11px] font-bold uppercase tracking-wider text-[#0c111d] hover:text-[#0045cc] mt-4 pt-4 border-t border-[#0c111d]/10" href="#mission">
+<span class="">EXPLORE OUR SPRINT SCHEDULE</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="lg:col-span-4 p-6 bg-[#ffffff] flex items-center">
+<div class="w-full border-l-4 border-[#0c111d] pl-4 py-2 bg-[#f5f4ef] text-sm font-serif-display italic text-[#0c111d]">
+              "Bridging the gap between academia and modern engineering."
+            </div>
+</div>
+</div>
+</div>
+<!-- Narrative Card 3: Our Vision -->
+<div class="border border-[#0c111d] bg-[#ffffff] hover:shadow-[4px_4px_0px_0px_#0c111d] transition-shadow" id="vision">
+<div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-[#0c111d]">
+<div class="lg:col-span-3 p-6 bg-[#f5f4ef] flex flex-col justify-between">
+<div class="font-mono-code text-[11px]">
+<span class="font-bold text-[#0c111d]">03 / HORIZON</span>
+<span class="block text-[#737688] mt-1">TARGET 2028</span>
+</div>
+<h3 class="font-serif-display text-2xl font-bold text-[#0c111d] mt-4">Our Vision</h3>
+</div>
+<div class="lg:col-span-5 p-6 flex flex-col justify-between">
+<p class="font-body-md text-sm sm:text-base text-[#434656] leading-relaxed">
+              Establishing DIATM as an internationally recognized hub of student innovation, competitive programming excellence, and open-source contributions with scalable real-world utility.
+            </p>
+<a class="inline-flex items-center gap-2 font-mono-code text-[11px] font-bold uppercase tracking-wider text-[#0c111d] hover:text-[#0045cc] mt-4 pt-4 border-t border-[#0c111d]/10" href="#vision">
+<span class="">READ VISION ARCHIVE</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="lg:col-span-4 p-6 bg-[#ffffff] flex items-center">
+<div class="w-full border-l-4 border-[#0c111d] pl-4 py-2 bg-[#f5f4ef] text-sm font-serif-display italic text-[#0c111d]">
+              "Building institutions that outlast four-year degrees."
+            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 02: SUCCESSFUL EVENTS (MAGAZINE-STYLE: PROMINENT LEFT STORY COLUMN + RIGHT PHOTOGRAPHIC RETROSPECTIVE) -->
+<section class="py-14 border-b-2 border-[#0c111d]" id="achievements">
+<div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#0c111d] pb-3 mb-8">
+<div class="flex items-center gap-3">
+<span class="font-mono-code font-bold text-sm text-[#0c111d]">02 / RECORD</span>
+<span class="text-[#737688]">/</span>
+<h2 class="font-serif-display text-3xl sm:text-4xl font-bold text-[#0c111d]">Successful Events &amp; Retrospectives</h2>
+</div>
+<span class="font-mono-code text-[11px] text-[#737688] uppercase tracking-widest">ARCHIVE // 2025-2026</span>
+</div>
+<!-- Magazine Layout: Story on the left, Photo on the right -->
+<div class="border-2 border-[#0c111d] bg-[#ffffff] grid grid-cols-1 lg:grid-cols-12 overflow-hidden shadow-[5px_5px_0px_0px_#0c111d]">
+<!-- Story Column (Left) -->
+<div class="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between bg-[#ffffff] border-b lg:border-b-0 lg:border-r border-[#0c111d]">
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-3 font-mono-code text-[11px]">
+<span class="text-[#007b54] font-bold">ANNUAL FLAGSHIP SPRINT</span>
+<span class="text-[#737688]">•</span>
+<span class="text-[#737688]">CONCLUDED FEB 2026</span>
+</div>
+<h3 class="font-serif-display text-3xl sm:text-4xl font-bold text-[#0c111d] mb-4 leading-tight">
+            Zero to Hackathon: Build and Break
+          </h3>
+<p class="font-body-md text-base text-[#434656] leading-relaxed mb-6">
+            A 24-hour sprint that immersed students from first-year basics through building fully operational full-stack web and IoT prototypes. 36 projects were judged by industry alumni from leading tech giants.
+          </p>
+<!-- Metrics Telemetry Grid -->
+<div class="grid grid-cols-3 border border-[#0c111d] bg-[#f5f4ef] mb-6 divide-x divide-[#0c111d]">
+<div class="p-3.5 text-center">
+<p class="font-mono-code text-2xl font-bold text-[#0c111d]">120+</p>
+<p class="text-[10px] font-mono-code uppercase text-[#737688] mt-0.5">Builders</p>
+</div>
+<div class="p-3.5 text-center">
+<p class="font-mono-code text-2xl font-bold text-[#0c111d]">36</p>
+<p class="text-[10px] font-mono-code uppercase text-[#737688] mt-0.5">Projects</p>
+</div>
+<div class="p-3.5 text-center">
+<p class="font-mono-code text-2xl font-bold text-[#0c111d]">24h</p>
+<p class="text-[10px] font-mono-code uppercase text-[#737688] mt-0.5">Continuous</p>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#0c111d]/20 font-mono-code text-xs">
+<span class="text-[#434656]">WINNER: TEAM CYBER-SYNTHESIS</span>
+<a class="bg-[#0c111d] text-[#fcfbf9] px-5 py-2.5 font-bold uppercase tracking-wider hover:bg-[#0045cc] transition-colors" href="#event-archive">
+            VIEW EVENT RECAP &amp; SUBMISSIONS →
+          </a>
+</div>
+</div>
+<!-- Photographic Retrospective (Right) -->
+<div class="lg:col-span-5 relative min-h-[360px] bg-[#f5f4ef]">
+<div class="w-full h-full bg-cover bg-center absolute inset-0" data-alt="A striking black and white broadsheet editorial photograph of a collegiate tech hackathon in an industrial engineering workshop. University computer science students huddle over laptops and microcontrollers under focused high-key studio lighting. Clean geometric shadows, monochrome contrast with minimal acid-green accent tapes on prototype boards, creating an intellectually rigorous, documentary atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUlrzLABei9TFqA1VUnBbPXXLnvmBjcSlxmGcmSvNZOYrdQjKuUJFIilo--H7WuZbB_Jk7tIV9pF1PSWb9HLyKi9bSLEgHTNPCiEC2L-__w12oSy81Ye9uFkMgqSDV3-TMyzafYe012dWL1hgPd5YMUZdteb6mdTB7ir5l7QGYS8vgFQaKzTndU_wG1QVnWCA5gzj2zIv6aMSPLRxvPZm1krQynpJz5Wor6GXWiJrLXq9ct3094QM7yA')"></div>
+<div class="absolute top-3 left-3 bg-[#0c111d] text-[#acffd4] px-2.5 py-1 text-[10px] font-mono-code font-bold uppercase tracking-wider">
+          CASE STUDY // EVENT #04
+        </div>
+<div class="absolute bottom-3 right-3 bg-[#ffffff] border border-[#0c111d] px-2.5 py-1 text-[10px] font-mono-code font-semibold shadow-sm">
+          STATUS: COMPLETED
+        </div>
+</div>
+</div>
+</section>
+<!-- SECTION 03: TECHNOLOGIES WE WORK WITH (CONTINUOUS SINGLE-LINE ARCHITECTURAL MARQUEE RIBBON) -->
+<section class="py-14 border-b-2 border-[#0c111d]">
+<div class="flex flex-wrap items-baseline justify-between gap-4 border-b border-[#0c111d] pb-3 mb-6">
+<div class="flex items-center gap-3">
+<span class="font-mono-code font-bold text-sm text-[#0c111d]">03 / STACK</span>
+<span class="text-[#737688]">/</span>
+<h2 class="font-serif-display text-3xl sm:text-4xl font-bold text-[#0c111d]">Technologies We Work With</h2>
+</div>
+<span class="font-mono-code text-[11px] text-[#737688] uppercase tracking-widest">ACTIVE TOOLCHAINS // V26</span>
+</div>
+<!-- Single-line Architectural Marquee Ribbon with bold top/bottom hairlines -->
+<div class="border-y-2 border-[#0c111d] bg-[#ffffff] overflow-hidden py-3 my-4">
+<div class="animate-marquee flex items-center gap-8">
+<!-- Set 1 -->
+<div class="flex items-center gap-8 font-mono-code shrink-0">
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">React</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Frontend UI</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Python</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Algorithms &amp; AI</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Next.js</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Full-Stack</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">TypeScript</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Type Systems</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Node.js</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Runtime</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Arduino</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Hardware / IoT</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">TensorFlow</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Machine Learning</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Figma</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Interface Systems</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+</div>
+<!-- Duplicate Set for Seamless Continuous Marquee -->
+<div aria-hidden="true" class="flex items-center gap-8 font-mono-code shrink-0">
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">React</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Frontend UI</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Python</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Algorithms &amp; AI</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Next.js</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Full-Stack</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">TypeScript</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Type Systems</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Node.js</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Runtime</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Arduino</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Hardware / IoT</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">TensorFlow</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Machine Learning</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+<div class="flex items-center gap-3 px-3">
+<span class="font-black text-2xl text-[#0c111d]">Figma</span>
+<span class="text-[10px] uppercase text-[#737688] bg-[#f5f4ef] px-2 py-0.5 border border-[#0c111d]/20">Interface Systems</span>
+</div>
+<span class="text-[#0c111d]/30 font-bold">/</span>
+</div>
+</div>
+</div>
+<!-- Toolchain Ticker Tape -->
+<div class="mt-3 p-2.5 bg-[#f5f4ef] border border-[#0c111d] flex flex-wrap items-center justify-between text-[11px] font-mono-code text-[#434656]">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-[#007b54]"></span>
+<span class="">COMPUTE REPO: DIATM-ECLLIPSE / LAB-INFRA</span>
+</div>
+<div>
+<span class="">CI/CD PIPELINE: PASSED [100%]</span>
+</div>
+</div>
+</section>
+<!-- SECTION 04: GALLERY TEASER (ONE LARGE FOCAL LAB IMAGE ON LEFT + TWO STACKED ON RIGHT) -->
+
+<!-- SECTION 05: COMPACT CENTERED COLLEGIATE ANNOUNCEMENT BLOCK WITH ACID-GREEN BADGE & DUAL BUTTONS -->
+<section class="py-14" id="register">
+<div class="bg-[#0c111d] text-[#fcfbf9] border-2 border-[#0c111d] p-8 sm:p-12 text-center relative overflow-hidden shadow-[8px_8px_0px_0px_#acffd4] max-w-4xl mx-auto">
+<!-- Decorative subtle corner mark -->
+<div class="text-[10px] font-mono-code text-[#737688] tracking-widest uppercase mb-4">
+        ADMISSION BATCH: AUTUMN 2026 // SLOTS LIMITED
+      </div>
+<div class="inline-flex items-center gap-2 bg-[#ffffff]/10 text-[#acffd4] px-3.5 py-1 rounded text-xs font-mono-code uppercase font-semibold mb-6">
+<span class="w-2 h-2 rounded-full bg-[#acffd4]"></span>
+<span class="">OPEN ADMISSIONS RECRUITMENT</span>
+</div>
+<h2 class="font-serif-display text-3xl sm:text-5xl font-extrabold text-[#fcfbf9] leading-tight mb-4">
+        Ready to outshine the ordinary?
+      </h2>
+<p class="font-body-lg text-[#e6ebf4] text-base sm:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+        Join the collective. Whether you build compilers, design systems, configure circuits, or craft communities, Ecllipse is where DIATM builds the future.
+      </p>
+<div class="flex flex-wrap items-center justify-center gap-4">
+<a class="h-12 px-8 bg-[#acffd4] text-[#002113] font-mono-code text-xs font-black uppercase tracking-wider flex items-center justify-center hover:bg-[#6ffbbe] transition-colors border border-[#acffd4]" href="#register-form">
+          REGISTER NOW
+        </a>
+<a class="h-12 px-6 border border-[#fcfbf9] text-[#fcfbf9] font-mono-code text-xs font-bold uppercase tracking-wider flex items-center justify-center hover:bg-[#ffffff]/10 transition-colors" href="#about">
+          READ CLUB CONSTITUTION
+        </a>
+</div>
+</div>
+</section>
+</main>
+<!-- EDITORIAL FOOTER -->
+<footer class="border-t-2 border-[#0c111d] bg-[#f5f4ef] text-[#0c111d] pt-12 pb-8 px-4 sm:px-8" id="contact">
+<div class="max-w-[1440px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-[#0c111d]">
+<!-- Brand & College Credential -->
+<div class="md:col-span-4">
+<div class="flex items-center gap-2.5 mb-3">
+<div class="w-5 h-5 bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center rotate-45">
+<div class="w-1.5 h-1.5 bg-[#acffd4] -rotate-45"></div>
+</div>
+<span class="font-serif-display text-2xl font-black text-[#0c111d]">Ecllipse</span>
+</div>
+<p class="font-body-md text-xs text-[#434656] leading-relaxed max-w-sm mb-4">
+            The Official Student Tech Club of Durgapur Institute of Advanced Technology and Management (DIATM). Fostering peer innovation, computing excellence, and industry integration.
+          </p>
+<div class="font-mono-code text-[11px] text-[#737688]">
+<p class="">DEPARTMENT OF CSE &amp; IT</p>
+<p class="">DURGAPUR, WEST BENGAL — 713212</p>
+</div>
+</div>
+<!-- Quick Links -->
+<div class="md:col-span-3 font-mono-code text-xs">
+<p class="font-bold text-[#0c111d] uppercase tracking-wider mb-4 border-b border-[#0c111d]/20 pb-1">
+            // INDEX NAVIGATION
+          </p>
+<ul class="space-y-2">
+<li class=""><a class="hover:underline" href="#">01. Home Overview</a></li>
+<li class=""><a class="hover:underline" href="#about">02. About Us &amp; Identity</a></li>
+<li class=""><a class="hover:underline" href="#mission">03. Mission &amp; Vision</a></li>
+<li class=""><a class="hover:underline" href="#achievements">04. Event Archives</a></li>
+<li class=""><a class="hover:underline" href="#gallery">05. Visual Media Gallery</a></li>
+</ul>
+</div>
+<!-- Colophon & Lead Credits -->
+<div class="md:col-span-3 font-mono-code text-xs">
+<p class="font-bold text-[#0c111d] uppercase tracking-wider mb-4 border-b border-[#0c111d]/20 pb-1">
+            // COLOPHON &amp; CREDITS
+          </p>
+<div class="space-y-2 text-[#434656]">
+<p class="">DESIGN &amp; ARCHITECTURE:</p>
+<p class="font-bold text-[#0c111d]">Shubhsanket Sharma &amp; Ecllipse Core</p>
+<p class="text-[11px] text-[#737688] pt-2">TYPES: Playfair Display / Plus Jakarta Sans / Space Grotesk</p>
+</div>
+</div>
+<!-- Connect / System Status -->
+<div class="md:col-span-2 font-mono-code text-xs">
+<p class="font-bold text-[#0c111d] uppercase tracking-wider mb-4 border-b border-[#0c111d]/20 pb-1">
+            // STATUS
+          </p>
+<div class="bg-[#ffffff] border border-[#0c111d] p-3 text-[11px]">
+<div class="flex items-center gap-1.5 text-[#007b54] font-bold">
+<span class="w-2 h-2 rounded-full bg-[#007b54]"></span>
+<span class="">RECRUITMENT ACTIVE</span>
+</div>
+<p class="text-[#737688] mt-1 text-[10px]">SLOTS: 28 REMAINING</p>
+</div>
+</div>
+</div>
+<!-- Bottom Hairline Copyright Bar -->
+<div class="pt-6 flex flex-wrap items-center justify-between gap-4 font-mono-code text-[11px] text-[#737688]">
+<div class="">
+          © 2026 ECLLIPSE TECH CLUB // DIATM. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex items-center gap-4">
+<a class="hover:text-[#0c111d]" href="#">CONSTITUTION</a>
+<span class="">•</span>
+<a class="hover:text-[#0c111d]" href="#">CODE OF CONDUCT</a>
+<span class="">•</span>
+<a class="hover:text-[#0c111d]" href="#">GITHUB</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+</body></html>

@@ -5,6 +5,8 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 
 import { ArrowLeft, Calendar, Clock, Users, Component, User, X, CheckCircle, Copy } from "lucide-react";
 import Link from "next/link";
+import { ErrorState } from "@/components/ui/ErrorState";
+import { getApiError } from "@/lib/api-errors";
 import { useAuth } from "@/lib/firebase/auth";
 
 export default function EventDetailsPage() {
@@ -27,6 +29,7 @@ export default function EventDetailsPage() {
   const [joinTeamId, setJoinTeamId] = useState("");
   const [formLoading, setFormLoading] = useState(false);
   const [error, setError] = useState("");
+  const [apiErrorCode, setApiErrorCode] = useState<number | null>(null);
 
   // Participants Modal States
   const [showParticipantsModal, setShowParticipantsModal] = useState(false);
@@ -60,11 +63,16 @@ export default function EventDetailsPage() {
           } else if (params.id === "2") {
             setEvent({ id: "2", title: "Global AI Hackathon 2026", type: "hackathon", date: "2026-09-10", time: "09:00 AM", status: "Registration Open", description: "Join developers worldwide...", registeredCount: 128, teamCount: 24 });
           } else {
-            router.push("/dashboard");
+            if (res.status === 404) {
+              setApiErrorCode(404);
+            } else {
+              setApiErrorCode(res.status);
+            }
           }
         }
       } catch (error) {
         console.error("Error fetching event:", error);
+        setApiErrorCode(500);
       } finally {
         setLoading(false);
       }
@@ -259,6 +267,31 @@ export default function EventDetailsPage() {
     return (
       <div className="flex-1 flex items-center justify-center min-h-[60vh]">
         <div className="animate-spin rounded-none h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (apiErrorCode) {
+    const errorDef = getApiError(apiErrorCode);
+    return (
+      <div className="max-w-[1000px] mx-auto animate-in fade-in duration-500 pb-12 relative">
+        <Link href="/dashboard" className="inline-flex items-center gap-2 text-neutral-600 font-mono text-xs uppercase tracking-wider hover:text-black font-bold mb-8 transition-colors text-[13px]">
+          <ArrowLeft className="w-4 h-4" />
+          Back to Dashboard
+        </Link>
+        <ErrorState
+          statusCode={errorDef.statusCode}
+          title={errorDef.title}
+          message={errorDef.message}
+          primaryAction={{
+            label: "Go Back",
+            onClick: () => router.back(),
+          }}
+          secondaryAction={{
+            label: "Go Home",
+            href: "/",
+          }}
+        />
       </div>
     );
   }

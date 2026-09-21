@@ -11,7 +11,7 @@ export default function EventsGalleryPage() {
     {
       id: "zero-to-hackathon",
       title: "Zero to Hackathon: Build and Break",
-      category: "HACKATHON",
+      category: "WORKSHOP",
       date: "Aug 25-26, 2026",
       description: "A comprehensive journey from ideation to building and breaking real-world projects.",
       image: "/zero-to-hackathon/photos/20260825_151418.jpg",
@@ -23,8 +23,8 @@ export default function EventsGalleryPage() {
       category: "COMPETITION",
       date: "Aug 12, 2026",
       description: "Students pitching initial concepts for Smart India Hackathon.",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=1200&h=800",
-      href: "#"
+      image: "/SIH_Internals/IMG_20260914_101939020.jpg",
+      href: "/gallery/events/sih-ideathon"
     },
     {
       id: "ai-workshop",
