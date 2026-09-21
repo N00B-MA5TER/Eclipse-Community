@@ -12,9 +12,9 @@ export function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
-  const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [desktopDropdown, setDesktopDropdown] = useState<string | null>(null);
   const router = useRouter();
 
   const searchData = [
@@ -52,10 +52,10 @@ export function Navbar() {
     return (
       <Link 
         href={href} 
-        className={`px-4 py-1.5 rounded-none transition-colors border border-transparent font-semibold ${
+        className={`px-3 py-1.5 rounded transition ${
           active 
-            ? "bg-black text-white dark:bg-white dark:text-black border-black dark:border-white shadow-none" 
-            : "text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:border-neutral-200 dark:hover:border-neutral-800"
+            ? "bg-[#0c111d] text-[#fcfbf9] font-bold" 
+            : "text-[#0c111d] hover:bg-[#0c111d]/5"
         }`}
       >
         {children}
@@ -66,28 +66,39 @@ export function Navbar() {
   return (
     <>
       <div className="flex flex-col w-full relative z-50">
-        {/* Top Ticker Bar */}
-        <div className="border-b border-black dark:border-white bg-white dark:bg-neutral-950 text-[11px] font-mono tracking-widest text-neutral-600 dark:text-neutral-400 uppercase px-4 sm:px-8 lg:px-12 py-2.5 flex flex-wrap justify-between items-center z-50 relative">
-          <div className="flex items-center space-x-3">
-            <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>
-            <span className="font-bold text-black dark:text-white tracking-wider">DIATM / COLL. ARCHIVE / VOL. 26</span>
+        {/* Top Metadata Hairline Bar */}
+        <div className="border-b border-[#0c111d]/15 bg-[#f5f4ef] text-[10px] tracking-[0.18em] uppercase font-mono-code py-1.5 px-4 sm:px-8 flex flex-wrap items-center justify-between gap-2 text-[#434656]">
+          <div className="flex items-center gap-2">
+            <span className="inline-block w-1.5 h-1.5 bg-[#0c111d]"></span>
+            <span className="font-bold text-[#0c111d]">DIATM / COLL. ARCHIVE / VOL. 26</span>
           </div>
-          <span className="hidden md:inline border-x border-neutral-200 dark:border-neutral-800 px-6 py-0.5 text-neutral-500 font-mono tracking-widest">OFFICIAL STUDENT TECH INITIATIVE</span>
-          <span className="font-bold text-black dark:text-white tracking-wider">EST. 2026</span>
+          <div className="hidden md:block font-medium tracking-[0.25em] text-[#0c111d]/70">
+            OFFICIAL STUDENT TECH INITIATIVE
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-[#007b54] font-semibold flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#007b54] animate-pulse"></span> SYSTEM: ONLINE
+            </span>
+            <span className="text-[#737688]">|</span>
+            <span className="">EST. 2026</span>
+          </div>
         </div>
 
-        {/* Main Header */}
-        <header className="w-full relative z-40 border-b border-black dark:border-white bg-white dark:bg-neutral-950" data-purpose="site-header">
-          <div className="w-full px-4 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+        {/* Primary BroadSheet Navbar */}
+        <header className="border-b border-[#0c111d] bg-[#fcfbf9] sticky top-0 z-50 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-8">
+            {/* Diamond Mark + Brand */}
+            <Link className="flex items-center gap-2.5 group" href="/">
+              <div className="w-6 h-6 bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center rotate-45 transform group-hover:rotate-90 transition-transform duration-300">
+                <div className="w-2 h-2 bg-[#acffd4] -rotate-45"></div>
+              </div>
+              <span className="font-serif-display text-2xl font-black tracking-[-0.03em] text-[#0c111d] ml-1">
+                Ecllipse
+              </span>
+            </Link>
             
-            <div className="flex items-center space-x-6 pr-8 border-r border-neutral-200 dark:border-neutral-800 h-full py-2">
-              <Link href="/" className="flex items-center group focus:outline-none h-full">
-                <img src="/final-logo-black.png" alt="Eclipse Logo" className="w-auto h-full object-contain" />
-              </Link>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav aria-label="Main Navigation" className="hidden lg:flex items-center space-x-1 text-[13px] font-medium tracking-tight text-neutral-600 dark:text-neutral-400">
+            {/* Broadsheet Minimal Navlinks */}
+            <nav className="hidden lg:flex items-center gap-1 font-mono-code text-[12px] tracking-[0.05em] uppercase font-medium">
               <NavLink href="/" exact={true}>Home</NavLink>
               <NavLink href="/about">About Us</NavLink>
               <NavLink href="/mission">Mission</NavLink>
@@ -102,18 +113,18 @@ export function Navbar() {
                 <button 
                   type="button" 
                   onClick={() => setDesktopDropdown(desktopDropdown === 'gallery' ? null : 'gallery')}
-                  className="inline-flex items-center px-4 py-1.5 rounded-none hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 focus:outline-none"
+                  className="inline-flex items-center px-3 py-1.5 rounded transition text-[#0c111d] hover:bg-[#0c111d]/5"
                 >
                   <span>Gallery</span>
-                  <ChevronDown className={`w-3.5 h-3.5 ml-1 transition-transform ${desktopDropdown === 'gallery' ? 'rotate-180 text-black dark:text-white' : 'text-neutral-400'}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 ml-1 transition-transform ${desktopDropdown === 'gallery' ? 'rotate-180' : ''}`} />
                 </button>
                 {desktopDropdown === 'gallery' && (
-                  <div className="absolute left-0 top-full mt-0 w-48 bg-white dark:bg-neutral-950 border border-black dark:border-white py-1.5 shadow-lg z-50">
-                    <Link href="/gallery" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white border-b border-neutral-100 dark:border-neutral-900">Overview</Link>
-                    <Link href="/gallery/teams" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white">Core Team</Link>
-                    <Link href="/gallery/faculty" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white">Faculty Members</Link>
-                    <Link href="/gallery/projects" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white">Projects</Link>
-                    <Link href="/gallery/events" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white">Events Gallery</Link>
+                  <div className="absolute left-0 top-full mt-0 w-48 bg-[#fcfbf9] border border-[#0c111d] py-1.5 shadow-[4px_4px_0px_0px_#0c111d] z-50">
+                    <Link href="/gallery" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9] border-b border-[#0c111d]/20">Overview</Link>
+                    <Link href="/gallery/teams" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Core Team</Link>
+                    <Link href="/gallery/faculty" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Faculty Members</Link>
+                    <Link href="/gallery/projects" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Projects</Link>
+                    <Link href="/gallery/events" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Events Gallery</Link>
                   </div>
                 )}
               </div>
@@ -126,72 +137,64 @@ export function Navbar() {
                 <button 
                   type="button" 
                   onClick={() => setDesktopDropdown(desktopDropdown === 'contact' ? null : 'contact')}
-                  className="inline-flex items-center px-4 py-1.5 rounded-none hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors border border-transparent hover:border-neutral-200 dark:hover:border-neutral-800 focus:outline-none"
+                  className="inline-flex items-center px-3 py-1.5 rounded transition text-[#0c111d] hover:bg-[#0c111d]/5"
                 >
                   <span>Contact</span>
-                  <ChevronDown className={`w-3.5 h-3.5 ml-1 transition-transform ${desktopDropdown === 'contact' ? 'rotate-180 text-black dark:text-white' : 'text-neutral-400'}`} />
+                  <ChevronDown className={`w-3.5 h-3.5 ml-1 transition-transform ${desktopDropdown === 'contact' ? 'rotate-180' : ''}`} />
                 </button>
                 {desktopDropdown === 'contact' && (
-                  <div className="absolute right-0 top-full mt-0 w-48 bg-white dark:bg-neutral-950 border border-black dark:border-white py-1.5 shadow-lg z-50">
-                    <Link href="/contact" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white border-b border-neutral-100 dark:border-neutral-900">Overview</Link>
-                    <Link href="/contact" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white">General Inquiries</Link>
-                    <Link href="/contact/membership" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono text-xs text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-900 hover:text-black dark:hover:text-white">Join Chapter</Link>
+                  <div className="absolute right-0 top-full mt-0 w-48 bg-[#fcfbf9] border border-[#0c111d] py-1.5 shadow-[4px_4px_0px_0px_#0c111d] z-50">
+                    <Link href="/contact" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9] border-b border-[#0c111d]/20">Overview</Link>
+                    <Link href="/contact" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">General Inquiries</Link>
+                    <Link href="/contact/membership" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Join Chapter</Link>
                   </div>
                 )}
               </div>
             </nav>
-
-            {/* Right Actions */}
-            <div className="flex items-center space-x-3 pl-8 border-l border-neutral-200 dark:border-neutral-800 h-full">
-              <button 
-                aria-label="Search" 
-                onClick={() => setIsSearchOpen(true)}
-                className="w-9 h-9 flex items-center justify-center rounded-none border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-950 text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
-              >
-                <Search className="w-4 h-4" />
-              </button>
-
-              {!loading && user ? (
-                <div className="flex items-center space-x-2">
-                  <Link 
-                    href="/dashboard"
-                    className="inline-flex items-center justify-center text-xs font-mono font-bold uppercase tracking-wider px-5 py-2 rounded-none border border-black dark:border-white bg-black dark:bg-white text-white dark:text-black hover:bg-[#22c55e] dark:hover:bg-[#22c55e] hover:text-black hover:border-black dark:hover:border-black transition-all duration-150"
-                  >
-                    DASHBOARD
-                  </Link>
-                  <Link 
-                    href="/dashboard/profile"
-                    className="w-9 h-9 flex items-center justify-center rounded-none border border-black dark:border-white bg-white dark:bg-neutral-950 text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors shadow-[2px_2px_0px_0px_#000000] dark:shadow-[2px_2px_0px_0px_#ffffff]"
-                    title="Profile"
-                  >
-                    <User className="w-4 h-4" />
-                  </Link>
-                  <button
-                    onClick={() => logout().then(() => router.push("/"))}
-                    className="w-9 h-9 flex items-center justify-center rounded-none border border-black dark:border-white bg-white dark:bg-neutral-950 text-red-600 hover:bg-red-50 dark:hover:bg-red-950 transition-colors shadow-[2px_2px_0px_0px_#000000] dark:shadow-[2px_2px_0px_0px_#ffffff]"
-                    title="Logout"
-                    type="button"
-                  >
-                    <LogOut className="w-4 h-4" />
-                  </button>
-                </div>
-              ) : !loading ? (
+          </div>
+          
+          {/* Nav Right Controls */}
+          <div className="flex items-center gap-2.5">
+            <button 
+              aria-label="Search" 
+              onClick={() => setIsSearchOpen(true)}
+              className="w-9 h-9 border border-[#0c111d] flex items-center justify-center hover:bg-[#0c111d] hover:text-[#fcfbf9] transition-colors"
+            >
+              <span className="material-symbols-outlined text-[18px]">search</span>
+            </button>
+            
+            {!loading && user ? (
+              <div className="hidden sm:flex items-center space-x-2">
                 <Link 
-                  href="/login"
-                  className="inline-flex items-center justify-center text-xs font-mono font-bold uppercase tracking-wider px-5 py-2 rounded-none border border-black dark:border-white bg-black dark:bg-white text-white dark:text-black hover:bg-[#22c55e] dark:hover:bg-[#22c55e] hover:text-black hover:border-black dark:hover:border-black transition-all duration-150"
+                  href="/dashboard"
+                  className="bg-[#0c111d] text-[#fcfbf9] font-mono-code text-[11px] font-bold tracking-[0.14em] uppercase px-4 h-9 flex items-center justify-center hover:bg-[#0045cc] transition-colors border border-[#0c111d]"
                 >
-                  LOGIN
+                  DASHBOARD
                 </Link>
-              ) : null}
-
-              <button 
-                aria-label="Toggle Menu" 
-                onClick={() => setIsMobileMenuOpen(true)}
-                className="lg:hidden w-9 h-9 flex items-center justify-center rounded-none border border-black dark:border-white bg-white dark:bg-neutral-950 text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900"
+                <button
+                  onClick={() => logout().then(() => router.push("/"))}
+                  className="w-9 h-9 flex items-center justify-center border border-[#0c111d] bg-[#fcfbf9] text-[#ba1a1a] hover:bg-[#ba1a1a] hover:text-[#fcfbf9] transition-colors"
+                  title="Logout"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </div>
+            ) : !loading ? (
+              <Link 
+                href="/login"
+                className="hidden sm:flex bg-[#0c111d] text-[#fcfbf9] font-mono-code text-[11px] font-bold tracking-[0.14em] uppercase px-4 h-9 items-center justify-center hover:bg-[#0045cc] transition-colors border border-[#0c111d]"
               >
-                <Menu className="w-5 h-5" />
-              </button>
-            </div>
+                LOGIN
+              </Link>
+            ) : null}
+
+            <button 
+              aria-label="Toggle Menu" 
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="lg:hidden w-9 h-9 flex items-center justify-center border border-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9] transition-colors"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
           </div>
         </header>
       </div>
@@ -203,7 +206,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] px-4 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md"
+            className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] px-4 bg-[#fcfbf9]/90 backdrop-blur-md"
             onClick={() => setIsSearchOpen(false)}
           >
             <motion.div 
@@ -211,22 +214,22 @@ export function Navbar() {
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: -10, opacity: 0, scale: 0.95 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="w-full max-w-2xl bg-white dark:bg-neutral-900 rounded-none border-[1.5px] border-black dark:border-white shadow-[6px_6px_0px_0px_#000000] dark:shadow-[6px_6px_0px_0px_#ffffff] overflow-hidden"
+              className="w-full max-w-2xl bg-[#ffffff] border-2 border-[#0c111d] shadow-[6px_6px_0px_0px_#0c111d] overflow-hidden"
               onClick={e => e.stopPropagation()}
             >
-              <div className="flex items-center border-b border-black dark:border-white p-4">
-                <Search className="w-5 h-5 text-neutral-400 mr-3" />
+              <div className="flex items-center border-b-2 border-[#0c111d] p-4 bg-[#fcfbf9]">
+                <Search className="w-5 h-5 text-[#0c111d] mr-3" />
                 <input
                   type="text"
                   placeholder="Search pages, events, or features..."
-                  className="flex-1 bg-transparent border-none outline-none text-lg text-black dark:text-white placeholder:text-neutral-400 font-mono"
+                  className="flex-1 bg-transparent border-none outline-none text-lg text-[#0c111d] placeholder:text-[#737688] font-mono-code"
                   autoFocus
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <button 
                   onClick={() => setIsSearchOpen(false)}
-                  className="p-1 rounded-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-500 transition-colors"
+                  className="p-1 hover:bg-[#0c111d]/5 text-[#0c111d] transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -234,7 +237,7 @@ export function Navbar() {
 
               <div className="max-h-[60vh] overflow-y-auto p-2">
                 {filteredSearch.length === 0 ? (
-                  <div className="p-8 text-center text-neutral-500 font-mono">
+                  <div className="p-8 text-center text-[#737688] font-mono-code">
                     <p>No results found for "{searchQuery}"</p>
                   </div>
                 ) : (
@@ -244,17 +247,17 @@ export function Navbar() {
                         key={i}
                         href={item.href}
                         onClick={() => setIsSearchOpen(false)}
-                        className="flex items-center gap-4 p-3 rounded-none hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors group"
+                        className="flex items-center gap-4 p-3 hover:bg-[#0c111d]/5 transition-colors group border border-transparent hover:border-[#0c111d]/20"
                       >
-                        <div className="w-10 h-10 rounded-sm bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-black dark:text-white group-hover:border-black dark:group-hover:border-white transition-colors">
+                        <div className="w-10 h-10 bg-[#f5f4ef] border border-[#0c111d] flex items-center justify-center text-[#0c111d] group-hover:bg-[#0c111d] group-hover:text-[#fcfbf9] transition-colors">
                           <MonitorPlay className="w-4 h-4" />
                         </div>
                         <div>
-                          <h4 className="text-sm font-bold text-black dark:text-white mb-0.5">{item.title}</h4>
-                          <p className="text-xs text-neutral-500 dark:text-neutral-400">{item.description}</p>
+                          <h4 className="text-sm font-bold text-[#0c111d] mb-0.5">{item.title}</h4>
+                          <p className="text-xs text-[#434656]">{item.description}</p>
                         </div>
                         <div className="ml-auto">
-                          <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-1 bg-neutral-100 dark:bg-neutral-800 text-neutral-500 rounded-sm">
+                          <span className="text-[10px] font-mono-code font-bold uppercase tracking-wider px-2 py-1 bg-[#f5f4ef] text-[#737688] border border-[#0c111d]/20">
                             {item.category}
                           </span>
                         </div>
@@ -263,9 +266,9 @@ export function Navbar() {
                   </div>
                 )}
               </div>
-              <div className="border-t border-black dark:border-white bg-neutral-50 dark:bg-neutral-900 p-3 flex justify-between items-center text-xs text-neutral-500 font-mono">
-                <span><kbd className="px-1.5 py-0.5 rounded-sm bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-black dark:text-white mr-1">ESC</kbd> to close</span>
-                <span><kbd className="px-1.5 py-0.5 rounded-sm bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 text-black dark:text-white mr-1">↑↓</kbd> to navigate</span>
+              <div className="border-t-2 border-[#0c111d] bg-[#f5f4ef] p-3 flex justify-between items-center text-xs text-[#434656] font-mono-code">
+                <span><kbd className="px-1.5 py-0.5 bg-[#ffffff] border border-[#0c111d] text-[#0c111d] mr-1">ESC</kbd> to close</span>
+                <span><kbd className="px-1.5 py-0.5 bg-[#ffffff] border border-[#0c111d] text-[#0c111d] mr-1">↑↓</kbd> to navigate</span>
               </div>
             </motion.div>
           </motion.div>
@@ -279,16 +282,18 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-white dark:bg-neutral-950 lg:hidden flex flex-col"
+            className="fixed inset-0 z-[100] bg-[#fcfbf9] lg:hidden flex flex-col"
           >
-            <div className="flex items-center justify-between p-4 border-b border-black dark:border-white">
-              <Link href="/" className="font-editorial-serif font-extrabold text-2xl tracking-tight text-black dark:text-white flex items-center gap-2">
-                <span className="w-3 h-3 bg-black dark:bg-white rotate-45"></span>
-                Eclipse
+            <div className="flex items-center justify-between p-4 border-b-2 border-[#0c111d] bg-[#fcfbf9]">
+              <Link href="/" className="font-serif-display font-extrabold text-2xl tracking-[-0.03em] text-[#0c111d] flex items-center gap-2 group">
+                <div className="w-6 h-6 bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center rotate-45 transform transition-transform">
+                  <div className="w-2 h-2 bg-[#acffd4] -rotate-45"></div>
+                </div>
+                Ecllipse
               </Link>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="p-2 rounded-none bg-neutral-100 dark:bg-neutral-900 text-black dark:text-white border border-black dark:border-white"
+                className="w-9 h-9 flex items-center justify-center border border-[#0c111d] text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -324,13 +329,13 @@ export function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: idx * 0.05 }}
-                  className="border-b border-neutral-200 dark:border-neutral-800"
+                  className="border-b border-[#0c111d]/20"
                 >
                   {item.subItems ? (
                     <div>
                       <button
                         onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                        className="w-full flex items-center justify-between text-2xl font-editorial-serif font-bold text-black dark:text-white py-4"
+                        className="w-full flex items-center justify-between text-2xl font-serif-display font-bold text-[#0c111d] py-4"
                       >
                         {item.label}
                         <ChevronDown className={`w-5 h-5 transition-transform ${mobileExpanded === item.label ? "rotate-180" : ""}`} />
@@ -341,14 +346,14 @@ export function Navbar() {
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden flex flex-col space-y-3 pb-4 pl-4 border-l border-neutral-200 dark:border-neutral-800 ml-2"
+                            className="overflow-hidden flex flex-col space-y-3 pb-4 pl-4 border-l-2 border-[#0c111d] ml-2"
                           >
                             {item.subItems.map(sub => (
                               <Link
                                 key={sub.label}
                                 href={sub.href}
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="text-lg font-mono text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+                                className="text-lg font-mono-code text-[#434656] hover:text-[#0c111d]"
                               >
                                 {sub.label}
                               </Link>
@@ -361,7 +366,7 @@ export function Navbar() {
                     <Link
                       href={item.href as string}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block text-2xl font-editorial-serif font-bold text-black dark:text-white py-4"
+                      className="block text-2xl font-serif-display font-bold text-[#0c111d] py-4"
                     >
                       {item.label}
                     </Link>
@@ -370,11 +375,11 @@ export function Navbar() {
               ))}
             </div>
 
-            <div className="p-6 border-t border-black dark:border-white bg-neutral-50 dark:bg-neutral-900">
+            <div className="p-6 border-t-2 border-[#0c111d] bg-[#f5f4ef]">
               <Link 
                 href={user ? "/dashboard" : "/login"}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center text-sm font-mono font-bold uppercase tracking-wider px-6 py-4 border border-black dark:border-white bg-black dark:bg-white text-white dark:text-black hover:bg-[#22c55e] transition-colors"
+                className="w-full flex items-center justify-center text-sm font-mono-code font-bold uppercase tracking-wider px-6 py-4 border border-[#0c111d] bg-[#0c111d] text-[#fcfbf9] hover:bg-[#0045cc] transition-colors"
               >
                 {user ? "Go to Dashboard" : "Login to Portal"}
               </Link>

@@ -1,6 +1,6 @@
 // Force reload
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Inter, Playfair_Display, Space_Grotesk } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, Playfair_Display, Space_Grotesk, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/lib/firebase/auth";
@@ -28,8 +28,14 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
 
 import { SmoothScrolling } from "@/components/SmoothScrolling";
+import { SplashScreen } from "@/components/SplashScreen";
 
 export const metadata: Metadata = {
   title: "Eclipse Tech Community",
@@ -47,10 +53,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${plusJakarta.variable} ${playfair.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className={`${inter.variable} ${plusJakarta.variable} ${playfair.variable} ${spaceGrotesk.variable} ${bodoni.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground transition-colors duration-300" suppressHydrationWarning>
+        <SplashScreen />
         <ParallaxBackground />
         <MobileBlocker />
         <SmoothScrolling>

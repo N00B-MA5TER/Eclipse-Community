@@ -62,7 +62,7 @@ export default function ZeroToHackathonGallery() {
                   className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-xs font-mono font-bold tracking-widest uppercase mb-4"
                 >
                   <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>
-                  HACKATHON EVENT
+                  WORKSHOP EVENT
                 </motion.div>
                 <motion.h1
                   initial={{ opacity: 0, y: 30 }}

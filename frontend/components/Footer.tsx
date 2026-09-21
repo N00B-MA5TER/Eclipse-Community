@@ -2,68 +2,78 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-white dark:bg-neutral-950 border-t border-black dark:border-white">
-      <div className="px-4 sm:px-8 lg:px-12 py-12 lg:py-16 max-w-[80rem] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+    <footer className="border-t-2 border-[#0c111d] bg-[#f5f4ef] text-[#0c111d] pt-12 pb-8 px-4 sm:px-8 relative z-10" id="contact">
+      <div className="max-w-[1440px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-[#0c111d]">
+          {/* Brand & College Credential */}
+          <div className="md:col-span-4">
+            <div className="flex items-center gap-2.5 mb-3">
+              <div className="w-5 h-5 bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center rotate-45">
+                <div className="w-1.5 h-1.5 bg-[#acffd4] -rotate-45"></div>
+              </div>
+              <span className="font-serif-display text-2xl font-black text-[#0c111d]">Ecllipse</span>
+            </div>
+            <p className="font-body-md text-xs text-[#434656] leading-relaxed max-w-sm mb-4">
+              The Official Student Tech Club of Durgapur Institute of Advanced Technology and Management (DIATM). Fostering peer innovation, computing excellence, and industry integration.
+            </p>
+            <div className="font-mono-code text-[11px] text-[#737688]">
+              <p>DEPARTMENT OF CSE &amp; IT</p>
+              <p>DURGAPUR, WEST BENGAL — 713212</p>
+            </div>
+          </div>
           
-          <div className="md:col-span-5 flex flex-col justify-between pr-0 md:pr-8 space-y-4">
-            <div>
-              <div className="flex items-center mb-4 sm:mb-0 group cursor-pointer">
-                <img src="/final-logo-black.png" alt="Eclipse Logo" className="w-auto h-12 sm:h-[72px] object-contain" />
-              </div>
-              <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-sm font-sans leading-relaxed">
-                The ultimate technical hub and event management platform for Durgapur Institute of Advanced Technology and Management 155.
-              </p>
-              <div className="inline-flex items-center gap-2 px-3 py-1 mt-4 bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 text-black dark:text-white font-mono text-[11px]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
-                <span>COLLEGIATE CHAPTER • VOL. 26</span>
-              </div>
-            </div>
-            <div className="pt-4">
-              <p className="font-mono text-[11px] text-neutral-500 uppercase tracking-wider">
-                Design and Developed by <span className="text-black dark:text-white font-bold">Shubhsanket Sharma</span>
-              </p>
-            </div>
-          </div>
-
-          <div className="md:col-span-2 space-y-4">
-            <h3 className="font-mono text-xs text-black dark:text-white font-bold uppercase tracking-wider">Platform</h3>
-            <ul className="space-y-2 font-mono text-xs text-neutral-600 dark:text-neutral-400">
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/">Home</Link></li>
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/about">About Us</Link></li>
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/mission">Mission</Link></li>
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/vision">Vision</Link></li>
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/achievements">Achievements</Link></li>
+          {/* Quick Links */}
+          <div className="md:col-span-3 font-mono-code text-xs">
+            <p className="font-bold text-[#0c111d] uppercase tracking-wider mb-4 border-b border-[#0c111d]/20 pb-1">
+              // INDEX NAVIGATION
+            </p>
+            <ul className="space-y-2">
+              <li><Link className="hover:underline" href="/">01. Home Overview</Link></li>
+              <li><Link className="hover:underline" href="/about">02. About Us &amp; Identity</Link></li>
+              <li><Link className="hover:underline" href="/mission">03. Mission &amp; Vision</Link></li>
+              <li><Link className="hover:underline" href="/achievements">04. Event Archives</Link></li>
+              <li><Link className="hover:underline" href="/gallery">05. Visual Media Gallery</Link></li>
             </ul>
           </div>
-
-          <div className="md:col-span-2 space-y-4">
-            <h3 className="font-mono text-xs text-black dark:text-white font-bold uppercase tracking-wider">Explore</h3>
-            <ul className="space-y-2 font-mono text-xs text-neutral-600 dark:text-neutral-400">
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/gallery">Gallery</Link></li>
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/contact">Contact</Link></li>
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/contact/membership">Membership</Link></li>
-              <li><Link className="hover:text-black dark:hover:text-white transition-colors" href="/events">Events & Hackathons</Link></li>
-            </ul>
+          
+          {/* Colophon & Lead Credits */}
+          <div className="md:col-span-3 font-mono-code text-xs">
+            <p className="font-bold text-[#0c111d] uppercase tracking-wider mb-4 border-b border-[#0c111d]/20 pb-1">
+              // COLOPHON &amp; CREDITS
+            </p>
+            <div className="space-y-2 text-[#434656]">
+              <p>DESIGN &amp; ARCHITECTURE:</p>
+              <p className="font-bold text-[#0c111d]">Shubhsanket Sharma &amp; Ecllipse Core</p>
+              <p className="text-[11px] text-[#737688] pt-2">TYPES: Playfair Display / Plus Jakarta Sans / Space Grotesk / Bodoni Moda</p>
+            </div>
           </div>
-
-          <div className="md:col-span-3 space-y-4">
-            <h3 className="font-mono text-xs text-black dark:text-white font-bold uppercase tracking-wider">Get in Touch</h3>
-            <div className="space-y-2 font-mono text-xs text-neutral-600 dark:text-neutral-400">
-              <p className="text-black dark:text-white font-semibold">designershubh1208@gmail.com</p>
-              <p className="text-black dark:text-white font-semibold">+91 9229803634</p>
-              <p className="text-neutral-500 pt-1 leading-normal font-sans text-xs">
-                Durgapur Institute of Advanced Technology & Management, Rajbandh, Durgapur, West Bengal 713212
-              </p>
+          
+          {/* Connect / System Status */}
+          <div className="md:col-span-2 font-mono-code text-xs">
+            <p className="font-bold text-[#0c111d] uppercase tracking-wider mb-4 border-b border-[#0c111d]/20 pb-1">
+              // STATUS
+            </p>
+            <div className="bg-[#ffffff] border border-[#0c111d] p-3 text-[11px]">
+              <div className="flex items-center gap-1.5 text-[#007b54] font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#007b54] animate-pulse"></span>
+                <span>RECRUITMENT ACTIVE</span>
+              </div>
+              <p className="text-[#737688] mt-1 text-[10px]">SLOTS: 28 REMAINING</p>
             </div>
           </div>
         </div>
-
-        <div className="mt-12 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-neutral-500">
-          <p>© {new Date().getFullYear()} Eclipse Platform. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <Link className="hover:text-black dark:hover:text-white transition-colors" href="/privacy">Privacy Policy</Link>
-            <Link className="hover:text-black dark:hover:text-white transition-colors" href="/terms">Terms of Service</Link>
+        
+        {/* Bottom Hairline Copyright Bar */}
+        <div className="pt-6 flex flex-wrap items-center justify-between gap-4 font-mono-code text-[11px] text-[#737688]">
+          <div>
+            © 2026 ECLLIPSE TECH CLUB // DIATM. ALL RIGHTS RESERVED.
+          </div>
+          <div className="flex items-center gap-4">
+            <Link className="hover:text-[#0c111d]" href="/constitution">CONSTITUTION</Link>
+            <span>•</span>
+            <Link className="hover:text-[#0c111d]" href="/conduct">CODE OF CONDUCT</Link>
+            <span>•</span>
+            <a className="hover:text-[#0c111d]" href="https://github.com/designershubh1208-pixel" target="_blank" rel="noreferrer">GITHUB</a>
           </div>
         </div>
       </div>

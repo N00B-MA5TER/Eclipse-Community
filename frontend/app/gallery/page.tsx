@@ -106,11 +106,11 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white/50  font-sans text-gray-900  selection:bg-blue-100 :bg-blue-900/50 selection:text-blue-900 :text-blue-100 relative transition-colors duration-300">
+    <div className="min-h-screen bg-[#fcfbf9] text-[#0c111d] font-body-lg selection:bg-[#acffd4] selection:text-[#0c111d] relative transition-colors duration-300">
       
       {/* Background Decorative Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className="absolute top-[20%] left-[50%] w-[600px] h-[600px] bg-blue-400/5 rounded-none blur-[100px]"></div>
+        <div className="absolute top-[20%] left-[50%] w-[600px] h-[600px] bg-[#0c111d]/5 rounded-none blur-[100px]"></div>
       </div>
 
       <div className="relative z-10">
@@ -119,21 +119,30 @@ export default function GalleryPage() {
         <Navbar />
 
         {/* Page Header */}
-        <main className="pt-40 pb-20">
-          <div className="max-w-4xl mx-auto text-center px-4 mb-12">
-            <motion.h1 
+        <main className="pt-20 pb-20">
+          <div className="max-w-4xl mx-auto text-center px-4 mb-12 border-b-2 border-[#0c111d] pb-12">
+            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="font-heading text-5xl uppercase tracking-tight md:text-7xl font-extrabold text-gray-900 mb-6"
+              className="mb-4 inline-flex items-center gap-2 bg-[#0c111d] text-[#fcfbf9] px-3.5 py-1 text-[11px] font-mono-code font-bold tracking-widest uppercase"
             >
-              Memories & <span className="text-black/60">Resources</span>
+              <span className="w-1.5 h-1.5 bg-[#acffd4]"></span>
+              VISUAL MEDIA ARCHIVE
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-serif-display text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.03em] leading-tight text-[#0c111d] uppercase mb-6"
+            >
+              Memories & Resources
             </motion.h1>
             <motion.p 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-lg text-neutral-600 font-mono text-xs uppercase tracking-wider font-medium max-w-2xl mx-auto"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-sm font-mono-code text-[#434656] uppercase tracking-wider font-medium max-w-2xl mx-auto"
             >
               Explore highlights from our past events. Download certificates, presentation slides, and relive the best moments from the Eclipse Tech Community.
             </motion.p>
@@ -175,9 +184,9 @@ export default function GalleryPage() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      className="font-heading text-3xl font-heading uppercase tracking-tight font-extrabold text-gray-900  flex items-center gap-4"
+                      className="font-serif-display text-3xl font-bold text-[#0c111d] flex items-center gap-4"
                     >
-                      <span className="w-10 h-1.5 bg-amber-500 rounded-none"></span>
+                      <span className="w-10 h-1 bg-[#0c111d]"></span>
                       Guest Speaker ( SIH '24 WINNER )
                     </motion.h2>
                   </div>
@@ -196,9 +205,9 @@ export default function GalleryPage() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      className="font-heading text-3xl font-heading uppercase tracking-tight font-extrabold text-gray-900  flex items-center gap-4"
+                      className="font-serif-display text-3xl font-bold text-[#0c111d] flex items-center gap-4"
                     >
-                      <span className="w-10 h-1.5 bg-black text-white rounded-none"></span>
+                      <span className="w-10 h-1 bg-[#0c111d]"></span>
                       Visual Memories
                     </motion.h2>
                   </div>
@@ -217,9 +226,9 @@ export default function GalleryPage() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      className="font-heading text-3xl font-heading uppercase tracking-tight font-extrabold text-gray-900  flex items-center gap-4"
+                      className="font-serif-display text-3xl font-bold text-[#0c111d] flex items-center gap-4"
                     >
-                      <span className="w-10 h-1.5 bg-purple-600 rounded-none"></span>
+                      <span className="w-10 h-1 bg-[#0c111d]"></span>
                       Cinematic Highlights
                     </motion.h2>
                   </div>
@@ -238,9 +247,9 @@ export default function GalleryPage() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      className="font-heading text-3xl font-heading uppercase tracking-tight font-extrabold text-gray-900  flex items-center gap-4"
+                      className="font-serif-display text-3xl font-bold text-[#0c111d] flex items-center gap-4"
                     >
-                      <span className="w-10 h-1.5 bg-emerald-500 rounded-none"></span>
+                      <span className="w-10 h-1 bg-[#0c111d]"></span>
                       Event Resources
                     </motion.h2>
                   </div>
