@@ -77,6 +77,14 @@ export default function FacultyPage() {
       designation: "Professor",
       description: "Bringing years of academic excellence and expertise in modern computer science.",
       image: "/faculty-members/Saroj_Patra_Professor_Computer_Science.jpg"
+    },
+    {
+      id: 11,
+      name: "Ms.Sonali Gayen",
+      department: "Computer Science",
+      designation: "Professor",
+      description: "Guiding the academic framework and fostering innovation in computing.",
+      image: "/faculty-members/Sonali_Gayen_Professor_Computer_Science.jpeg"
     }
   ];
 
