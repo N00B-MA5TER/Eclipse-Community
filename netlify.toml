@@ -1,0 +1,11 @@
+[build]
+  # Set the base directory to frontend so Netlify knows where the app is
+  base = "frontend"
+  # Command to build the Next.js app
+  command = "npm run build"
+  # Next.js output directory
+  publish = ".next"
+
+[[plugins]]
+  # This plugin is required for Next.js SSR and API routes on Netlify
+  package = "@netlify/plugin-nextjs"
