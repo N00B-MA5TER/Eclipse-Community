@@ -11,7 +11,7 @@ export function Footer() {
               <img src="/logo.png" alt="Eclipse" className="h-[100px] w-auto object-contain" />
             </div>
             <p className="font-body-md text-xs text-[#434656] leading-relaxed max-w-sm mb-4">
-              The Official Student Tech Club of Durgapur Institute of Advanced Technology and Management (DIATM). Fostering peer innovation, computing excellence, and industry integration.
+              The Official Student Tech Community of Durgapur Institute of Advanced Technology and Management (DIATM). Fostering peer innovation, computing excellence, and industry integration.
             </p>
             <div className="font-mono-code text-[11px] text-[#737688]">
               <p>DEPARTMENT OF CSE &amp; IT</p>
@@ -65,7 +65,7 @@ export function Footer() {
         {/* Bottom Hairline Copyright Bar */}
         <div className="pt-6 flex flex-wrap items-center justify-between gap-4 font-mono-code text-[11px] text-[#737688]">
           <div>
-            © 2026 ECLLIPSE TECH CLUB // DIATM. ALL RIGHTS RESERVED.
+            © 2026 ECLLIPSE TECH COMMUNITY // DIATM. ALL RIGHTS RESERVED.
           </div>
           <div className="flex items-center gap-4">
             <Link className="hover:text-[#0c111d]" href="/constitution">CONSTITUTION</Link>

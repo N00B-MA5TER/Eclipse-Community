@@ -38,7 +38,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#0c111d]/20 pb-3 mb-6 font-mono-code text-[11px] text-[#434656]">
             <div className="inline-flex items-center gap-2 bg-[#0c111d] text-[#fcfbf9] px-3.5 py-1 rounded-full font-bold tracking-widest uppercase">
               <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] inline-block animate-ping"></span>
-              <span>• OFFICIAL TECH CLUB OF DIATM</span>
+              <span>• OFFICIAL TECH COMMUNITY OF DIATM</span>
             </div>
             <div className="font-bold tracking-wider text-[#0c111d]">
               COLLEGIATE ARCHITECTURAL EDITION
@@ -55,10 +55,10 @@ export default function Home() {
             </h1>
             <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
               <span className="font-sans font-black text-2xl sm:text-4xl md:text-5xl tracking-[-0.02em] uppercase text-[#0c111d]">
-                DEFINE THE FUTURE.
+                LEARN. BUILD. BREAK. REPEAT
               </span>
               <span className="bg-[#f59e0b] text-[#451a03] border border-[#b45309] px-3 py-1 text-[11px] font-mono-code font-bold uppercase tracking-wider">
-                TECH INITIATIVE // ACTIVE RECRUITMENT
+                TECH INITIATIVE
               </span>
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function Home() {
               </div>
               <div className="border-l-4 border-[#0c111d] pl-4 py-1 mb-6">
                 <p className="font-body-lg text-base sm:text-lg text-[#0c111d] leading-relaxed font-normal">
-                  Ecllipse is the official Tech Club of our college. Join a vibrant community of passionate developers and creators to host workshops, collaborate on epic projects, and push the boundaries of technology.
+                  Ecllipse is the official Tech Community of our college. Join a vibrant community of passionate developers and creators to host workshops, collaborate on epic projects, and push the boundaries of technology.
                 </p>
                 <p className="mt-4 text-xs text-[#434656] font-mono-code">
                   // INCUBATING OPEN-SOURCE, SYSTEMS PROGRAMMING &amp; EXPERIMENTAL INTERACTION DESIGN.
