@@ -24,7 +24,7 @@ export default function FacultyPage() {
     },
     {
       id: 9,
-      name: "Ms.Aparna",
+      name: "Dr. Aparna Kundu",
       department: "ECE",
       designation: "Professor",
       description: "Dedicated to shaping the next generation of engineers in Electronics and Communication.",
