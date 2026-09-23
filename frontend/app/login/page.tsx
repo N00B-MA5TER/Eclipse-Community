@@ -56,7 +56,7 @@ export default function LoginPage() {
       {/* Navbar Minimal */}
       <header className="flex items-center justify-between px-4 sm:px-8 py-3 border-b border-black">
         <Link href="/" className="flex items-center">
-          <img src="/final-logo-black.png" alt="Eclipse Logo" className="w-auto h-12 sm:h-[72px] object-contain" />
+          <img src="/logo.png" alt="Eclipse Logo" className="w-auto h-12 sm:h-[72px] object-contain" />
         </Link>
         <Link href="/register">
           <Button variant="outline" className="rounded-none border-black text-black font-bold hover:bg-neutral-100 uppercase tracking-wider text-[11px] h-10 px-6">
