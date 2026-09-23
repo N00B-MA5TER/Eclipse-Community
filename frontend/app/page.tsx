@@ -28,7 +28,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#fcfbf9] text-[#0c111d] font-body-lg antialiased selection:bg-[#acffd4] selection:text-[#0c111d] relative">
+    <div className="min-h-screen bg-[#fcfbf9] text-[#0c111d] font-body-lg antialiased selection:bg-[#f59e0b] selection:text-[#0c111d] relative">
       <Navbar />
       
       <main className="max-w-[1440px] mx-auto px-4 sm:px-8 py-8 lg:py-12">
@@ -37,7 +37,7 @@ export default function Home() {
           {/* Top Subhead Wire & Tag Pill */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#0c111d]/20 pb-3 mb-6 font-mono-code text-[11px] text-[#434656]">
             <div className="inline-flex items-center gap-2 bg-[#0c111d] text-[#fcfbf9] px-3.5 py-1 rounded-full font-bold tracking-widest uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#acffd4] inline-block animate-ping"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] inline-block animate-ping"></span>
               <span>• OFFICIAL TECH CLUB OF DIATM</span>
             </div>
             <div className="font-bold tracking-wider text-[#0c111d]">
@@ -57,7 +57,7 @@ export default function Home() {
               <span className="font-sans font-black text-2xl sm:text-4xl md:text-5xl tracking-[-0.02em] uppercase text-[#0c111d]">
                 DEFINE THE FUTURE.
               </span>
-              <span className="bg-[#acffd4] text-[#002113] border border-[#007b54] px-3 py-1 text-[11px] font-mono-code font-bold uppercase tracking-wider">
+              <span className="bg-[#f59e0b] text-[#451a03] border border-[#b45309] px-3 py-1 text-[11px] font-mono-code font-bold uppercase tracking-wider">
                 TECH INITIATIVE // ACTIVE RECRUITMENT
               </span>
             </div>
@@ -92,7 +92,7 @@ export default function Home() {
             <div className="space-y-4 pt-4 border-t border-[#0c111d]/20">
               <div className="flex flex-wrap items-center gap-3">
                 <Link 
-                  className="h-12 px-6 bg-[#0c111d] text-[#fcfbf9] font-mono-code text-xs font-bold uppercase tracking-wider flex items-center justify-center hover:bg-[#0045cc] transition-colors shadow-[3px_3px_0px_0px_#acffd4] border border-[#0c111d]" 
+                  className="h-12 px-6 bg-[#0c111d] text-[#fcfbf9] font-mono-code text-xs font-bold uppercase tracking-wider flex items-center justify-center hover:bg-[#0045cc] transition-colors shadow-[3px_3px_0px_0px_#f59e0b] border border-[#0c111d]" 
                   href={user ? "/dashboard" : "/register"}
                 >
                   GET STARTED
@@ -126,14 +126,14 @@ export default function Home() {
               
               {/* Event Headline & Visual Token */}
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-[#0c111d] text-[#acffd4] flex items-center justify-center font-mono-code font-black text-xl shrink-0">
+                <div className="w-12 h-12 bg-[#0c111d] text-[#f59e0b] flex items-center justify-center font-mono-code font-black text-xl shrink-0">
                   #01
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
                     <h3 className="font-serif-display text-xl font-bold text-[#0c111d]">Hackathon 2026</h3>
-                    <span className="bg-[#acffd4] text-[#002113] text-[9px] font-mono-code font-bold uppercase px-2 py-0.5 rounded-full flex items-center gap-1 border border-[#007b54]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#007b54]"></span> LIVE
+                    <span className="bg-[#f59e0b] text-[#451a03] text-[9px] font-mono-code font-bold uppercase px-2 py-0.5 rounded-full flex items-center gap-1 border border-[#b45309]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#b45309]"></span> LIVE
                     </span>
                   </div>
                   <p className="text-[13px] text-[#434656] mt-0.5">
@@ -150,7 +150,7 @@ export default function Home() {
                 </div>
                 <div className="h-3 w-full bg-[#e2e7ff] border border-[#0c111d] overflow-hidden flex">
                   <div className="bg-[#0c111d] h-full w-[54%]"></div>
-                  <div className="bg-[#acffd4] h-full w-[18%]"></div>
+                  <div className="bg-[#f59e0b] h-full w-[18%]"></div>
                   <div className="bg-transparent h-full w-[28%]"></div>
                 </div>
                 <div className="flex justify-between text-[10px] font-mono-code text-[#737688]">
@@ -167,7 +167,7 @@ export default function Home() {
                     <span className="w-7 h-7 rounded bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center border border-[#ffffff]">AK</span>
                     <span className="w-7 h-7 rounded bg-[#283044] text-[#fcfbf9] flex items-center justify-center border border-[#ffffff]">RD</span>
                     <span className="w-7 h-7 rounded bg-[#434656] text-[#fcfbf9] flex items-center justify-center border border-[#ffffff]">PS</span>
-                    <span className="w-7 h-7 rounded bg-[#007b54] text-[#acffd4] flex items-center justify-center border border-[#ffffff]">MS</span>
+                    <span className="w-7 h-7 rounded bg-[#b45309] text-[#f59e0b] flex items-center justify-center border border-[#ffffff]">MS</span>
                   </div>
                   <span className="text-[12px] font-mono-code font-semibold text-[#0c111d] ml-1">4 / 4 Team is full!</span>
                 </div>
@@ -180,7 +180,7 @@ export default function Home() {
               {/* Snapshot Telemetry Bottom Foot */}
               <div className="flex items-center justify-between text-[10px] font-mono-code text-[#434656] pt-1">
                 <span className="font-bold text-[#0c111d]">■ NETWORK SYSTEM: ACTIVE</span>
-                <span className="text-[#007b54] font-bold">01 // 03</span>
+                <span className="text-[#b45309] font-bold">01 // 03</span>
               </div>
             </div>
             <div className="mt-4 border border-[#0c111d] p-3 bg-[#f5f4ef] flex items-center justify-between text-[11px] font-mono-code">
@@ -208,8 +208,8 @@ export default function Home() {
                 <div className="p-4">
                   <p className="text-[10px] font-mono-code uppercase tracking-wider text-[#737688]">STATUS</p>
                   <div className="mt-1.5 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#007b54]"></span>
-                    <span className="text-xs font-mono-code font-bold uppercase text-[#007b54] bg-[#acffd4] px-2 py-0.5 border border-[#007b54]">
+                    <span className="w-2 h-2 rounded-full bg-[#b45309]"></span>
+                    <span className="text-xs font-mono-code font-bold uppercase text-[#b45309] bg-[#f59e0b] px-2 py-0.5 border border-[#b45309]">
                       Open Admissions
                     </span>
                   </div>
@@ -335,7 +335,7 @@ export default function Home() {
             <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between bg-[#ffffff] border-b lg:border-b-0 lg:border-r border-[#0c111d]">
               <div>
                 <div className="flex flex-wrap items-center gap-2 mb-3 font-mono-code text-[11px]">
-                  <span className="text-[#007b54] font-bold">ANNUAL FLAGSHIP SPRINT</span>
+                  <span className="text-[#b45309] font-bold">ANNUAL FLAGSHIP SPRINT</span>
                   <span className="text-[#737688]">•</span>
                   <span className="text-[#737688]">CONCLUDED FEB 2026</span>
                 </div>
@@ -369,7 +369,7 @@ export default function Home() {
             </div>
             <div className="lg:col-span-5 relative min-h-[360px] bg-[#f5f4ef]">
               <div className="w-full h-full bg-cover bg-center absolute inset-0 filter grayscale hover:grayscale-0 transition-all duration-500" style={{ backgroundImage: "url('/zero-to-hackathon/photos/20260825_151418.jpg')" }}></div>
-              <div className="absolute top-3 left-3 bg-[#0c111d] text-[#acffd4] px-2.5 py-1 text-[10px] font-mono-code font-bold uppercase tracking-wider">
+              <div className="absolute top-3 left-3 bg-[#0c111d] text-[#f59e0b] px-2.5 py-1 text-[10px] font-mono-code font-bold uppercase tracking-wider">
                 CASE STUDY // EVENT #04
               </div>
               <div className="absolute bottom-3 right-3 bg-[#ffffff] border border-[#0c111d] px-2.5 py-1 text-[10px] font-mono-code font-semibold shadow-sm">
@@ -484,7 +484,7 @@ export default function Home() {
           
           <div className="mt-3 p-2.5 bg-[#f5f4ef] border border-[#0c111d] flex flex-wrap items-center justify-between text-[11px] font-mono-code text-[#434656]">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 bg-[#007b54]"></span>
+              <span className="w-2 h-2 bg-[#b45309]"></span>
               <span>COMPUTE REPO: DIATM-ECLLIPSE / LAB-INFRA</span>
             </div>
             <div>
@@ -495,12 +495,15 @@ export default function Home() {
 
         {/* SECTION 05: COMPACT CENTERED COLLEGIATE ANNOUNCEMENT BLOCK */}
         <section className="py-14" id="register">
-          <div className="bg-[#0c111d] text-[#fcfbf9] border-2 border-[#0c111d] p-8 sm:p-12 text-center relative overflow-hidden shadow-[8px_8px_0px_0px_#acffd4] max-w-4xl mx-auto">
-            <div className="text-[10px] font-mono-code text-[#737688] tracking-widest uppercase mb-4">
+          <div className="bg-[#0c111d] text-[#fcfbf9] border-2 border-[#0c111d] p-8 sm:p-12 text-center relative overflow-hidden shadow-[8px_8px_0px_0px_#f59e0b] max-w-4xl mx-auto">
+            <div className="absolute -right-10 -top-10 opacity-10 z-0">
+              <span className="text-[120px] font-mono-code leading-none">[]</span>
+            </div>
+            <div className="relative z-10 text-[10px] font-mono-code text-[#737688] tracking-widest uppercase mb-4">
               ADMISSION BATCH: AUTUMN 2026 // SLOTS LIMITED
             </div>
-            <div className="inline-flex items-center gap-2 bg-[#ffffff]/10 text-[#acffd4] px-3.5 py-1 rounded text-xs font-mono-code uppercase font-semibold mb-6">
-              <span className="w-2 h-2 rounded-full bg-[#acffd4] animate-pulse"></span>
+            <div className="inline-flex items-center gap-2 bg-[#ffffff]/10 text-[#f59e0b] px-3.5 py-1 rounded text-xs font-mono-code uppercase font-semibold mb-6">
+              <span className="w-2 h-2 rounded-full bg-[#f59e0b] animate-pulse"></span>
               <span>OPEN ADMISSIONS RECRUITMENT</span>
             </div>
             <h2 className="font-serif-display text-3xl sm:text-5xl font-extrabold text-[#fcfbf9] leading-tight mb-4">
@@ -511,7 +514,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link 
-                className="h-12 px-8 bg-[#acffd4] text-[#002113] font-mono-code text-xs font-black uppercase tracking-wider flex items-center justify-center hover:bg-[#6ffbbe] transition-colors border border-[#acffd4]" 
+                className="h-12 px-8 bg-[#f59e0b] text-[#0c111d] font-mono-code text-xs font-black uppercase tracking-wider flex items-center justify-center hover:bg-[#fbbf24] transition-colors border border-[#f59e0b]" 
                 href={user ? "/dashboard" : "/register"}
               >
                 {user ? "GO TO DASHBOARD" : "REGISTER NOW"}

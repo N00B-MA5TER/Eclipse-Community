@@ -43,7 +43,7 @@ export function ScheduleWidget() {
   }, [user]);
 
   const displayEvents = events.length > 0 ? events : [
-    { id: 1, title: "Kickoff Meeting", time: "01:00 PM to 02:30 PM", color: "bg-green-500", avatars: ["https://i.pravatar.cc/150?u=4", "https://i.pravatar.cc/150?u=5"] },
+    { id: 1, title: "Kickoff Meeting", time: "01:00 PM to 02:30 PM", color: "bg-amber-500", avatars: ["https://i.pravatar.cc/150?u=4", "https://i.pravatar.cc/150?u=5"] },
     { id: 2, title: "Create Wordpress website for event Registration", time: "04:00 PM to 02:30 PM", color: "bg-blue-500", avatars: ["https://i.pravatar.cc/150?u=6", "https://i.pravatar.cc/150?u=7"] },
     { id: 3, title: "Create User flow for hotel booking", time: "05:00 PM to 02:30 PM", color: "bg-purple-500", avatars: ["https://i.pravatar.cc/150?u=8", "https://i.pravatar.cc/150?u=9"] }
   ];

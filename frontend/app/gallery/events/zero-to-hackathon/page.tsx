@@ -39,7 +39,7 @@ export default function ZeroToHackathonGallery() {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-[#22c55e] broadsheet-grid">
+    <div className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-[#f59e0b] broadsheet-grid">
       <Navbar />
 
       <main className="pt-32 pb-24 min-h-screen relative overflow-hidden">
@@ -61,7 +61,7 @@ export default function ZeroToHackathonGallery() {
                   transition={{ duration: 0.6 }}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-xs font-mono font-bold tracking-widest uppercase mb-4"
                 >
-                  <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>
+                  <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>
                   WORKSHOP EVENT
                 </motion.div>
                 <motion.h1
@@ -83,7 +83,7 @@ export default function ZeroToHackathonGallery() {
                 className="text-right"
               >
                 <span className="text-neutral-400 font-mono text-xs uppercase tracking-widest block mb-1">DATE</span>
-                <span className="font-mono text-sm font-bold text-black border border-black px-2 py-1 bg-[#22c55e]/10">Aug 25-26, 2026</span>
+                <span className="font-mono text-sm font-bold text-black border border-black px-2 py-1 bg-[#f59e0b]/10">Aug 25-26, 2026</span>
               </motion.div>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function ZeroToHackathonGallery() {
           {/* Photos Grid */}
           <div>
             <h2 className="font-editorial-serif text-3xl font-bold mb-6 flex items-center gap-3">
-              <span className="w-3 h-3 bg-[#22c55e] border border-black"></span> Gallery Shots
+              <span className="w-3 h-3 bg-[#f59e0b] border border-black"></span> Gallery Shots
             </h2>
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
               {photos.map((photo, i) => (
@@ -130,7 +130,7 @@ export default function ZeroToHackathonGallery() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "50px" }}
                   transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-                  className="break-inside-avoid border-2 border-black bg-white p-2 shadow-[4px_4px_0px_0px_#22c55e] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#22c55e] transition-all duration-300"
+                  className="break-inside-avoid border-2 border-black bg-white p-2 shadow-[4px_4px_0px_0px_#f59e0b] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#f59e0b] transition-all duration-300"
                 >
                   <Image 
                     src={`/zero-to-hackathon/photos/${photo}`} 

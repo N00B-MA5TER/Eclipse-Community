@@ -246,7 +246,7 @@ export default function AllTeamsPage() {
                         <div className={`absolute top-0 right-0 w-24 h-24 rounded-none blur-2xl -z-10 transition-colors ${isMyTeam ? 'bg-blue-500/20' : 'bg-gray-200/50'}`}></div>
                         
                         <div className="flex items-center justify-between mb-4">
-                          <span className={`text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-none border ${isMyTeam ? 'bg-blue-50 text-black border-blue-100' : (isFull ? 'bg-white text-neutral-600 font-mono text-xs uppercase tracking-wider border-black' : 'bg-green-50 text-green-600 border-green-100')}`}>
+                          <span className={`text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-none border ${isMyTeam ? 'bg-blue-50 text-black border-blue-100' : (isFull ? 'bg-white text-neutral-600 font-mono text-xs uppercase tracking-wider border-black' : 'bg-amber-50 text-amber-600 border-amber-100')}`}>
                             {isMyTeam ? 'My Team' : (isFull ? 'Full' : 'Open')}
                           </span>
                           {isLeader && <Shield className="w-4 h-4 text-amber-500" />}
@@ -299,7 +299,7 @@ export default function AllTeamsPage() {
                     Code: {selectedTeam.code}
                   </span>
                 ) : (
-                  <span className={`text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-none border ${selectedTeam.members?.length >= selectedTeam.maxMembers ? 'bg-white text-neutral-600 font-mono text-xs uppercase tracking-wider border-black' : 'bg-green-50 text-green-600 border-green-100'}`}>
+                  <span className={`text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-none border ${selectedTeam.members?.length >= selectedTeam.maxMembers ? 'bg-white text-neutral-600 font-mono text-xs uppercase tracking-wider border-black' : 'bg-amber-50 text-amber-600 border-amber-100'}`}>
                     {selectedTeam.members?.length >= selectedTeam.maxMembers ? 'Full' : 'Open to join'}
                   </span>
                 )}
@@ -329,7 +329,7 @@ export default function AllTeamsPage() {
                     min={selectedTeam.members.length}
                   />
                   <div className="flex gap-2">
-                    <button onClick={handleSaveEdit} disabled={actionLoading} className="bg-green-600 text-white px-3 py-1 rounded-none text-xs font-bold">Save</button>
+                    <button onClick={handleSaveEdit} disabled={actionLoading} className="bg-amber-600 text-white px-3 py-1 rounded-none text-xs font-bold">Save</button>
                     <button onClick={() => setIsEditing(false)} className="bg-gray-200 text-gray-700 px-3 py-1 rounded-none text-xs font-bold">Cancel</button>
                   </div>
                 </div>
@@ -366,7 +366,7 @@ export default function AllTeamsPage() {
                         value={selectedTeam.projectLink || projectLink}
                         onChange={(e) => setProjectLink(e.target.value)}
                         placeholder={selectedTeam.leader?.uid === user?.uid ? "https://github.com/... or Figma link" : "Only the team leader can submit the project."}
-                        className="flex-1 border border-black rounded-none px-3 py-2 text-[13px] focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] disabled:bg-white disabled:text-neutral-600 font-mono text-xs uppercase tracking-wider"
+                        className="flex-1 border border-black rounded-none px-3 py-2 text-[13px] focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] disabled:bg-white disabled:text-neutral-600 font-mono text-xs uppercase tracking-wider"
                       />
                       <button 
                         type="submit" 
@@ -384,7 +384,7 @@ export default function AllTeamsPage() {
                       </button>
                     </div>
                     {selectedTeam.projectLink ? (
-                      <p className="text-[11px] text-green-600 font-medium mt-2 flex items-center gap-1">
+                      <p className="text-[11px] text-amber-600 font-medium mt-2 flex items-center gap-1">
                         <Check className="w-3 h-3" /> Project successfully submitted and locked.
                       </p>
                     ) : (
@@ -413,7 +413,7 @@ export default function AllTeamsPage() {
                           <p className="text-[12px] text-neutral-600 font-mono text-xs uppercase tracking-wider truncate">{reqUser.email}</p>
                         </div>
                         <div className="flex gap-2">
-                          <button onClick={() => handleAction("/approve", "POST", { targetUid: reqUser.uid })} disabled={actionLoading} className="text-green-600 hover:bg-green-100 p-1.5 rounded-none">
+                          <button onClick={() => handleAction("/approve", "POST", { targetUid: reqUser.uid })} disabled={actionLoading} className="text-amber-600 hover:bg-amber-100 p-1.5 rounded-none">
                             <Check className="w-4 h-4" />
                           </button>
                           <button onClick={() => handleAction("/reject", "POST", { targetUid: reqUser.uid })} disabled={actionLoading} className="text-red-600 hover:bg-red-100 p-1.5 rounded-none">

@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           const data = await res.json();
           setUser({
             ...data,
-            uid: data.id,
+            uid: String(data.id),
             displayName: data.name,
             getIdToken: async () => token
           });
@@ -107,7 +107,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const meData = await meRes.json();
         setUser({
           ...meData,
-          uid: meData.id,
+          uid: String(meData.id),
           displayName: meData.name,
           getIdToken: async () => data.token
         });
@@ -137,7 +137,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const meData = await meRes.json();
         setUser({
           ...meData,
-          uid: meData.id,
+          uid: String(meData.id),
           displayName: meData.name,
           getIdToken: async () => data.token
         });

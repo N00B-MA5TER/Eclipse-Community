@@ -55,14 +55,7 @@ export function SplashScreen() {
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
               className="flex items-center gap-4"
             >
-              {/* Optional minimal logo icon */}
-              <div className="w-8 h-8 md:w-12 md:h-12 bg-white flex items-center justify-center rotate-45">
-                <div className="w-4 h-4 md:w-6 md:h-6 bg-black"></div>
-              </div>
-              
-              <h1 className="font-editorial-serif text-5xl md:text-7xl font-bold tracking-tight text-white">
-                ECLIPSE
-              </h1>
+              <img src="/logo.png" alt="Eclipse" className="h-32 md:h-48 lg:h-64 w-auto object-contain drop-shadow-2xl scale-[1.5]" />
             </motion.div>
             
             <motion.div
@@ -70,12 +63,17 @@ export function SplashScreen() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="mt-6 flex items-center gap-3"
+              className="mt-8 w-64"
             >
-              <div className="w-2 h-2 bg-[#22c55e] animate-ping rounded-full"></div>
-              <span className="font-mono text-xs uppercase tracking-widest text-white/70">
-                Initializing System
-              </span>
+              {/* Animated Loading Bar */}
+              <div className="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+                <motion.div 
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 1.8, delay: 0.8, ease: "easeInOut" }}
+                  className="h-full bg-white rounded-full shadow-[0_0_10px_#ffffff]"
+                />
+              </div>
             </motion.div>
           </div>
         </motion.div>

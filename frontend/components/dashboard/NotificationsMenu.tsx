@@ -142,7 +142,7 @@ export function NotificationsMenu({ isAdmin = false }: { isAdmin?: boolean }) {
       >
         <Bell className="w-4 h-4" />
         {unreadCount > 0 && (
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#22c55e] border border-black"></span>
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#f59e0b] border border-black"></span>
         )}
       </button>
 
@@ -156,7 +156,7 @@ export function NotificationsMenu({ isAdmin = false }: { isAdmin?: boolean }) {
             {unreadCount > 0 && (
               <button 
                 onClick={markAllAsRead}
-                className="text-[10px] font-mono font-bold uppercase tracking-wider text-black hover:bg-[#00e599] border border-black px-2.5 py-1.5 rounded-none transition-colors"
+                className="text-[10px] font-mono font-bold uppercase tracking-wider text-black hover:bg-[#f59e0b] border border-black px-2.5 py-1.5 rounded-none transition-colors"
               >
                 Mark Read
               </button>

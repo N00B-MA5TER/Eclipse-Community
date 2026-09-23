@@ -64,7 +64,7 @@ export default function AdminDashboard() {
               <Activity className="w-6 h-6" />
             </div>
           </div>
-          <div className="mt-6 flex items-center gap-2 text-[13px] font-medium text-green-600 relative z-10">
+          <div className="mt-6 flex items-center gap-2 text-[13px] font-medium text-amber-600 relative z-10">
             <TrendingUp className="w-4 h-4" />
             <span>Platform is active</span>
           </div>

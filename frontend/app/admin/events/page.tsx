@@ -125,14 +125,14 @@ export default function ManageEventsPage() {
                     <p className="text-[11px] font-medium text-gray-400">{evt.time}</p>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="px-3 py-1 rounded-none bg-green-50 text-green-700 text-[11px] font-bold border border-green-100">
+                    <span className="px-3 py-1 rounded-none bg-amber-50 text-amber-700 text-[11px] font-bold border border-amber-100">
                       {evt.status}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2 transition-opacity">
                       <Link href={`/admin/events/${evt.id}`}>
-                        <button title="View Details & Teams" className="p-2 text-gray-400 hover:text-green-600 transition-colors rounded-none hover:bg-green-50">
+                        <button title="View Details & Teams" className="p-2 text-gray-400 hover:text-amber-600 transition-colors rounded-none hover:bg-amber-50">
                           <Eye className="w-4 h-4" />
                         </button>
                       </Link>

@@ -79,7 +79,7 @@ function AdminLoginForm() {
 
 
   return (
-    <div className="min-h-screen bg-white text-black flex items-center justify-center p-4 font-mono selection:bg-[#00e599] selection:text-black broadsheet-grid">
+    <div className="min-h-screen bg-white text-black flex items-center justify-center p-4 font-mono selection:bg-[#f59e0b] selection:text-black broadsheet-grid">
       <div className="w-full max-w-md bg-white border border-black p-8 md:p-10 relative">
         
         {/* Top corner accents */}
@@ -115,7 +115,7 @@ function AdminLoginForm() {
               onChange={(e) => setEmail(e.target.value)}
               required 
               placeholder="ROOT@ADMIN.LOCAL"
-              className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#00e599] transition-all" 
+              className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
             />
           </div>
 
@@ -132,7 +132,7 @@ function AdminLoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required 
                 placeholder="••••••••"
-                className="h-12 rounded-none border border-black bg-white px-4 pr-12 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#00e599] transition-all" 
+                className="h-12 rounded-none border border-black bg-white px-4 pr-12 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
               />
               <button
                 type="button"
@@ -144,7 +144,7 @@ function AdminLoginForm() {
             </div>
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full h-12 rounded-none bg-black hover:bg-[#00e599] hover:text-black text-white font-bold font-mono text-[11px] uppercase tracking-widest border border-black transition-colors mt-2">
+          <Button type="submit" disabled={loading} className="w-full h-12 rounded-none bg-black hover:bg-[#f59e0b] hover:text-black text-white font-bold font-mono text-[11px] uppercase tracking-widest border border-black transition-colors mt-2">
             {loading ? 'EXECUTING...' : 'INITIATE OVERRIDE'}
           </Button>
         </form>

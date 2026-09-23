@@ -52,10 +52,10 @@ export function Navbar() {
     return (
       <Link 
         href={href} 
-        className={`px-3 py-1.5 rounded transition ${
+        className={`px-4 py-2 rounded-full transition-colors text-sm font-semibold ${
           active 
-            ? "bg-[#0c111d] text-[#fcfbf9] font-bold" 
-            : "text-[#0c111d] hover:bg-[#0c111d]/5"
+            ? "bg-black text-white" 
+            : "text-gray-700 hover:bg-gray-100 hover:text-black"
         }`}
       >
         {children}
@@ -65,139 +65,123 @@ export function Navbar() {
 
   return (
     <>
-      <div className="flex flex-col w-full relative z-50">
-        {/* Top Metadata Hairline Bar */}
-        <div className="border-b border-[#0c111d]/15 bg-[#f5f4ef] text-[10px] tracking-[0.18em] uppercase font-mono-code py-1.5 px-4 sm:px-8 flex flex-wrap items-center justify-between gap-2 text-[#434656]">
-          <div className="flex items-center gap-2">
-            <span className="inline-block w-1.5 h-1.5 bg-[#0c111d]"></span>
-            <span className="font-bold text-[#0c111d]">DIATM / COLL. ARCHIVE / VOL. 26</span>
-          </div>
-          <div className="hidden md:block font-medium tracking-[0.25em] text-[#0c111d]/70">
-            OFFICIAL STUDENT TECH INITIATIVE
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="text-[#007b54] font-semibold flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#007b54] animate-pulse"></span> SYSTEM: ONLINE
-            </span>
-            <span className="text-[#737688]">|</span>
-            <span className="">EST. 2026</span>
-          </div>
+      {/* Sticky Navbar Container */}
+      <header className="sticky top-0 z-50 w-full pt-6 pb-4 px-4 sm:px-8 flex items-center justify-between bg-[#fcfbf9] transition-all duration-300">
+        
+        {/* LEFT: Logo Section (Separated from the pill) */}
+        <div className="flex items-center shrink-0">
+          <Link href="/" className="flex items-center justify-center transition-transform duration-300 hover:scale-105">
+            <img src="/logo.png" alt="Eclipse" className="h-[75px] md:h-[90px] w-auto object-contain scale-[1.2]" />
+          </Link>
         </div>
 
-        {/* Primary BroadSheet Navbar */}
-        <header className="border-b border-[#0c111d] bg-[#fcfbf9] sticky top-0 z-50 px-4 sm:px-8 py-3.5 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            {/* Diamond Mark + Brand */}
-            <Link className="flex items-center gap-2.5 group" href="/">
-              <div className="w-6 h-6 bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center rotate-45 transform group-hover:rotate-90 transition-transform duration-300">
-                <div className="w-2 h-2 bg-[#acffd4] -rotate-45"></div>
+        {/* MIDDLE: Navigation Links Pill */}
+        <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-1 px-4 h-12 md:h-14 bg-white border border-gray-200 shadow-xl rounded-full">
+          <NavLink href="/" exact={true}>Home</NavLink>
+          <span className="text-gray-300 mx-1">|</span>
+          <NavLink href="/about">About Us</NavLink>
+          <span className="text-gray-300 mx-1">|</span>
+          <NavLink href="/mission">Mission</NavLink>
+          <span className="text-gray-300 mx-1">|</span>
+          <NavLink href="/vision">Vision</NavLink>
+          <span className="text-gray-300 mx-1">|</span>
+          <NavLink href="/achievements">Achievements</NavLink>
+          <span className="text-gray-300 mx-1">|</span>
+          
+          <div 
+            className="relative h-full flex items-center"
+            onMouseEnter={() => setDesktopDropdown('gallery')}
+            onMouseLeave={() => setDesktopDropdown(null)}
+          >
+            <button 
+              type="button" 
+              className="inline-flex items-center px-4 py-2 rounded-full transition-colors text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-black"
+            >
+              <span>Gallery</span>
+              <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${desktopDropdown === 'gallery' ? 'rotate-180' : ''}`} />
+            </button>
+            {desktopDropdown === 'gallery' && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-48 z-50">
+                <div className="bg-white border border-gray-200 rounded-2xl py-2 shadow-xl">
+                  <Link href="/gallery" onClick={() => setDesktopDropdown(null)} className="block px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-black">Overview</Link>
+                  <Link href="/gallery/events" onClick={() => setDesktopDropdown(null)} className="block px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-black">Events</Link>
+                  <Link href="/gallery/teams" onClick={() => setDesktopDropdown(null)} className="block px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-black">Core Team</Link>
+                  <Link href="/gallery/faculty" onClick={() => setDesktopDropdown(null)} className="block px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-black">Faculty Members</Link>
+                  <Link href="/gallery/projects" onClick={() => setDesktopDropdown(null)} className="block px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-black">Projects</Link>
+                </div>
               </div>
-              <span className="font-serif-display text-2xl font-black tracking-[-0.03em] text-[#0c111d] ml-1">
-                Ecllipse
-              </span>
-            </Link>
-            
-            {/* Broadsheet Minimal Navlinks */}
-            <nav className="hidden lg:flex items-center gap-1 font-mono-code text-[12px] tracking-[0.05em] uppercase font-medium">
-              <NavLink href="/" exact={true}>Home</NavLink>
-              <NavLink href="/about">About Us</NavLink>
-              <NavLink href="/mission">Mission</NavLink>
-              <NavLink href="/vision">Vision</NavLink>
-              <NavLink href="/achievements">Achievements</NavLink>
-              
-              <div 
-                className="relative"
-                onMouseEnter={() => setDesktopDropdown('gallery')}
-                onMouseLeave={() => setDesktopDropdown(null)}
-              >
-                <button 
-                  type="button" 
-                  onClick={() => setDesktopDropdown(desktopDropdown === 'gallery' ? null : 'gallery')}
-                  className="inline-flex items-center px-3 py-1.5 rounded transition text-[#0c111d] hover:bg-[#0c111d]/5"
-                >
-                  <span>Gallery</span>
-                  <ChevronDown className={`w-3.5 h-3.5 ml-1 transition-transform ${desktopDropdown === 'gallery' ? 'rotate-180' : ''}`} />
-                </button>
-                {desktopDropdown === 'gallery' && (
-                  <div className="absolute left-0 top-full mt-0 w-48 bg-[#fcfbf9] border border-[#0c111d] py-1.5 shadow-[4px_4px_0px_0px_#0c111d] z-50">
-                    <Link href="/gallery" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9] border-b border-[#0c111d]/20">Overview</Link>
-                    <Link href="/gallery/teams" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Core Team</Link>
-                    <Link href="/gallery/faculty" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Faculty Members</Link>
-                    <Link href="/gallery/projects" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Projects</Link>
-                    <Link href="/gallery/events" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Events Gallery</Link>
-                  </div>
-                )}
-              </div>
-              
-              <div 
-                className="relative"
-                onMouseEnter={() => setDesktopDropdown('contact')}
-                onMouseLeave={() => setDesktopDropdown(null)}
-              >
-                <button 
-                  type="button" 
-                  onClick={() => setDesktopDropdown(desktopDropdown === 'contact' ? null : 'contact')}
-                  className="inline-flex items-center px-3 py-1.5 rounded transition text-[#0c111d] hover:bg-[#0c111d]/5"
-                >
-                  <span>Contact</span>
-                  <ChevronDown className={`w-3.5 h-3.5 ml-1 transition-transform ${desktopDropdown === 'contact' ? 'rotate-180' : ''}`} />
-                </button>
-                {desktopDropdown === 'contact' && (
-                  <div className="absolute right-0 top-full mt-0 w-48 bg-[#fcfbf9] border border-[#0c111d] py-1.5 shadow-[4px_4px_0px_0px_#0c111d] z-50">
-                    <Link href="/contact" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9] border-b border-[#0c111d]/20">Overview</Link>
-                    <Link href="/contact" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">General Inquiries</Link>
-                    <Link href="/contact/membership" onClick={() => setDesktopDropdown(null)} className="block px-4 py-2 font-mono-code text-xs text-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9]">Join Chapter</Link>
-                  </div>
-                )}
-              </div>
-            </nav>
+            )}
           </div>
           
-          {/* Nav Right Controls */}
-          <div className="flex items-center gap-2.5">
+          <span className="text-gray-300 mx-1">|</span>
+          
+          <div 
+            className="relative h-full flex items-center"
+            onMouseEnter={() => setDesktopDropdown('contact')}
+            onMouseLeave={() => setDesktopDropdown(null)}
+          >
             <button 
-              aria-label="Search" 
-              onClick={() => setIsSearchOpen(true)}
-              className="w-9 h-9 border border-[#0c111d] flex items-center justify-center hover:bg-[#0c111d] hover:text-[#fcfbf9] transition-colors"
+              type="button" 
+              className="inline-flex items-center px-4 py-2 rounded-full transition-colors text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-black"
             >
-              <span className="material-symbols-outlined text-[18px]">search</span>
+              <span>Contact</span>
+              <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${desktopDropdown === 'contact' ? 'rotate-180' : ''}`} />
             </button>
-            
-            {!loading && user ? (
-              <div className="hidden sm:flex items-center space-x-2">
-                <Link 
-                  href="/dashboard"
-                  className="bg-[#0c111d] text-[#fcfbf9] font-mono-code text-[11px] font-bold tracking-[0.14em] uppercase px-4 h-9 flex items-center justify-center hover:bg-[#0045cc] transition-colors border border-[#0c111d]"
-                >
-                  DASHBOARD
-                </Link>
-                <button
-                  onClick={() => logout().then(() => router.push("/"))}
-                  className="w-9 h-9 flex items-center justify-center border border-[#0c111d] bg-[#fcfbf9] text-[#ba1a1a] hover:bg-[#ba1a1a] hover:text-[#fcfbf9] transition-colors"
-                  title="Logout"
-                >
-                  <LogOut className="w-4 h-4" />
-                </button>
+            {desktopDropdown === 'contact' && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-48 z-50">
+                <div className="bg-white border border-gray-200 rounded-2xl py-2 shadow-xl">
+                  <Link href="/contact" onClick={() => setDesktopDropdown(null)} className="block px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-black">General Inquiries</Link>
+                  <Link href="/contact/membership" onClick={() => setDesktopDropdown(null)} className="block px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-black">Join Chapter</Link>
+                </div>
               </div>
-            ) : !loading ? (
-              <Link 
-                href="/login"
-                className="hidden sm:flex bg-[#0c111d] text-[#fcfbf9] font-mono-code text-[11px] font-bold tracking-[0.14em] uppercase px-4 h-9 items-center justify-center hover:bg-[#0045cc] transition-colors border border-[#0c111d]"
-              >
-                LOGIN
-              </Link>
-            ) : null}
-
-            <button 
-              aria-label="Toggle Menu" 
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden w-9 h-9 flex items-center justify-center border border-[#0c111d] hover:bg-[#0c111d] hover:text-[#fcfbf9] transition-colors"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
+            )}
           </div>
-        </header>
-      </div>
+        </nav>
+
+        {/* RIGHT: Action Section */}
+        <div className="flex items-center gap-2">
+          <button 
+            aria-label="Search" 
+            onClick={() => setIsSearchOpen(true)}
+            className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full text-gray-700 hover:bg-gray-100 hover:text-black transition-colors shrink-0"
+          >
+            <Search className="w-5 h-5 md:w-6 md:h-6" />
+          </button>
+          
+          {!loading && user ? (
+            <div className="hidden sm:flex items-center gap-2 bg-gray-100 rounded-[2rem] p-1">
+              <Link 
+                href="/dashboard"
+                className="bg-black text-white text-xs md:text-sm font-bold px-6 h-10 md:h-12 rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors shadow-md"
+              >
+                Dashboard
+              </Link>
+              <button
+                onClick={() => logout().then(() => router.push("/"))}
+                className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white text-red-500 hover:bg-red-50 hover:text-red-600 transition-colors shadow-sm"
+                title="Logout"
+              >
+                <LogOut className="w-4 h-4 md:w-5 md:h-5" />
+              </button>
+            </div>
+          ) : !loading ? (
+            <Link 
+              href="/login"
+              className="hidden sm:flex bg-black text-white text-xs md:text-sm font-bold px-6 h-10 md:h-12 rounded-[2rem] items-center justify-center hover:bg-gray-800 transition-colors shadow-md"
+            >
+              Login
+            </Link>
+          ) : null}
+
+          <button 
+            aria-label="Toggle Menu" 
+            onClick={() => setIsMobileMenuOpen(true)}
+            className="lg:hidden w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-black text-white hover:bg-gray-800 transition-colors shrink-0"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
+        </div>
+      </header>
 
       {/* Fullscreen Search Modal */}
       <AnimatePresence>
@@ -285,11 +269,8 @@ export function Navbar() {
             className="fixed inset-0 z-[100] bg-[#fcfbf9] lg:hidden flex flex-col"
           >
             <div className="flex items-center justify-between p-4 border-b-2 border-[#0c111d] bg-[#fcfbf9]">
-              <Link href="/" className="font-serif-display font-extrabold text-2xl tracking-[-0.03em] text-[#0c111d] flex items-center gap-2 group">
-                <div className="w-6 h-6 bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center rotate-45 transform transition-transform">
-                  <div className="w-2 h-2 bg-[#acffd4] -rotate-45"></div>
-                </div>
-                Ecllipse
+              <Link href="/" className="flex items-center group">
+                <img src="/logo.png" alt="Eclipse" className="h-[75px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
               </Link>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)}
