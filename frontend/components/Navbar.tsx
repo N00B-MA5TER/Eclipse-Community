@@ -52,7 +52,7 @@ export function Navbar() {
     return (
       <Link 
         href={href} 
-        className={`px-4 py-2 rounded-full transition-colors text-sm font-semibold ${
+        className={`px-3 py-2 rounded-full transition-colors text-sm font-semibold whitespace-nowrap ${
           active 
             ? "bg-black text-white" 
             : "text-gray-700 hover:bg-gray-100 hover:text-black"
@@ -78,15 +78,12 @@ export function Navbar() {
         {/* MIDDLE: Navigation Links Pill */}
         <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-1 px-4 h-12 md:h-14 bg-white border border-gray-200 shadow-xl rounded-full">
           <NavLink href="/" exact={true}>Home</NavLink>
-          <span className="text-gray-300 mx-1">|</span>
           <NavLink href="/about">About Us</NavLink>
-          <span className="text-gray-300 mx-1">|</span>
           <NavLink href="/mission">Mission</NavLink>
-          <span className="text-gray-300 mx-1">|</span>
           <NavLink href="/vision">Vision</NavLink>
-          <span className="text-gray-300 mx-1">|</span>
           <NavLink href="/achievements">Achievements</NavLink>
-          <span className="text-gray-300 mx-1">|</span>
+          <NavLink href="/alumni">Alumni</NavLink>
+
           
           <div 
             className="relative h-full flex items-center"
@@ -95,7 +92,7 @@ export function Navbar() {
           >
             <button 
               type="button" 
-              className="inline-flex items-center px-4 py-2 rounded-full transition-colors text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-black"
+              className="inline-flex items-center px-3 py-2 rounded-full transition-colors text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-black whitespace-nowrap"
             >
               <span>Gallery</span>
               <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${desktopDropdown === 'gallery' ? 'rotate-180' : ''}`} />
@@ -113,8 +110,6 @@ export function Navbar() {
             )}
           </div>
           
-          <span className="text-gray-300 mx-1">|</span>
-          
           <div 
             className="relative h-full flex items-center"
             onMouseEnter={() => setDesktopDropdown('contact')}
@@ -122,7 +117,7 @@ export function Navbar() {
           >
             <button 
               type="button" 
-              className="inline-flex items-center px-4 py-2 rounded-full transition-colors text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-black"
+              className="inline-flex items-center px-3 py-2 rounded-full transition-colors text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-black whitespace-nowrap"
             >
               <span>Contact</span>
               <ChevronDown className={`w-4 h-4 ml-1 transition-transform ${desktopDropdown === 'contact' ? 'rotate-180' : ''}`} />
@@ -287,6 +282,8 @@ export function Navbar() {
                 { href: "/mission", label: "Mission" },
                 { href: "/vision", label: "Vision" },
                 { href: "/achievements", label: "Achievements" },
+                { href: "/alumni", label: "Alumni" },
+
                 { 
                   label: "Gallery", 
                   subItems: [

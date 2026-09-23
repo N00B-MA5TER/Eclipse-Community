@@ -13,7 +13,27 @@ class OAuthController extends Controller
 {
     protected $allowedProviders = ['google', 'github'];
 
-    public function redirect(Request $request, $provider)
+    public function redirectGoogle(Request $request)
+    {
+        return $this->redirectProvider($request, 'google');
+    }
+
+    public function callbackGoogle(Request $request)
+    {
+        return $this->handleCallback($request, 'google');
+    }
+
+    public function redirectGithub(Request $request)
+    {
+        return $this->redirectProvider($request, 'github');
+    }
+
+    public function callbackGithub(Request $request)
+    {
+        return $this->handleCallback($request, 'github');
+    }
+
+    protected function redirectProvider(Request $request, $provider)
     {
         if (!in_array($provider, $this->allowedProviders)) {
             return response()->json(['message' => 'Invalid provider'], 400);
@@ -23,10 +43,19 @@ class OAuthController extends Controller
         $state = Str::random(40);
         Cache::put("oauth_state_{$state}", $intendedFlow, now()->addMinutes(10));
 
+        // For Google, only request minimal scopes
+        if ($provider === 'google') {
+            return Socialite::driver('google')
+                ->stateless()
+                ->scopes(['openid', 'profile', 'email'])
+                ->with(['state' => $state])
+                ->redirect();
+        }
+
         return Socialite::driver($provider)->stateless()->with(['state' => $state])->redirect();
     }
 
-    public function callback(Request $request, $provider)
+    protected function handleCallback(Request $request, $provider)
     {
         if (!in_array($provider, $this->allowedProviders)) {
             return response()->json(['message' => 'Invalid provider'], 400);

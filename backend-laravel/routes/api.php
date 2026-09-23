@@ -26,8 +26,10 @@ Route::prefix('auth')->group(function () {
     Route::post('/reset-password', [\App\Http\Controllers\AuthController::class, 'resetPassword'])->name('password.reset');
     
     // OAuth Routes
-    Route::get('/{provider}/redirect', [\App\Http\Controllers\OAuthController::class, 'redirect']);
-    Route::get('/{provider}/callback', [\App\Http\Controllers\OAuthController::class, 'callback']);
+    Route::get('/google/redirect', [\App\Http\Controllers\OAuthController::class, 'redirectGoogle']);
+    Route::get('/google/callback', [\App\Http\Controllers\OAuthController::class, 'callbackGoogle']);
+    Route::get('/github/redirect', [\App\Http\Controllers\OAuthController::class, 'redirectGithub']);
+    Route::get('/github/callback', [\App\Http\Controllers\OAuthController::class, 'callbackGithub']);
     Route::post('/oauth/exchange', [\App\Http\Controllers\OAuthController::class, 'exchangeHandoff']);
     
     Route::middleware('auth:sanctum')->group(function () {
@@ -49,6 +51,15 @@ use App\Http\Controllers\StatsController;
 // Public Stats Route
 Route::get('/stats/public', [StatsController::class, 'publicStats']);
 
+use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\AdminAlumniController;
+
+// Public Alumni Routes
+Route::get('/alumni', [AlumniController::class, 'index']);
+Route::post('/alumni', [AlumniController::class, 'store'])->middleware('throttle:5,1');
+
+
+
 // Protected Routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/events/{id}/participants', [EventController::class, 'participants']);
@@ -59,6 +70,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/events/{id}', [AdminController::class, 'deleteEvent']);
         Route::get('/users', [AdminController::class, 'users']);
         Route::post('/broadcast', [AdminController::class, 'broadcast']);
+        
+        // Admin Alumni Routes
+        Route::get('/alumni/pending', [AdminAlumniController::class, 'pending']);
+        Route::get('/alumni/all', [AdminAlumniController::class, 'index']);
+        Route::patch('/alumni/{id}/approve', [AdminAlumniController::class, 'approve']);
+        Route::patch('/alumni/{id}/reject', [AdminAlumniController::class, 'reject']);
+        Route::delete('/alumni/{id}', [AdminAlumniController::class, 'destroy']);
     });
     // Teams
     Route::prefix('teams')->group(function () {
@@ -86,5 +104,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [NotificationController::class, 'index']);
         Route::put('/mark-read', [NotificationController::class, 'markRead']);
     });
+
+
 
 });
