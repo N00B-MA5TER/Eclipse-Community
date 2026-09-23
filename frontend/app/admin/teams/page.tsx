@@ -125,7 +125,7 @@ export default function AdminTeamsPage() {
             placeholder="Search teams by name or event ID..." 
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all text-sm"
+            className="w-full pl-12 pr-4 py-3 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all text-sm"
           />
         </div>
       </div>

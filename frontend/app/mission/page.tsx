@@ -17,7 +17,7 @@ import Image from "next/image";
 
 export default function MissionPage() {
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-[#22c55e] relative broadsheet-grid">
+    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-[#f59e0b] relative broadsheet-grid">
       <Navbar />
       <main className="flex-grow">
         {/*  BEGIN: HeroSection  */}
@@ -42,7 +42,7 @@ export default function MissionPage() {
               <span className="text-neutral-500 text-[10px]">
                 DEPARTMENT OF COMPUTER SCIENCE &amp; ENGINEERING / IT
               </span>
-              <div className="inline-block bg-[#00e599] text-black font-bold font-mono px-2 py-0.5 mt-1 text-[10px] border border-black/20">
+              <div className="inline-block bg-[#f59e0b] text-black font-bold font-mono px-2 py-0.5 mt-1 text-[10px] border border-black/20">
                 CHAPTER ID: 155 // EST. 2026
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function MissionPage() {
                   </span>
                   DEPT. OF CSE &amp; IT
                 </div>
-                <div className="bg-[#00e599]/10 p-2 border border-[#00e599]/40 text-black">
+                <div className="bg-[#f59e0b]/10 p-2 border border-[#f59e0b]/40 text-black">
                   <span className="text-neutral-500 block text-[9px]">
                     REGISTRY CODE
                   </span>
@@ -126,7 +126,7 @@ export default function MissionPage() {
                   <span className="tracking-widest uppercase font-semibold text-black">
                     MISSION REGISTRY
                   </span>
-                  <span className="bg-[#00e599] text-black px-2 py-0.5 font-bold rounded-none">
+                  <span className="bg-[#f59e0b] text-black px-2 py-0.5 font-bold rounded-none">
                     ACTIVE
                   </span>
                 </div>
@@ -154,7 +154,7 @@ export default function MissionPage() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-neutral-500">COHORT STATUS:</span>
-                    <span className="text-emerald-700 font-semibold">
+                    <span className="text-amber-700 font-semibold">
                       SYNCHRONIZED
                     </span>
                   </div>
@@ -177,7 +177,7 @@ export default function MissionPage() {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-black/20 gap-4">
               <div>
                 <div className="inline-flex items-center space-x-1.5 bg-black text-white px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider mb-2">
-                  <span className="w-1.5 h-1.5 bg-[#00e599]"></span>
+                  <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>
                   <span className="">CORE CONSTITUTION</span>
                 </div>
                 <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-black">
@@ -208,7 +208,7 @@ export default function MissionPage() {
                       FOUNDATION
                     </span>
                   </div>
-                  <span className="inline-block font-mono text-[10px] font-bold text-[#00a86b] uppercase tracking-wider mb-2">
+                  <span className="inline-block font-mono text-[10px] font-bold text-[#b45309] uppercase tracking-wider mb-2">
                     DISCOVERY
                   </span>
                   <h3 className="font-serif text-2xl font-bold text-black tracking-tight mb-3">
@@ -243,7 +243,7 @@ export default function MissionPage() {
                       EXECUTION
                     </span>
                   </div>
-                  <span className="inline-block font-mono text-[10px] font-bold text-[#00a86b] uppercase tracking-wider mb-2">
+                  <span className="inline-block font-mono text-[10px] font-bold text-[#b45309] uppercase tracking-wider mb-2">
                     PRACTICE
                   </span>
                   <h3 className="font-serif text-2xl font-bold text-black tracking-tight mb-3">
@@ -278,7 +278,7 @@ export default function MissionPage() {
                       RIGOR
                     </span>
                   </div>
-                  <span className="inline-block font-mono text-[10px] font-bold text-[#00a86b] uppercase tracking-wider mb-2">
+                  <span className="inline-block font-mono text-[10px] font-bold text-[#b45309] uppercase tracking-wider mb-2">
                     CRITIQUE
                   </span>
                   <h3 className="font-serif text-2xl font-bold text-black tracking-tight mb-3">
@@ -313,7 +313,7 @@ export default function MissionPage() {
                       ITERATION
                     </span>
                   </div>
-                  <span className="inline-block font-mono text-[10px] font-bold text-[#00a86b] uppercase tracking-wider mb-2">
+                  <span className="inline-block font-mono text-[10px] font-bold text-[#b45309] uppercase tracking-wider mb-2">
                     RESILIENCE
                   </span>
                   <h3 className="font-serif text-2xl font-bold text-black tracking-tight mb-3">
@@ -370,7 +370,7 @@ export default function MissionPage() {
                   <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-1 border border-neutral-700">
                     DIATM HACK-LAB // LIVE TELEMETRY
                   </div>
-                  <div className="absolute bottom-3 right-3 bg-[#00e599] text-black font-mono font-bold text-[9px] px-2 py-0.5">
+                  <div className="absolute bottom-3 right-3 bg-[#f59e0b] text-black font-mono font-bold text-[9px] px-2 py-0.5">
                     CAMPUS CENTRAL LAB
                   </div>
                   <div className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-1">
@@ -436,7 +436,7 @@ export default function MissionPage() {
                       </div>
                     </div>
                     <div className="px-2">
-                      <div className="font-serif font-bold text-3xl md:text-4xl text-[#00a86b]">
+                      <div className="font-serif font-bold text-3xl md:text-4xl text-[#b45309]">
                         100%
                       </div>
                       <div className="font-mono text-[9px] uppercase tracking-wider text-neutral-500 mt-1">
@@ -532,7 +532,7 @@ export default function MissionPage() {
                 </div>
                 <div className="pt-3 border-t border-neutral-200 flex justify-between items-center font-mono text-[10px]">
                   <span className="text-neutral-500">SPECIALIZED LABS</span>
-                  <span className="bg-[#00e599] text-black font-bold px-2 py-0.5">
+                  <span className="bg-[#f59e0b] text-black font-bold px-2 py-0.5">
                     ALL ONLINE
                   </span>
                 </div>
@@ -553,7 +553,7 @@ export default function MissionPage() {
                   </p>
                 </div>
                 <a
-                  className="w-full text-center bg-black text-white hover:bg-[#00e599] hover:text-black font-mono font-bold text-xs uppercase py-3 border border-black transition-colors block"
+                  className="w-full text-center bg-black text-white hover:bg-[#f59e0b] hover:text-black font-mono font-bold text-xs uppercase py-3 border border-black transition-colors block"
                   href="/contact/membership"
                 >
                   ACCESS RECRUITMENT PORTAL ↗
@@ -567,15 +567,15 @@ export default function MissionPage() {
         {/*  Signature Editorial High-Contrast Dark CTA Banner matching Screen 2  */}
         <section className="max-w-7xl mx-auto px-4 md:px-8 py-12">
           <div
-            className="bg-black text-white p-8 sm:p-12 md:p-14 border border-black relative overflow-hidden"
+            className="bg-[#0c111d] text-white p-8 sm:p-12 md:p-14 border-2 border-[#0c111d] relative overflow-hidden shadow-[8px_8px_0px_0px_#f59e0b]"
             data-purpose="dark-cta-card"
           >
             {/*  Background Grid Ticks  */}
-            <div className="absolute inset-0 tech-dots opacity-10 pointer-events-none"></div>
+            <div className="absolute inset-0 tech-dots opacity-10 pointer-events-none z-0"></div>
             <div className="relative z-10">
               {/*  Top Tag  */}
-              <div className="inline-flex items-center space-x-2 bg-neutral-900 border border-neutral-800 px-3 py-1 mb-6 text-[10px] font-mono tracking-widest text-[#00e599] uppercase">
-                <span className="w-1.5 h-1.5 bg-[#00e599] rounded-full animate-ping"></span>
+              <div className="inline-flex items-center space-x-2 bg-neutral-900 border border-neutral-800 px-3 py-1 mb-6 text-[10px] font-mono tracking-widest text-[#f59e0b] uppercase">
+                <span className="w-1.5 h-1.5 bg-[#f59e0b] rounded-full animate-ping"></span>
                 <span className="">■ ADMISSIONS OPEN // COHORT 2026</span>
               </div>
               {/*  Grid layout for Title vs Actions  */}
@@ -592,7 +592,7 @@ export default function MissionPage() {
                 </div>
                 <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
                   <a
-                    className="bg-[#00e599] hover:bg-[#00c584] text-black font-mono font-bold tracking-wider uppercase px-6 py-3.5 text-center text-xs transition-colors border border-[#00e599]"
+                    className="bg-[#f59e0b] hover:bg-[#f59e0b] text-black font-mono font-bold tracking-wider uppercase px-6 py-3.5 text-center text-xs transition-colors border border-[#f59e0b]"
                     href="/contact/membership"
                   >
                     REGISTER NOW
@@ -609,7 +609,7 @@ export default function MissionPage() {
               <div className="pt-6 flex flex-wrap justify-between items-center gap-4 font-mono text-[10px] text-neutral-500 uppercase tracking-wider">
                 <div className="">COHORT CYCLE: 2026.01</div>
                 <div className="">LOCATION: DIATM CAMPUS, RAJBANDH</div>
-                <div className="text-[#00e599]">STATUS: ACCEPTING DOSSIERS</div>
+                <div className="text-[#f59e0b]">STATUS: ACCEPTING DOSSIERS</div>
               </div>
             </div>
           </div>

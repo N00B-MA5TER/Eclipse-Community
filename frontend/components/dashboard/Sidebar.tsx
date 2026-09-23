@@ -29,14 +29,14 @@ export function Sidebar() {
         {/* Top Metadata Eyebrow Rail */}
         <div className="border-b border-black px-5 py-2.5 flex items-center justify-between text-[10px] font-mono tracking-widest text-neutral-500 uppercase bg-neutral-50/50">
           <div className="flex items-center space-x-2">
-            <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>
+            <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>
             <span className="font-bold text-black tracking-wider">CREO.SYS // V26</span>
           </div>
           <span className="font-semibold text-black">DESK</span>
         </div>
 
-        <Link href="/" className="h-[88px] py-2 px-4 border-b border-black flex items-center justify-center hover:bg-neutral-50 transition-colors">
-          <img src="/final-logo-black.png" alt="Eclipse Logo" className="w-auto h-full object-contain" />
+        <Link href="/" className="h-[120px] py-2 px-4 border-b border-black flex items-center justify-center hover:bg-neutral-50 transition-colors">
+          <img src="/logo.png" alt="Eclipse Logo" className="w-auto h-full object-contain scale-[1.3]" />
         </Link>
 
         {/* Navigation Menu Items */}
@@ -49,16 +49,16 @@ export function Sidebar() {
                 href={item.href}
                 className={`flex items-center justify-between px-3.5 py-2.5 rounded-none font-mono text-xs uppercase tracking-wider transition-smooth group ${
                   isActive 
-                    ? "bg-black text-white font-bold shadow-[2px_2px_0px_0px_#22c55e]" 
+                    ? "bg-black text-white font-bold shadow-[2px_2px_0px_0px_#f59e0b]" 
                     : "text-neutral-700 hover:text-black hover:bg-neutral-100 font-medium border border-transparent hover:border-black"
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <item.icon className={`w-4 h-4 ${isActive ? "text-[#22c55e]" : "text-neutral-500 group-hover:text-black"}`} />
+                  <item.icon className={`w-4 h-4 ${isActive ? "text-[#f59e0b]" : "text-neutral-500 group-hover:text-black"}`} />
                   <span>{item.name}</span>
                 </div>
                 {isActive ? (
-                  <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>
+                  <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>
                 ) : item.badge ? (
                   <span className="text-[10px] text-neutral-400 font-mono">{item.badge}</span>
                 ) : null}
@@ -75,7 +75,7 @@ export function Sidebar() {
             <HelpCircle className="w-4 h-4 text-neutral-500 group-hover:text-black" />
             <span>Help & Support</span>
           </div>
-          <span className="px-1.5 py-0.5 rounded-none text-[10px] font-mono font-bold bg-[#22c55e]/20 text-black border border-[#22c55e]">8</span>
+          <span className="px-1.5 py-0.5 rounded-none text-[10px] font-mono font-bold bg-[#f59e0b]/20 text-black border border-[#f59e0b]">8</span>
         </Link>
 
         <button onClick={logout} className="w-full flex items-center justify-between px-3.5 py-2 rounded-none text-neutral-500 hover:text-black hover:bg-neutral-100 font-mono text-xs uppercase tracking-wider font-medium border border-transparent hover:border-black transition-smooth group" type="button">

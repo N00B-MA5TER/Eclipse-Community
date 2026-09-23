@@ -64,7 +64,7 @@ export default function EventsGalleryPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-[#22c55e] broadsheet-grid">
+    <div className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-[#f59e0b] broadsheet-grid">
       <Navbar />
 
       <main className="pt-32 pb-24 min-h-screen relative overflow-hidden">
@@ -78,7 +78,7 @@ export default function EventsGalleryPage() {
                 transition={{ duration: 0.6 }}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-xs font-mono font-bold tracking-widest uppercase mb-6"
               >
-                <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>
+                <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>
                 Gallery Archives
               </motion.div>
               <motion.h1
@@ -131,7 +131,7 @@ export default function EventsGalleryPage() {
                   <div className="absolute inset-0 z-30 p-8 md:p-10 flex flex-col justify-between">
                     {/* Top: Category Tag */}
                     <div className="flex justify-between items-start">
-                      <span className="inline-flex bg-black text-white px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase shadow-[2px_2px_0px_0px_#22c55e]">
+                      <span className="inline-flex bg-black text-white px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase shadow-[2px_2px_0px_0px_#f59e0b]">
                         {event.category}
                       </span>
                       <span className="font-mono text-xs font-bold text-black group-hover:text-white transition-colors duration-500 px-2 py-1 bg-white border border-black group-hover:border-transparent group-hover:bg-black/50">
@@ -149,7 +149,7 @@ export default function EventsGalleryPage() {
                       </p>
                       
                       <div className="flex items-center gap-4">
-                        <button className="w-10 h-10 bg-black text-white flex items-center justify-center hover:bg-[#22c55e] hover:text-black transition-colors shrink-0 group/btn shadow-[3px_3px_0px_0px_#000000] hover:shadow-none">
+                        <button className="w-10 h-10 bg-black text-white flex items-center justify-center hover:bg-[#f59e0b] hover:text-black transition-colors shrink-0 group/btn shadow-[3px_3px_0px_0px_#000000] hover:shadow-none">
                           <ArrowRight className="w-4 h-4 group-hover/btn:-rotate-45 transition-transform duration-300" />
                         </button>
                       </div>

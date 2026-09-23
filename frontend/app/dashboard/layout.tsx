@@ -20,7 +20,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-white">
-        <div className="w-12 h-12 border-4 border-black border-t-[#22c55e] rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-black border-t-[#f59e0b] rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -28,7 +28,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-[#22c55e] flex broadsheet-grid pb-16 md:pb-0">
+    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-[#f59e0b] flex broadsheet-grid pb-16 md:pb-0">
       {/* Fixed Sidebar (Hidden on Mobile) */}
       <div className="hidden md:block">
         <Sidebar />

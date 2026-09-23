@@ -107,8 +107,8 @@ export default function AdminEventDetailsPage() {
             <span className={`px-4 py-1.5 rounded-none text-[12px] font-black uppercase tracking-widest border ${event.type === 'hackathon' ? 'bg-fuchsia-500/20 text-fuchsia-300 border-fuchsia-500/30' : 'bg-blue-500/20 text-blue-300 border-blue-500/30'} `}>
               {event.type}
             </span>
-            <span className={`text-[12px] font-bold flex items-center gap-1.5 px-4 py-1.5 rounded-none border  ${event.status === 'Completed' ? 'bg-white0/20 text-gray-300 border-black/30' : 'bg-green-500/20 text-green-400 border-green-500/30'}`}>
-              <span className={`w-2 h-2 rounded-none ${event.status === 'Completed' ? 'bg-gray-400' : 'bg-green-400 animate-pulse'}`}></span>
+            <span className={`text-[12px] font-bold flex items-center gap-1.5 px-4 py-1.5 rounded-none border  ${event.status === 'Completed' ? 'bg-white0/20 text-gray-300 border-black/30' : 'bg-amber-500/20 text-amber-400 border-amber-500/30'}`}>
+              <span className={`w-2 h-2 rounded-none ${event.status === 'Completed' ? 'bg-gray-400' : 'bg-amber-400 animate-pulse'}`}></span>
               {event.status}
             </span>
           </div>
@@ -297,9 +297,9 @@ export default function AdminEventDetailsPage() {
                            Team Full
                          </span>
                        ) : (
-                         <span className="inline-flex items-center px-3 py-1.5 rounded-none bg-green-50 text-green-700 text-[11px] font-black uppercase tracking-wider border border-green-200 shadow-none border border-black shadow-none border border-black-100 relative">
-                           <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-green-500 rounded-none animate-ping opacity-75"></span>
-                           <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-green-500 rounded-none border-2 border-white"></span>
+                         <span className="inline-flex items-center px-3 py-1.5 rounded-none bg-amber-50 text-amber-700 text-[11px] font-black uppercase tracking-wider border border-amber-200 shadow-none border border-black shadow-none border border-black-100 relative">
+                           <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-none animate-ping opacity-75"></span>
+                           <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-500 rounded-none border-2 border-white"></span>
                            Open
                          </span>
                        )}

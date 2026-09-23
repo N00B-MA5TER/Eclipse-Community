@@ -38,7 +38,7 @@ export function StatCards() {
         </div>
         <div className="pt-4 mt-4 border-t border-neutral-200 flex items-center justify-between">
           <p className="text-xs font-mono font-medium text-black flex items-center gap-1.5">
-            <span className="w-2 h-2 bg-[#22c55e] border border-black animate-pulse"></span>
+            <span className="w-2 h-2 bg-[#f59e0b] border border-black animate-pulse"></span>
             <span>Sprint 3 in Progress</span>
           </p>
           <span className="text-[10px] font-mono text-neutral-400">STAGE 03</span>
@@ -63,22 +63,22 @@ export function StatCards() {
       </div>
 
       {/* Card 3: Submissions Quick Banner (Jet Black Block with Acid Green Progress) */}
-      <div className="bg-black text-white p-6 rounded-none border border-black shadow-[3px_3px_0px_0px_#22c55e] flex flex-col justify-between relative">
+      <div className="bg-black text-white p-6 rounded-none border border-black shadow-[3px_3px_0px_0px_#f59e0b] flex flex-col justify-between relative">
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-[10px] font-mono font-bold text-[#22c55e] uppercase tracking-widest">SUBMISSION PORTAL</span>
+            <span className="text-[10px] font-mono font-bold text-[#f59e0b] uppercase tracking-widest">SUBMISSION PORTAL</span>
             <span className="text-[10px] font-mono text-neutral-400">DUE IN 4 DAYS</span>
           </div>
           <h4 className="font-editorial-serif text-xl font-bold text-white mb-2">Project Deck V2</h4>
           
           {/* Progress bar with acid green fill */}
           <div className="w-full bg-neutral-800 rounded-none h-1.5 overflow-hidden my-3 border border-neutral-700">
-            <div className="bg-[#22c55e] h-full w-[65%]"></div>
+            <div className="bg-[#f59e0b] h-full w-[65%]"></div>
           </div>
         </div>
         <div className="pt-2 flex items-center justify-between">
           <span className="text-[11px] font-mono text-neutral-400">Review pending</span>
-          <Link href="/dashboard/submissions" className="px-4 py-1.5 rounded-none bg-[#22c55e] hover:bg-white text-black text-xs font-mono font-bold uppercase tracking-wider transition-smooth shrink-0 border border-black">
+          <Link href="/dashboard/submissions" className="px-4 py-1.5 rounded-none bg-[#f59e0b] hover:bg-white text-black text-xs font-mono font-bold uppercase tracking-wider transition-smooth shrink-0 border border-black">
             Submit
           </Link>
         </div>

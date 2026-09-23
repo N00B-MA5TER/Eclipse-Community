@@ -110,9 +110,9 @@ export default function BroadcastNotificationsPage() {
       <div className="bg-white rounded-none shadow-none border border-black border border-black overflow-hidden">
         
         {successMsg && (
-          <div className="bg-green-50 p-4 border-b border-green-100 flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-            <p className="text-sm font-medium text-green-800">{successMsg}</p>
+          <div className="bg-amber-50 p-4 border-b border-amber-100 flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+            <p className="text-sm font-medium text-amber-800">{successMsg}</p>
           </div>
         )}
         

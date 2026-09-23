@@ -128,12 +128,12 @@ export default function AchievementsPage() {
                    <div className="grid md:grid-cols-2 gap-6">
                      
                      {/* Users Stat */}
-                     <div className="bg-white  p-6 rounded-none border border-black  hover:border-emerald-200 :border-emerald-900/50 transition-colors">
+                     <div className="bg-white  p-6 rounded-none border border-black  hover:border-amber-200 :border-amber-900/50 transition-colors">
                        <div className="flex items-center justify-between mb-4">
                          <div className="w-12 h-12 rounded-none bg-white  flex items-center justify-center shadow-none border border-black">
-                           <Users className="w-6 h-6 text-emerald-600 " />
+                           <Users className="w-6 h-6 text-amber-600 " />
                          </div>
-                         <div className="inline-flex items-center justify-center px-3 py-1.5 bg-emerald-100  text-emerald-700  font-bold text-xs rounded-none">
+                         <div className="inline-flex items-center justify-center px-3 py-1.5 bg-amber-100  text-amber-700  font-bold text-xs rounded-none">
                            {eventData.registeredCount} Participants
                          </div>
                        </div>

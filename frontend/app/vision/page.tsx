@@ -17,7 +17,7 @@ import Image from "next/image";
 
 export default function VisionPage() {
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-[#22c55e] relative broadsheet-grid">
+    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-[#f59e0b] relative broadsheet-grid">
       <Navbar />
       <main className="w-full bg-background min-h-screen pt-0">
         <div className="flex flex-col w-full bg-white text-black">
@@ -25,7 +25,7 @@ export default function VisionPage() {
             <div className="max-w-container-max mx-auto flex flex-wrap items-center justify-between gap-4 font-label-mono text-xs">
               <div className="flex items-center gap-3">
                 <span className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white border border-black font-label-mono text-[11px] uppercase tracking-widest font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00e599]"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
                   ■ WHO WE ARE // OUR VISION
                 </span>
                 <span className="hidden sm:inline-flex text-neutral-500 font-label-mono text-xs tracking-wider">
@@ -35,7 +35,7 @@ export default function VisionPage() {
               <div className="flex items-center gap-4 font-label-mono text-xs text-neutral-600 uppercase tracking-wider">
                 <span className="">SECURITY LEVEL: PUBLIC DISCLOSURE</span>
                 <span className="text-black font-bold flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#00e599] animate-pulse"></span>
+                  <span className="w-2 h-2 rounded-full bg-[#f59e0b] animate-pulse"></span>
                   SYNCHRONIZED
                 </span>
               </div>
@@ -76,7 +76,7 @@ export default function VisionPage() {
                     Department of Computer Science &amp; Engineering / IT
                   </span>
                   <span className="text-neutral-400">|</span>
-                  <span className="px-2 py-0.5 border border-black bg-black text-[#00e599] font-bold">
+                  <span className="px-2 py-0.5 border border-black bg-black text-[#f59e0b] font-bold">
                     EST. 2026 // RAJBANDH CHAPTER
                   </span>
                 </div>
@@ -164,7 +164,7 @@ export default function VisionPage() {
                         <span className="font-bold text-black tracking-wider">
                           VISION REGISTRY
                         </span>
-                        <span className="px-2 py-0.5 border border-black bg-[#00e599] text-black font-bold text-[10px] uppercase">
+                        <span className="px-2 py-0.5 border border-black bg-[#f59e0b] text-black font-bold text-[10px] uppercase">
                           ACTIVE
                         </span>
                       </div>
@@ -201,7 +201,7 @@ export default function VisionPage() {
                           CHAPTER STATUS:
                         </span>
                         <span className="font-bold text-black flex items-center gap-1">
-                          <span className="w-2 h-2 bg-[#00e599] inline-block"></span>
+                          <span className="w-2 h-2 bg-[#f59e0b] inline-block"></span>
                           SYNCHRONIZED
                         </span>
                       </div>
@@ -218,7 +218,7 @@ export default function VisionPage() {
                       <span className="uppercase tracking-widest text-[10px] font-bold">
                         PHILOSOPHY PROTOCOL
                       </span>
-                      <span className="material-symbols-outlined text-[18px] text-[#00e599]">
+                      <span className="material-symbols-outlined text-[18px] text-[#f59e0b]">
                         verified
                       </span>
                     </div>
@@ -411,7 +411,7 @@ export default function VisionPage() {
                       src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6lnazqjRBrbtidEurSyR30R-uGUWUXJVKUig-EY-mhcG2DhLTtlcKgtAXyJA5UmdpZkJYc9gED4b5pSAQo3MHD4SjhWmVS75qoIdLYowhgT9GRNCE5fHhLNbCG9iTSvjRNcY1EXFAkOQzfh2ed5Wmw_OqIBoYPcPB3dVVVZhn7kA1ZiqbT0JAiqmQOVdZPtQWXAgkUtwR6_eh1L6hwYNKTZryS5qMRRudB8YTAKc_xrgVLCQ2pLUqDg"
                     />
                     <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 bg-black text-white font-label-mono text-xs font-semibold border border-black">
-                      <span className="w-2 h-2 bg-[#00e599]"></span>
+                      <span className="w-2 h-2 bg-[#f59e0b]"></span>
                       <span className="">FIG 01.1 — SPRINT ARCHIVE #05</span>
                     </div>
                     <div className="absolute bottom-4 left-4 right-4 p-3 bg-white border border-black flex items-center justify-between font-label-mono text-xs">
@@ -419,7 +419,7 @@ export default function VisionPage() {
                         CENTRAL LAB / HIGH-INTENSITY BUILD WORKBENCH
                       </span>
                       <span className="text-black font-bold uppercase tracking-wider flex items-center gap-1.5">
-                        <span className="w-2 h-2 bg-[#00e599] inline-block"></span>
+                        <span className="w-2 h-2 bg-[#f59e0b] inline-block"></span>
                         LIVE PROTOCOL
                       </span>
                     </div>
@@ -451,7 +451,7 @@ export default function VisionPage() {
                         ■ INDEX METRICS // TELEMETRY MATRIX
                       </span>
                       <span className="text-black font-bold text-xs uppercase flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 bg-[#00e599] inline-block"></span>
+                        <span className="w-1.5 h-1.5 bg-[#f59e0b] inline-block"></span>
                         ONLINE
                       </span>
                     </div>
@@ -516,7 +516,7 @@ export default function VisionPage() {
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-black font-semibold">
-                  <span className="w-2 h-2 bg-[#00e599] inline-block"></span>
+                  <span className="w-2 h-2 bg-[#f59e0b] inline-block"></span>
                   <span className="">CAMPUS STATUS: ACTIVE</span>
                 </div>
               </div>
@@ -559,7 +559,7 @@ export default function VisionPage() {
                     <div className="flex items-center justify-between pb-3 mb-4 border-b border-black font-label-mono text-label-mono text-neutral-600">
                       <span className="">MODULE: 02</span>
                       <span className="text-black font-bold flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 bg-[#00e599] inline-block"></span>
+                        <span className="w-1.5 h-1.5 bg-[#f59e0b] inline-block"></span>
                         ALL ONLINE
                       </span>
                     </div>
@@ -600,7 +600,7 @@ export default function VisionPage() {
                   <div>
                     <div className="flex items-center justify-between pb-3 mb-4 border-b border-black font-label-mono text-label-mono text-neutral-600">
                       <span className="">MODULE: 03</span>
-                      <span className="inline-block px-1.5 py-0.5 border border-black bg-[#00e599] text-black text-[10px] font-bold">
+                      <span className="inline-block px-1.5 py-0.5 border border-black bg-[#f59e0b] text-black text-[10px] font-bold">
                         RECRUITING
                       </span>
                     </div>
@@ -634,10 +634,10 @@ export default function VisionPage() {
           </section>
           <section className="w-full px-margin-mobile md:px-margin-desktop py-12 md:py-16 bg-white border-t border-black">
             <div className="max-w-container-max mx-auto">
-              <div className="w-full bg-black text-white p-8 sm:p-12 md:p-16 border border-black relative overflow-hidden">
+              <div className="w-full bg-[#0c111d] text-white p-8 sm:p-12 md:p-16 border-2 border-[#0c111d] relative overflow-hidden shadow-[8px_8px_0px_0px_#f59e0b]">
                 <div className="relative z-10 flex flex-col items-start max-w-3xl">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 border border-neutral-700 bg-neutral-900 font-label-mono text-label-mono uppercase tracking-widest text-[#00e599] mb-6">
-                    <span className="w-1.5 h-1.5 bg-[#00e599] animate-pulse inline-block"></span>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 border border-neutral-700 bg-neutral-900 font-label-mono text-label-mono uppercase tracking-widest text-[#f59e0b] mb-6">
+                    <span className="w-1.5 h-1.5 bg-[#f59e0b] animate-pulse inline-block"></span>
                     <span className="">■ ■ ADMISSIONS OPEN // COHORT 2026</span>
                   </div>
                   <h2
@@ -653,7 +653,7 @@ export default function VisionPage() {
                   </p>
                   <div className="flex flex-wrap items-center gap-4">
                     <a
-                      className="px-6 py-3.5 bg-[#00e599] hover:bg-[#00c584] text-black font-label-mono text-label-mono font-bold tracking-wider transition-colors border border-black flex items-center gap-2"
+                      className="px-6 py-3.5 bg-[#f59e0b] hover:bg-[#f59e0b] text-black font-label-mono text-label-mono font-bold tracking-wider transition-colors border border-black flex items-center gap-2"
                       data-path="membership"
                       href="#"
                     >
@@ -691,7 +691,7 @@ export default function VisionPage() {
                       <span className="block uppercase tracking-wider text-neutral-500 text-[10px]">
                         STATUS
                       </span>
-                      <span className="font-semibold text-[#00e599]">
+                      <span className="font-semibold text-[#f59e0b]">
                         ACCEPTING DOSSIERS
                       </span>
                     </div>

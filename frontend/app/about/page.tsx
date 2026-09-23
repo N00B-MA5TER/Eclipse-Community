@@ -37,7 +37,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-[#22c55e] relative broadsheet-grid">
+    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-[#f59e0b] relative broadsheet-grid">
       <Navbar />
       <main className="w-full pt-0 bg-white min-h-screen">
         <div className="flex flex-col w-full">
@@ -51,7 +51,7 @@ export default function AboutPage() {
               <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-neutral-200">
                 <div className="flex items-center gap-3">
                   <span className="inline-flex items-center gap-2 px-3 py-1 bg-black text-white rounded-none border border-black font-mono text-[11px] uppercase tracking-widest font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
                     ■ WHO WE ARE
                   </span>
                   <span className="hidden sm:inline-flex text-neutral-500 font-mono text-xs tracking-wider">
@@ -61,7 +61,7 @@ export default function AboutPage() {
                 <div className="flex items-center gap-4 font-mono text-xs text-neutral-600 uppercase tracking-wider">
                   <span>SECURITY LEVEL: PUBLIC DISCLOSURE</span>
                   <span className="text-black font-bold flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>{" "}
+                    <span className="w-2 h-2 rounded-full bg-[#f59e0b] animate-pulse"></span>{" "}
                     SYNCHRONIZED
                   </span>
                 </div>
@@ -86,7 +86,7 @@ export default function AboutPage() {
                   <p className="text-neutral-500">
                     DEPARTMENT OF COMPUTER SCIENCE &amp; ENGINEERING / IT
                   </p>
-                  <div className="inline-block mt-2 px-2.5 py-0.5 bg-[#22c55e] text-black font-mono text-[11px] font-bold tracking-widest uppercase">
+                  <div className="inline-block mt-2 px-2.5 py-0.5 bg-[#f59e0b] text-black font-mono text-[11px] font-bold tracking-widest uppercase">
                     CHAPTER ID: 155 // EST. 2026
                   </div>
                 </div>
@@ -127,7 +127,7 @@ export default function AboutPage() {
                           Dept. of CSE &amp; IT
                         </span>
                       </div>
-                      <div className="border-l-2 border-[#22c55e] pl-3 py-1 bg-[#22c55e]/10">
+                      <div className="border-l-2 border-[#f59e0b] pl-3 py-1 bg-[#f59e0b]/10">
                         <span className="block text-neutral-500 uppercase text-[10px] tracking-wider">
                           CHAPTER
                         </span>
@@ -143,8 +143,8 @@ export default function AboutPage() {
                       <span className="font-mono text-xs text-neutral-500 uppercase font-bold tracking-wider">
                         CLUB REGISTRY
                       </span>
-                      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#22c55e]/20 border border-[#22c55e] text-black text-[10px] font-mono font-bold uppercase">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-ping"></span>
+                      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#f59e0b]/20 border border-[#f59e0b] text-black text-[10px] font-mono font-bold uppercase">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-ping"></span>
                         ACTIVE
                       </span>
                     </div>
@@ -196,12 +196,12 @@ export default function AboutPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
                       <div className="absolute top-3 left-3 bg-white text-black font-mono text-[11px] font-bold uppercase tracking-wider px-3 py-1 border border-black flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-[#22c55e]"></span>
+                        <span className="w-2 h-2 rounded-full bg-[#f59e0b]"></span>
                         DIATM HACK-LAB // LIVE TELEMETRY
                       </div>
                       <div className="absolute bottom-3 left-3 right-3 p-3 bg-black/85 border border-white/20 text-white font-mono text-xs flex justify-between items-center">
                         <span>FIG 01.1 — SPRINT ARCHIVE #04</span>
-                        <span className="text-[#22c55e] font-bold">
+                        <span className="text-[#f59e0b] font-bold">
                           CAMPUS CENTRAL LAB
                         </span>
                       </div>
@@ -232,7 +232,7 @@ export default function AboutPage() {
                     <div className="bg-neutral-50 border border-black p-5 space-y-4">
                       <div className="flex items-center justify-between pb-2 border-b border-neutral-200 font-mono text-xs">
                         <span className="font-bold text-black uppercase tracking-widest flex items-center gap-1.5">
-                          <span className="w-2 h-2 bg-[#22c55e]"></span> INDEX
+                          <span className="w-2 h-2 bg-[#f59e0b]"></span> INDEX
                           METRICS
                         </span>
                         <span className="text-neutral-500 uppercase">
@@ -260,7 +260,7 @@ export default function AboutPage() {
                           <span className="font-editorial-serif text-2xl font-bold text-black block">
                             {stats.openSource}%
                           </span>
-                          <span className="font-mono text-[10px] text-[#22c55e] uppercase mt-0.5 block font-bold">
+                          <span className="font-mono text-[10px] text-[#f59e0b] uppercase mt-0.5 block font-bold">
                             Open Source
                           </span>
                         </div>
@@ -277,7 +277,7 @@ export default function AboutPage() {
               <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 pb-6 border-b border-black">
                 <div>
                   <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-black text-white rounded-none font-mono text-[11px] uppercase tracking-widest font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
                     ■ CORE CONSTITUTION
                   </div>
                   <h2 className="font-editorial-serif text-[36px] sm:text-[48px] leading-tight font-bold tracking-tight text-black uppercase mt-3">
@@ -309,7 +309,7 @@ export default function AboutPage() {
                       </span>
                     </div>
                     <div className="space-y-1">
-                      <span className="font-mono text-[11px] text-[#22c55e] uppercase font-bold tracking-widest">
+                      <span className="font-mono text-[11px] text-[#f59e0b] uppercase font-bold tracking-widest">
                         ECOSYSTEM
                       </span>
                       <h3 className="font-editorial-serif text-2xl font-bold text-black uppercase">
@@ -322,7 +322,7 @@ export default function AboutPage() {
                       converge to shape ideas of greater depth and consequence.
                     </p>
                   </div>
-                  <div className="pt-8 border-t border-neutral-200 mt-6 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#22c55e] transition-colors">
+                  <div className="pt-8 border-t border-neutral-200 mt-6 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#f59e0b] transition-colors">
                     <span>TRACK: CORE ECOSYSTEM</span>
                     <span className="material-symbols-outlined text-[16px]">
                       arrow_forward
@@ -341,7 +341,7 @@ export default function AboutPage() {
                       </span>
                     </div>
                     <div className="space-y-1">
-                      <span className="font-mono text-[11px] text-[#22c55e] uppercase font-bold tracking-widest">
+                      <span className="font-mono text-[11px] text-[#f59e0b] uppercase font-bold tracking-widest">
                         PRACTICE
                       </span>
                       <h3 className="font-editorial-serif text-2xl font-bold text-black uppercase">
@@ -354,7 +354,7 @@ export default function AboutPage() {
                       experimentation, and meaningful innovation.
                     </p>
                   </div>
-                  <div className="pt-8 border-t border-neutral-200 mt-6 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#22c55e] transition-colors">
+                  <div className="pt-8 border-t border-neutral-200 mt-6 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#f59e0b] transition-colors">
                     <span>TRACK: LAB PRACTICE</span>
                     <span className="material-symbols-outlined text-[16px]">
                       arrow_forward
@@ -373,7 +373,7 @@ export default function AboutPage() {
                       </span>
                     </div>
                     <div className="space-y-1">
-                      <span className="font-mono text-[11px] text-[#22c55e] uppercase font-bold tracking-widest">
+                      <span className="font-mono text-[11px] text-[#f59e0b] uppercase font-bold tracking-widest">
                         SYNERGY
                       </span>
                       <h3 className="font-editorial-serif text-2xl font-bold text-black uppercase">
@@ -387,7 +387,7 @@ export default function AboutPage() {
                       work.
                     </p>
                   </div>
-                  <div className="pt-8 border-t border-neutral-200 mt-6 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#22c55e] transition-colors">
+                  <div className="pt-8 border-t border-neutral-200 mt-6 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#f59e0b] transition-colors">
                     <span>TRACK: SYNERGISTIC FLOW</span>
                     <span className="material-symbols-outlined text-[16px]">
                       arrow_forward
@@ -406,7 +406,7 @@ export default function AboutPage() {
                       </span>
                     </div>
                     <div className="space-y-1">
-                      <span className="font-mono text-[11px] text-[#22c55e] uppercase font-bold tracking-widest">
+                      <span className="font-mono text-[11px] text-[#f59e0b] uppercase font-bold tracking-widest">
                         EXTENSION
                       </span>
                       <h3 className="font-editorial-serif text-2xl font-bold text-black uppercase">
@@ -431,7 +431,7 @@ export default function AboutPage() {
                         PRODUCT LABS
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#22c55e] transition-colors">
+                    <div className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#f59e0b] transition-colors">
                       <span>DISCOVER INITIATIVES</span>
                       <span className="material-symbols-outlined text-[16px]">
                         arrow_forward
@@ -451,7 +451,7 @@ export default function AboutPage() {
                       </span>
                     </div>
                     <div className="space-y-1">
-                      <span className="font-mono text-[11px] text-[#22c55e] uppercase font-bold tracking-widest">
+                      <span className="font-mono text-[11px] text-[#f59e0b] uppercase font-bold tracking-widest">
                         PERSPECTIVE
                       </span>
                       <h3 className="font-editorial-serif text-2xl font-bold text-black uppercase">
@@ -465,7 +465,7 @@ export default function AboutPage() {
                       influence it.
                     </p>
                   </div>
-                  <div className="pt-8 border-t border-neutral-200 mt-6 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#22c55e] transition-colors">
+                  <div className="pt-8 border-t border-neutral-200 mt-6 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#f59e0b] transition-colors">
                     <span>TRACK: FUTURE PROTOCOLS</span>
                     <span className="material-symbols-outlined text-[16px]">
                       arrow_forward
@@ -486,7 +486,7 @@ export default function AboutPage() {
                   </h2>
                 </div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 border border-black bg-neutral-100 font-mono text-xs font-bold text-black">
-                  <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-ping"></span>
+                  <span className="w-2 h-2 rounded-full bg-[#f59e0b] animate-ping"></span>
                   <span>CAMPUS STATUS: ACTIVE</span>
                 </div>
               </div>
@@ -497,7 +497,7 @@ export default function AboutPage() {
                   <div>
                     <div className="flex items-center justify-between text-neutral-500 font-mono text-[11px] uppercase font-bold mb-4 pb-2 border-b border-neutral-200">
                       <span className="flex items-center gap-1.5 text-black">
-                        <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>{" "}
+                        <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>{" "}
                         MEMBER ROSTER
                       </span>
                       <span className="material-symbols-outlined text-[18px] text-black">
@@ -528,7 +528,7 @@ export default function AboutPage() {
                   <div>
                     <div className="flex items-center justify-between text-neutral-500 font-mono text-[11px] uppercase font-bold mb-4 pb-2 border-b border-neutral-200">
                       <span className="flex items-center gap-1.5 text-black">
-                        <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>{" "}
+                        <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>{" "}
                         PRIMARY VECTORS
                       </span>
                       <span className="material-symbols-outlined text-[18px] text-black">
@@ -558,7 +558,7 @@ export default function AboutPage() {
                   </div>
                   <div className="pt-4 border-t border-neutral-200 mt-6 font-mono text-xs text-neutral-600 flex items-center justify-between">
                     <span>SPECIALIZED LABS</span>
-                    <span className="text-black font-bold bg-[#22c55e] px-1.5 py-0.5">
+                    <span className="text-black font-bold bg-[#f59e0b] px-1.5 py-0.5">
                       ALL ONLINE
                     </span>
                   </div>
@@ -568,7 +568,7 @@ export default function AboutPage() {
                   <div>
                     <div className="flex items-center justify-between text-neutral-500 font-mono text-[11px] uppercase font-bold mb-4 pb-2 border-b border-neutral-200">
                       <span className="flex items-center gap-1.5 text-black">
-                        <span className="w-1.5 h-1.5 bg-[#22c55e]"></span>{" "}
+                        <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>{" "}
                         ADMISSIONS TELEMETRY
                       </span>
                       <span className="material-symbols-outlined text-[18px] text-black">
@@ -585,7 +585,7 @@ export default function AboutPage() {
                   </div>
                   <div className="pt-6 border-t border-neutral-200 mt-6">
                     <a
-                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 border border-black bg-black text-white hover:bg-[#22c55e] hover:text-black font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-[2px_2px_0px_0px_#000000] hover:shadow-none"
+                      className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 border border-black bg-black text-white hover:bg-[#f59e0b] hover:text-black font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-[2px_2px_0px_0px_#000000] hover:shadow-none"
                       data-path="membership"
                       href="#"
                     >
@@ -602,10 +602,10 @@ export default function AboutPage() {
           {/*  Section 5: Callout Admission Banner (Exact Screen 5 Architectural Broadsheet Match)  */}
           <section className="w-full py-16 bg-white border-b border-black">
             <div className="px-4 sm:px-8 lg:px-12 max-w-[80rem] mx-auto">
-              <div className="bg-black text-white rounded-none p-8 sm:p-12 lg:p-16 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border border-black shadow-[6px_6px_0px_0px_#000000]">
+              <div className="bg-[#0c111d] text-white rounded-none p-8 sm:p-12 lg:p-16 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 border-2 border-[#0c111d] shadow-[8px_8px_0px_0px_#f59e0b]">
                 <div className="space-y-4 max-w-xl relative z-10">
-                  <span className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/10 text-[#22c55e] font-mono text-[11px] font-bold uppercase tracking-widest border border-white/20">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-ping"></span>
+                  <span className="inline-flex items-center gap-2 px-2.5 py-1 bg-white/10 text-[#f59e0b] font-mono text-[11px] font-bold uppercase tracking-widest border border-white/20">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b] animate-ping"></span>
                     ■ ADMISSIONS OPEN // COHORT 2026
                   </span>
                   <h2 className="font-editorial-serif text-[30px] sm:text-[44px] leading-tight font-bold tracking-tight uppercase text-white">
@@ -626,7 +626,7 @@ export default function AboutPage() {
                 </div>
                 <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10 w-full md:w-auto">
                   <a
-                    className="w-full sm:w-auto text-center px-8 py-4 bg-[#22c55e] text-black font-mono text-xs font-bold uppercase tracking-wider rounded-none hover:bg-white transition-all shadow-[3px_3px_0px_0px_#ffffff] hover:shadow-none"
+                    className="w-full sm:w-auto text-center px-8 py-4 bg-[#f59e0b] text-black font-mono text-xs font-bold uppercase tracking-wider rounded-none hover:bg-white transition-all shadow-[3px_3px_0px_0px_#ffffff] hover:shadow-none"
                     data-path="membership"
                     href="#"
                   >

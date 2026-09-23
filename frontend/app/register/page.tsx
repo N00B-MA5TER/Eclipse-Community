@@ -59,7 +59,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col font-mono selection:bg-[#00e599] selection:text-black">
+    <div className="min-h-screen bg-white text-black flex flex-col font-mono selection:bg-[#f59e0b] selection:text-black">
       {/* Navbar Minimal */}
       <header className="flex items-center justify-between px-4 sm:px-8 py-3 border-b border-black">
         <Link href="/" className="flex items-center">
@@ -88,7 +88,7 @@ export default function RegisterPage() {
           <p className="text-neutral-600 font-mono text-xs uppercase tracking-wider mb-10">Establish your identity within the chapter.</p>
 
           {error && <div className="text-black bg-red-100 border border-black p-3 text-xs font-bold font-mono uppercase mb-6">{error}</div>}
-          {success && <div className="text-black bg-[#00e599] border border-black p-3 text-xs font-bold font-mono uppercase mb-6">{success}</div>}
+          {success && <div className="text-black bg-[#f59e0b] border border-black p-3 text-xs font-bold font-mono uppercase mb-6">{success}</div>}
 
           <form className="space-y-6" onSubmit={handleSubmit}>
             
@@ -102,7 +102,7 @@ export default function RegisterPage() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="ALIAS" 
                   required 
-                  className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#00e599] transition-all" 
+                  className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
                 />
               </div>
 
@@ -116,7 +116,7 @@ export default function RegisterPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="STUDENT@DIATM.EDU" 
                   required 
-                  className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#00e599] transition-all" 
+                  className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
                 />
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function RegisterPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••" 
                   required 
-                  className="h-12 rounded-none border border-black bg-white px-4 pr-12 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#00e599] transition-all" 
+                  className="h-12 rounded-none border border-black bg-white px-4 pr-12 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
                 />
                 <button
                   type="button"
@@ -146,7 +146,7 @@ export default function RegisterPage() {
 
             {/* Submit */}
             <div className="pt-4">
-              <Button type="submit" disabled={loading} className="w-full rounded-none bg-black hover:bg-[#00e599] hover:text-black text-white border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors">
+              <Button type="submit" disabled={loading} className="w-full rounded-none bg-black hover:bg-[#f59e0b] hover:text-black text-white border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors">
                 {loading ? 'INITIALIZING...' : 'ESTABLISH DOSSIER'}
               </Button>
             </div>
@@ -175,7 +175,7 @@ export default function RegisterPage() {
           <div className="flex flex-col">
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-black text-[10px] font-bold font-mono uppercase tracking-widest text-neutral-500">
               <span>SYSTEM LOG</span>
-              <span className="text-black flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-[#00e599] animate-pulse"></span>ACTIVE</span>
+              <span className="text-black flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-[#f59e0b] animate-pulse"></span>ACTIVE</span>
             </div>
             
             <h2 className="font-heading text-headline-lg font-bold text-black uppercase tracking-tight leading-none mb-4">

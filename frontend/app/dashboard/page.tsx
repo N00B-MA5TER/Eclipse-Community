@@ -46,7 +46,7 @@ export default function Dashboard() {
       <section className="space-y-4" data-purpose="dashboard-header">
         {/* Date Eyebrow / Archive Stamp */}
         <div className="flex items-center gap-3">
-          <span className="w-2 h-2 bg-[#22c55e]"></span>
+          <span className="w-2 h-2 bg-[#f59e0b]"></span>
           <span className="text-xs font-mono font-bold uppercase tracking-widest text-neutral-500">
             {dateString} // VOL. 26 ARCHIVE
           </span>
@@ -56,7 +56,7 @@ export default function Dashboard() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-2 border-b border-black">
           <div>
             <div className="inline-flex items-center space-x-2 px-2.5 py-0.5 bg-black text-white text-[10px] font-mono font-bold uppercase tracking-widest mb-3">
-              <span className="w-1.5 h-1.5 bg-[#22c55e] animate-pulse"></span>
+              <span className="w-1.5 h-1.5 bg-[#f59e0b] animate-pulse"></span>
               <span>DESIGN OPERATIONAL PORTAL</span>
             </div>
             <h1 className="font-editorial-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-[1.05]">
@@ -65,8 +65,8 @@ export default function Dashboard() {
           </div>
           {/* Quick Action Buttons */}
           <div className="flex items-center gap-3 pb-1">
-            <button className="px-6 py-3 bg-black hover:bg-[#22c55e] text-white hover:text-black font-mono text-xs uppercase tracking-wider font-bold rounded-none border border-black shadow-[3px_3px_0px_0px_#000000] hover:shadow-none transition-smooth flex items-center gap-2 group" type="button">
-              <svg className="w-3.5 h-3.5 text-[#22c55e] group-hover:text-black transition-colors" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+            <button className="px-6 py-3 bg-black hover:bg-[#f59e0b] text-white hover:text-black font-mono text-xs uppercase tracking-wider font-bold rounded-none border border-black shadow-[3px_3px_0px_0px_#000000] hover:shadow-none transition-smooth flex items-center gap-2 group" type="button">
+              <svg className="w-3.5 h-3.5 text-[#f59e0b] group-hover:text-black transition-colors" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"></path>
               </svg>
               <span>Join New Event</span>
@@ -78,7 +78,7 @@ export default function Dashboard() {
         <div className="flex flex-wrap items-center gap-3 pt-1">
           {/* Registered Events Pill */}
           <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-none bg-white border border-black text-xs font-mono shadow-[2px_2px_0px_0px_#000000] hover:border-black transition-smooth cursor-pointer">
-            <span className="w-4 h-4 bg-[#22c55e] text-black font-mono font-bold text-[10px] flex items-center justify-center">
+            <span className="w-4 h-4 bg-[#f59e0b] text-black font-mono font-bold text-[10px] flex items-center justify-center">
               ✓
             </span>
             <span className="text-neutral-700 tracking-wide uppercase"><strong className="text-black font-bold font-mono">1</strong> Registered Events</span>

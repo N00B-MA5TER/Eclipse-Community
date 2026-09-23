@@ -52,7 +52,7 @@ export default function MiniCalendar({
             return (
               <div key={day} className={`aspect-square flex items-center justify-center border font-mono text-xs font-bold transition-colors ${
                 isToday ? 'bg-black text-white border-black' :
-                hasEvent ? 'bg-[#22c55e]/20 text-black border-[#22c55e]' :
+                hasEvent ? 'bg-[#f59e0b]/20 text-black border-[#f59e0b]' :
                 'bg-white text-neutral-600 border-transparent hover:border-black'
               }`}>
                 {day}
@@ -62,7 +62,7 @@ export default function MiniCalendar({
         </div>
         <div className="mt-4 pt-3 border-t border-black/10 flex items-center gap-4 text-[9px] font-mono uppercase tracking-widest text-neutral-500">
           <div className="flex items-center gap-1.5"><div className="w-2 h-2 bg-black"></div> Today</div>
-          <div className="flex items-center gap-1.5"><div className="w-2 h-2 bg-[#22c55e]/20 border border-[#22c55e]"></div> Has Event</div>
+          <div className="flex items-center gap-1.5"><div className="w-2 h-2 bg-[#f59e0b]/20 border border-[#f59e0b]"></div> Has Event</div>
         </div>
       </div>
     </div>

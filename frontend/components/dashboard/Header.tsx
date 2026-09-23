@@ -85,7 +85,7 @@ export function Header() {
               <div className="w-8 h-8 rounded-none bg-black text-white font-mono font-bold flex items-center justify-center text-xs border border-black">
                 {getInitials(displayName)}
               </div>
-              <span className="bottom-0 right-0 absolute w-2 h-2 bg-[#22c55e] border border-black"></span>
+              <span className="bottom-0 right-0 absolute w-2 h-2 bg-[#f59e0b] border border-black"></span>
             </div>
             <div className="text-left hidden sm:block">
               <p className="text-xs font-bold text-black leading-tight">{displayName}</p>

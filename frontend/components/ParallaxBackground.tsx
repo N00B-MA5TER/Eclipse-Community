@@ -35,7 +35,7 @@ export function ParallaxBackground() {
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1] opacity-50">
         <div className="absolute top-[-10%] left-[-10%] w-[50%] aspect-square rounded-full bg-blue-600/5 dark:bg-blue-500/10 blur-[120px]" />
         <div className="absolute top-[30%] right-[-15%] w-[45%] aspect-square rounded-full bg-fuchsia-600/5 dark:bg-fuchsia-500/10 blur-[120px]" />
-        <div className="absolute top-[70%] left-[10%] w-[60%] aspect-square rounded-full bg-emerald-600/5 dark:bg-emerald-500/10 blur-[150px]" />
+        <div className="absolute top-[70%] left-[10%] w-[60%] aspect-square rounded-full bg-amber-600/5 dark:bg-amber-500/10 blur-[150px]" />
       </div>
     );
   }
@@ -57,7 +57,7 @@ export function ParallaxBackground() {
       {/* Orb 3: Bottom Left */}
       <motion.div 
         style={{ y: y3 }}
-        className="absolute top-[70%] left-[10%] w-[60%] aspect-square rounded-full bg-emerald-600/5 dark:bg-emerald-500/10 blur-[150px]"
+        className="absolute top-[70%] left-[10%] w-[60%] aspect-square rounded-full bg-amber-600/5 dark:bg-amber-500/10 blur-[150px]"
       />
     </div>
   );

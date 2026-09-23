@@ -104,7 +104,7 @@ export default function ProfilePage() {
         
         <form onSubmit={handleSave} className="relative z-10 max-w-lg">
           {error && <div className="mb-6 p-4 bg-red-50 text-red-600 rounded-none text-sm font-medium border border-red-100">{error}</div>}
-          {success && <div className="mb-6 p-4 bg-green-50 text-green-600 rounded-none text-sm font-medium border border-green-100">{success}</div>}
+          {success && <div className="mb-6 p-4 bg-amber-50 text-amber-600 rounded-none text-sm font-medium border border-amber-100">{success}</div>}
 
           <div className="flex items-center gap-6 mb-10">
             <div className="w-24 h-24 bg-blue-100 text-blue-700 rounded-none flex items-center justify-center text-3xl font-heading uppercase tracking-tight font-bold border-4 border-white shadow-none border border-black uppercase">
@@ -125,7 +125,7 @@ export default function ProfilePage() {
                   type="text" 
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-medium text-[15px]"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-medium text-[15px]"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -139,7 +139,7 @@ export default function ProfilePage() {
                   type="tel" 
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-medium text-[15px]"
+                  className="w-full pl-12 pr-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-medium text-[15px]"
                   placeholder="Phone number (optional)"
                 />
               </div>
@@ -150,7 +150,7 @@ export default function ProfilePage() {
               <textarea 
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
-                className="w-full px-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-medium text-[15px] resize-none h-24"
+                className="w-full px-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-medium text-[15px] resize-none h-24"
                 placeholder="Tell us a little bit about yourself"
               />
             </div>
@@ -162,7 +162,7 @@ export default function ProfilePage() {
                   type="text" 
                   value={course}
                   onChange={(e) => setCourse(e.target.value)}
-                  className="w-full px-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-medium text-[15px]"
+                  className="w-full px-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-medium text-[15px]"
                   placeholder="e.g. B.Tech Computer Science"
                 />
               </div>
@@ -172,7 +172,7 @@ export default function ProfilePage() {
                 <select 
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
-                  className="w-full px-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-medium text-[15px] bg-white"
+                  className="w-full px-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-medium text-[15px] bg-white"
                 >
                   <option value="">Select Year</option>
                   <option value="1st Year">1st Year</option>
@@ -191,7 +191,7 @@ export default function ProfilePage() {
                 type="text" 
                 value={techSkills}
                 onChange={(e) => setTechSkills(e.target.value)}
-                className="w-full px-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-medium text-[15px]"
+                className="w-full px-4 py-3.5 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-medium text-[15px]"
                 placeholder="e.g. React, Node.js, Python, Figma (comma separated)"
               />
               <p className="text-[11px] text-neutral-600 font-mono text-xs uppercase tracking-wider mt-2 ml-1">Separate skills with commas</p>

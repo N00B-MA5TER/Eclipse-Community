@@ -106,7 +106,7 @@ export default function GalleryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fcfbf9] text-[#0c111d] font-body-lg selection:bg-[#acffd4] selection:text-[#0c111d] relative transition-colors duration-300">
+    <div className="min-h-screen bg-[#fcfbf9] text-[#0c111d] font-body-lg selection:bg-[#f59e0b] selection:text-[#0c111d] relative transition-colors duration-300">
       
       {/* Background Decorative Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
@@ -127,7 +127,7 @@ export default function GalleryPage() {
               transition={{ duration: 0.8 }}
               className="mb-4 inline-flex items-center gap-2 bg-[#0c111d] text-[#fcfbf9] px-3.5 py-1 text-[11px] font-mono-code font-bold tracking-widest uppercase"
             >
-              <span className="w-1.5 h-1.5 bg-[#acffd4]"></span>
+              <span className="w-1.5 h-1.5 bg-[#f59e0b]"></span>
               VISUAL MEDIA ARCHIVE
             </motion.div>
             <motion.h1 

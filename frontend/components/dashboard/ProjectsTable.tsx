@@ -68,7 +68,7 @@ export function ProjectsTable() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'In Progress': return 'bg-green-100 text-green-700';
+      case 'In Progress': return 'bg-amber-100 text-amber-700';
       case 'Pending': return 'bg-fuchsia-100 text-fuchsia-700';
       case 'Completed': return 'bg-blue-100 text-blue-700';
       default: return 'bg-gray-100 text-gray-700';

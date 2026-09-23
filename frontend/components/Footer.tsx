@@ -7,11 +7,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-[#0c111d]">
           {/* Brand & College Credential */}
           <div className="md:col-span-4">
-            <div className="flex items-center gap-2.5 mb-3">
-              <div className="w-5 h-5 bg-[#0c111d] text-[#fcfbf9] flex items-center justify-center rotate-45">
-                <div className="w-1.5 h-1.5 bg-[#acffd4] -rotate-45"></div>
-              </div>
-              <span className="font-serif-display text-2xl font-black text-[#0c111d]">Ecllipse</span>
+            <div className="flex items-center mb-4">
+              <img src="/logo.png" alt="Eclipse" className="h-[100px] w-auto object-contain" />
             </div>
             <p className="font-body-md text-xs text-[#434656] leading-relaxed max-w-sm mb-4">
               The Official Student Tech Club of Durgapur Institute of Advanced Technology and Management (DIATM). Fostering peer innovation, computing excellence, and industry integration.
@@ -54,8 +51,8 @@ export function Footer() {
               // STATUS
             </p>
             <div className="bg-[#ffffff] border border-[#0c111d] p-3 text-[11px]">
-              <div className="flex items-center gap-1.5 text-[#007b54] font-bold">
-                <span className="w-2 h-2 rounded-full bg-[#007b54] animate-pulse"></span>
+              <div className="flex items-center gap-1.5 text-[#b45309] font-bold">
+                <span className="w-2 h-2 rounded-full bg-[#b45309] animate-pulse"></span>
                 <span>RECRUITMENT ACTIVE</span>
               </div>
               <p className="text-[#737688] mt-1 text-[10px]">SLOTS: 28 REMAINING</p>

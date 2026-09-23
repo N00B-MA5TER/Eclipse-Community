@@ -314,8 +314,8 @@ export default function EventDetailsPage() {
             <span className={`px-4 py-1.5 rounded-none text-[12px] font-black uppercase tracking-widest ${event.type === 'hackathon' ? 'bg-fuchsia-100 text-fuchsia-700' : 'bg-blue-100 text-blue-700'}`}>
               {event.type}
             </span>
-            <span className={`text-[12px] font-bold flex items-center gap-1.5 px-4 py-1.5 rounded-none ${event.status === 'Completed' ? 'bg-neutral-100 text-neutral-600 font-mono text-xs uppercase tracking-wider' : 'bg-green-50 text-green-600'}`}>
-              <span className={`w-2 h-2 rounded-none ${event.status === 'Completed' ? 'bg-gray-400' : 'bg-green-500 animate-pulse'}`}></span>
+            <span className={`text-[12px] font-bold flex items-center gap-1.5 px-4 py-1.5 rounded-none ${event.status === 'Completed' ? 'bg-neutral-100 text-neutral-600 font-mono text-xs uppercase tracking-wider' : 'bg-amber-50 text-amber-600'}`}>
+              <span className={`w-2 h-2 rounded-none ${event.status === 'Completed' ? 'bg-gray-400' : 'bg-amber-500 animate-pulse'}`}></span>
               {event.status}
             </span>
           </div>
@@ -378,7 +378,7 @@ export default function EventDetailsPage() {
                 disabled={isRegistered || isRegistering}
                 className={`w-full font-bold py-3.5 rounded-none transition-all shadow-none border border-black shadow-none border border-black/10 active:scale-95 text-[14px] ${
                   isRegistered 
-                    ? "bg-green-500 text-white cursor-not-allowed" 
+                    ? "bg-amber-500 text-white cursor-not-allowed" 
                     : "bg-white text-gray-900 hover:bg-neutral-100"
                 }`}
               >
@@ -412,7 +412,7 @@ export default function EventDetailsPage() {
             <div className="p-8">
               {createdTeam ? (
                 <div className="text-center animate-in slide-in-">
-                  <div className="w-16 h-16 bg-green-100 text-green-600 rounded-none flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-none flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">Team Created!</h3>
@@ -448,7 +448,7 @@ export default function EventDetailsPage() {
                       value={teamName}
                       onChange={(e) => setTeamName(e.target.value)}
                       placeholder="e.g. Neural Ninjas"
-                      className="w-full px-4 py-3 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-medium"
+                      className="w-full px-4 py-3 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-medium"
                     />
                   </div>
                   
@@ -457,7 +457,7 @@ export default function EventDetailsPage() {
                     <select 
                       value={maxMembers}
                       onChange={(e) => setMaxMembers(e.target.value)}
-                      className="w-full px-4 py-3 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-medium bg-white"
+                      className="w-full px-4 py-3 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-medium bg-white"
                     >
                       <option value="2">2 Members</option>
                       <option value="3">3 Members</option>
@@ -506,7 +506,7 @@ export default function EventDetailsPage() {
                     onChange={(e) => setJoinTeamId(e.target.value.toUpperCase())}
                     placeholder="e.g. ABCD12"
                     maxLength={6}
-                    className="w-full px-4 py-4 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#00e599] transition-all font-black text-center text-2xl font-heading uppercase tracking-tight tracking-widest uppercase"
+                    className="w-full px-4 py-4 rounded-none border border-black focus:outline-none focus:ring-0 focus:ring-0-500/20 focus:border-[#f59e0b] transition-all font-black text-center text-2xl font-heading uppercase tracking-tight tracking-widest uppercase"
                   />
                 </div>
                 
