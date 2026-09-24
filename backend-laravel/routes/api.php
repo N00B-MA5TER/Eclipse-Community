@@ -58,10 +58,14 @@ use App\Http\Controllers\AdminAlumniController;
 Route::get('/alumni', [AlumniController::class, 'index']);
 Route::post('/alumni', [AlumniController::class, 'store'])->middleware('throttle:5,1');
 
+// Public Memberships Route (Moved to protected routes)
+
 
 
 // Protected Routes
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/memberships', [\App\Http\Controllers\MembershipController::class, 'store'])->middleware('throttle:6,1');
+    Route::get('/memberships/me', [\App\Http\Controllers\MembershipController::class, 'myMembership']);
     Route::get('/events/{id}/participants', [EventController::class, 'participants']);
 
     // Admin
@@ -77,6 +81,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::patch('/alumni/{id}/approve', [AdminAlumniController::class, 'approve']);
         Route::patch('/alumni/{id}/reject', [AdminAlumniController::class, 'reject']);
         Route::delete('/alumni/{id}', [AdminAlumniController::class, 'destroy']);
+
+        // Admin Membership Routes
+        Route::get('/memberships', [\App\Http\Controllers\MembershipController::class, 'index']);
+        Route::get('/memberships/{id}', [\App\Http\Controllers\MembershipController::class, 'show']);
+        Route::patch('/memberships/{id}/approve', [\App\Http\Controllers\MembershipController::class, 'approve']);
+        Route::patch('/memberships/{id}/reject', [\App\Http\Controllers\MembershipController::class, 'reject']);
+        Route::delete('/memberships/{id}', [\App\Http\Controllers\MembershipController::class, 'destroy']);
     });
     // Teams
     Route::prefix('teams')->group(function () {
