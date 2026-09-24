@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,9 +9,11 @@ import { Phone, Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/lib/firebase/auth";
 
-export default function RegisterPage() {
+function RegisterContent() {
   const { registerWithEmail, loginWithGoogle, loginWithGithub } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get('redirect') || '/dashboard';
   
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,7 +30,7 @@ export default function RegisterPage() {
     setSuccess("");
     try {
       await registerWithEmail(email, password, name, "");
-      router.push("/dashboard");
+      router.push(redirectUrl);
     } catch (err: any) {
       if (err.message && err.message.includes("Registration successful")) {
         setSuccess(err.message);
@@ -43,7 +45,7 @@ export default function RegisterPage() {
   const handleGoogle = async () => {
     try {
       await loginWithGoogle();
-      router.push("/dashboard");
+      router.push(redirectUrl);
     } catch (err: any) {
       setError(err.message);
     }
@@ -52,7 +54,7 @@ export default function RegisterPage() {
   const handleGithub = async () => {
     try {
       await loginWithGithub();
-      router.push("/dashboard");
+      router.push(redirectUrl);
     } catch (err: any) {
       setError(err.message);
     }
@@ -200,5 +202,13 @@ export default function RegisterPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center font-mono text-black font-bold text-xs uppercase tracking-widest">INITIALIZING...</div>}>
+      <RegisterContent />
+    </Suspense>
   );
 }

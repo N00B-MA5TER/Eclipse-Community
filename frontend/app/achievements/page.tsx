@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Award, ChevronRight, Trophy, Users, Star } from "lucide-react";
+import { Award, ChevronRight, Trophy, Users, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -50,18 +50,18 @@ export default function AchievementsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background font-sans text-foreground selection:bg-blue-100 :bg-blue-900/50 selection:text-blue-900 :text-blue-100 transition-colors duration-300">
+    <div className="min-h-screen bg-[#fcfbf9] text-[#0c111d] selection:bg-[#f59e0b] selection:text-[#0c111d] font-sans relative">
       <Navbar />
 
       <main className="pt-32 pb-24 min-h-screen">
-        <div className="max-w-5xl mx-auto px-4 md:px-8">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
           
-          <div className="text-center mb-16">
+          <div className="mb-16 md:mb-24">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-none bg-blue-50/50  border border-blue-100/50 text-black text-[11px] font-bold tracking-wide mb-6 shadow-none border border-black"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#f59e0b] text-[#0c111d] font-mono-code font-black text-sm uppercase tracking-widest border-4 border-[#0c111d] shadow-[4px_4px_0px_0px_#0c111d] mb-8"
             >
               Our Milestones
             </motion.div>
@@ -69,111 +69,127 @@ export default function AchievementsPage() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-heading text-4xl font-heading uppercase tracking-tight md:text-5xl font-heading uppercase tracking-tight font-extrabold text-gray-900  mb-6"
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-serif-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-[#0c111d] uppercase leading-[0.9] mb-8"
             >
-              Achievements & <span className="text-black">Impact</span>
+              ACHIEVEMENTS<br />& IMPACT.
             </motion.h1>
             
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-neutral-600 font-mono text-xs uppercase tracking-wider  text-lg max-w-2xl mx-auto font-medium"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-mono-code text-[#0c111d] text-base md:text-lg font-bold uppercase tracking-widest border-l-4 border-[#f59e0b] pl-6 py-2 max-w-3xl"
             >
-              We measure our success by the scale of opportunities we provide. Here is the real-world impact we have created.
-            </motion.p>
+              "We measure our success by the scale of opportunities we provide. Here is the real-world impact we have created."
+            </motion.div>
           </div>
 
           <div className="space-y-8">
             {loading ? (
               <div className="flex justify-center items-center py-20">
-                <div className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-none animate-spin"></div>
+                <div className="w-12 h-12 border-4 border-[#0c111d] border-t-[#f59e0b] rounded-full animate-spin"></div>
               </div>
             ) : eventData ? (
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="bg-white  rounded-[2.5rem] overflow-hidden shadow-none border border-black shadow-none border border-black-900/5  border border-black text-left border border-black  transition-all duration-300 w-full"
+                className="bg-white border-4 border-[#0c111d] shadow-[16px_16px_0px_0px_#f59e0b] w-full"
               >
-                 <div className="p-8 md:p-12">
+                 <div className="p-8 md:p-12 lg:p-16">
                    
                    {/* Main Event Header */}
-                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-10 pb-10 border-b border-black ">
-                     <div className="flex gap-6">
-                       <div className="w-20 h-20 rounded-[1.25rem] bg-blue-50  flex items-center justify-center border border-black  shrink-0">
-                         <Trophy className="w-10 h-10 text-black " />
+                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-12 pb-12 border-b-4 border-[#0c111d]">
+                     <div className="flex flex-col sm:flex-row gap-8">
+                       <div className="w-24 h-24 bg-[#f59e0b] flex items-center justify-center border-4 border-[#0c111d] shadow-[6px_6px_0px_0px_#0c111d] shrink-0">
+                         <Trophy className="w-12 h-12 text-[#0c111d]" />
                        </div>
                        <div>
-                         <div className="inline-flex items-center justify-center px-3 py-1 mb-3 bg-blue-50  text-blue-700  font-bold text-[10px] uppercase tracking-wider rounded-none">
+                         <div className="inline-flex items-center justify-center px-4 py-1.5 mb-4 bg-[#0c111d] text-white font-mono-code font-black text-[10px] uppercase tracking-[0.2em]">
                            Successful Event
                          </div>
-                         <h3 className="font-heading text-3xl font-heading uppercase tracking-tight md:text-4xl font-heading uppercase tracking-tight font-extrabold text-gray-900  capitalize leading-tight mb-2">
-                           {eventData.title.toLowerCase()}
+                         <h3 className="font-serif-display text-4xl md:text-5xl font-black uppercase tracking-tight text-[#0c111d] leading-none mb-4">
+                           {eventData.title}
                          </h3>
-                         <p className="text-base font-bold text-gray-400">{formatDate(eventData.date)}</p>
+                         <p className="font-mono-code font-black text-[#f59e0b] text-sm uppercase tracking-widest">
+                           {formatDate(eventData.date)}
+                         </p>
                        </div>
                      </div>
-                     <Link href="/gallery" className="hidden md:flex shrink-0 items-center gap-2 px-6 py-3 bg-white hover:bg-neutral-100  :bg-white text-gray-900  text-sm font-bold rounded-none transition-colors">
-                       Event Gallery <ChevronRight className="w-4 h-4 text-gray-400" />
+                     <Link 
+                        href="/gallery" 
+                        className="hidden md:inline-flex group items-center justify-center gap-4 bg-white text-[#0c111d] px-6 py-4 font-mono-code font-black text-sm uppercase tracking-widest transition-all border-4 border-[#0c111d] shadow-[4px_4px_0px_0px_#0c111d] hover:shadow-[8px_8px_0px_0px_#0c111d] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[0px_0px_0px_0px_#0c111d] active:translate-y-0 active:translate-x-0 shrink-0"
+                     >
+                       <span>Event Gallery</span>
+                       <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
                      </Link>
                    </div>
                    
-                   <p className="text-neutral-600 font-mono text-xs uppercase tracking-wider  text-lg leading-relaxed mb-12 font-medium max-w-3xl">
+                   <p className="font-mono-code font-bold uppercase tracking-wider text-sm md:text-base leading-relaxed mb-16 max-w-4xl border-l-4 border-[#0c111d] pl-6 text-gray-700">
                      Our inaugural hackathon brought together brilliant minds to learn, collaborate, and build real-world projects over an intensive 48-hour period. The impact was incredible, fostering both community engagement and incredible technical teamwork.
                    </p>
 
                    {/* Embedded Stat Cards */}
-                   <div className="grid md:grid-cols-2 gap-6">
+                   <div className="grid md:grid-cols-2 gap-8">
                      
                      {/* Users Stat */}
-                     <div className="bg-white  p-6 rounded-none border border-black  hover:border-amber-200 :border-amber-900/50 transition-colors">
-                       <div className="flex items-center justify-between mb-4">
-                         <div className="w-12 h-12 rounded-none bg-white  flex items-center justify-center shadow-none border border-black">
-                           <Users className="w-6 h-6 text-amber-600 " />
+                     <div className="bg-white p-8 border-4 border-[#0c111d] shadow-[8px_8px_0px_0px_#0c111d] hover:shadow-[12px_12px_0px_0px_#0c111d] hover:-translate-y-1 transition-all">
+                       <div className="flex items-center justify-between mb-8">
+                         <div className="w-16 h-16 bg-white flex items-center justify-center border-4 border-[#0c111d]">
+                           <Users className="w-8 h-8 text-[#0c111d]" />
                          </div>
-                         <div className="inline-flex items-center justify-center px-3 py-1.5 bg-amber-100  text-amber-700  font-bold text-xs rounded-none">
+                         <div className="inline-flex items-center justify-center px-4 py-2 bg-[#f59e0b] text-[#0c111d] font-mono-code font-black text-xs uppercase tracking-widest border-2 border-[#0c111d]">
                            {eventData.registeredCount} Participants
                          </div>
                        </div>
-                       <h4 className="font-heading text-xl font-extrabold text-gray-900  mb-2">Community Engagement</h4>
-                       <p className="text-sm font-medium text-neutral-600 font-mono text-xs uppercase tracking-wider  leading-relaxed">
+                       <h4 className="font-mono-code font-black text-2xl uppercase tracking-tight text-[#0c111d] mb-4">Community Engagement</h4>
+                       <p className="font-mono-code font-bold text-xs uppercase tracking-wider text-gray-600 leading-relaxed">
                          Students from across the campus actively joined our platform to participate in the hackathon, creating a vibrant technical community.
                        </p>
                      </div>
 
                      {/* Teams Stat */}
-                     <div className="bg-white  p-6 rounded-none border border-black  hover:border-purple-200 :border-purple-900/50 transition-colors relative overflow-hidden">
-                       <div className="flex items-center justify-between mb-4 relative z-10">
-                         <div className="w-12 h-12 rounded-none bg-white  flex items-center justify-center shadow-none border border-black">
-                           <Award className="w-6 h-6 text-purple-600 " />
+                     <div className="bg-[#0c111d] text-white p-8 border-4 border-[#0c111d] shadow-[8px_8px_0px_0px_#f59e0b] hover:shadow-[12px_12px_0px_0px_#f59e0b] hover:-translate-y-1 transition-all flex flex-col">
+                       <div className="flex items-center justify-between mb-8">
+                         <div className="w-16 h-16 bg-[#f59e0b] flex items-center justify-center border-4 border-[#0c111d]">
+                           <Award className="w-8 h-8 text-[#0c111d]" />
                          </div>
-                         <div className="inline-flex items-center justify-center px-3 py-1.5 bg-purple-100  text-purple-700  font-bold text-xs rounded-none">
+                         <div className="inline-flex items-center justify-center px-4 py-2 bg-white text-[#0c111d] font-mono-code font-black text-xs uppercase tracking-widest border-2 border-[#0c111d]">
                            {eventData.teamCount} Teams Formed
                          </div>
                        </div>
-                       <h4 className="font-heading text-xl font-extrabold text-gray-900  mb-2 relative z-10">Team Collaboration</h4>
-                       <p className="text-sm font-medium text-neutral-600 font-mono text-xs uppercase tracking-wider  leading-relaxed mb-6 relative z-10">
+                       <h4 className="font-mono-code font-black text-2xl uppercase tracking-tight text-white mb-4">Team Collaboration</h4>
+                       <p className="font-mono-code font-bold text-xs uppercase tracking-wider text-gray-400 leading-relaxed mb-8 grow">
                          Brilliant minds grouped together to brainstorm, collaborate, and build innovative real-world projects during the event.
                        </p>
-                       <Link href="/gallery/teams" className="inline-flex items-center text-purple-600  text-[13px] font-bold hover:underline gap-1 relative z-10">
-                         View Teams <ChevronRight className="w-4 h-4" />
+                       <Link 
+                          href="/gallery/teams" 
+                          className="inline-flex items-center font-mono-code font-black text-[#f59e0b] text-sm uppercase tracking-widest hover:text-white transition-colors gap-2 group w-fit"
+                       >
+                         <span>View Teams</span>
+                         <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
                        </Link>
                      </div>
 
                    </div>
                    
                    {/* Mobile Gallery Button */}
-                   <Link href="/gallery" className="mt-8 flex md:hidden items-center justify-center gap-2 w-full px-6 py-4 bg-white  text-gray-900  text-sm font-bold rounded-none">
-                     Event Gallery <ChevronRight className="w-4 h-4 text-gray-400" />
+                   <Link 
+                      href="/gallery" 
+                      className="mt-12 flex md:hidden group items-center justify-center gap-4 bg-white text-[#0c111d] w-full px-6 py-4 font-mono-code font-black text-sm uppercase tracking-widest transition-all border-4 border-[#0c111d] shadow-[4px_4px_0px_0px_#0c111d] active:shadow-[0px_0px_0px_0px_#0c111d] active:translate-y-1"
+                   >
+                     <span>Event Gallery</span>
+                     <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
                    </Link>
 
                  </div>
               </motion.div>
             ) : (
-              <div className="text-center py-20 text-neutral-600 font-mono text-xs uppercase tracking-wider  font-medium">
-                No achievement data available at the moment.
+              <div className="text-center py-20 bg-white border-4 border-[#0c111d] shadow-[8px_8px_0px_0px_#0c111d]">
+                <div className="font-mono-code font-black text-[#0c111d] text-lg uppercase tracking-widest">
+                  NO ACHIEVEMENT DATA AVAILABLE.
+                </div>
               </div>
             )}
           </div>

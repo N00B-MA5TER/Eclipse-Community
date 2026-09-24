@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, CalendarPlus, Settings } from "lucide-react";
+import { LayoutDashboard, CalendarPlus, Settings, Users } from "lucide-react";
 
 export function AdminMobileBottomNav() {
   const pathname = usePathname();
@@ -10,6 +10,7 @@ export function AdminMobileBottomNav() {
   const navItems = [
     { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
     { name: "Events", href: "/admin/events", icon: CalendarPlus },
+    { name: "Memberships", href: "/admin/memberships", icon: Users },
     { name: "Settings", href: "/admin/settings", icon: Settings },
   ];
 

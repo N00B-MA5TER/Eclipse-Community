@@ -110,6 +110,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Users className="w-5 h-5" />
             Alumni Directory
           </Link>
+          <Link href="/admin/memberships" className={`flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] font-medium transition-colors ${pathname.includes('/admin/memberships') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}>
+            <Users className="w-5 h-5" />
+            Memberships
+          </Link>
         </nav>
 
         <div className="p-4 border-t border-slate-800">
