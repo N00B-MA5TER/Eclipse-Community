@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 
 export default function ProjectsPage() {
@@ -54,46 +54,45 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-black selection:bg-black selection:text-[#f59e0b] broadsheet-grid">
+    <div className="min-h-screen bg-[#fcfbf9] text-[#0c111d] font-sans selection:bg-[#f59e0b] selection:text-[#0c111d] transition-colors duration-300">
       <Navbar />
 
       <main className="pt-32 pb-24 min-h-screen relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
           
-          <div className="mb-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-black pb-12">
+          <div className="mb-20 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-8 border-b-4 border-[#0c111d] pb-12">
             <div className="max-w-2xl">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-black text-white text-xs font-mono font-bold tracking-widest uppercase mb-6"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-[#f59e0b] text-[#0c111d] font-mono-code font-black text-sm uppercase tracking-widest border-4 border-[#0c111d] shadow-[4px_4px_0px_0px_#0c111d] mb-6"
               >
-                <Sparkles className="w-3.5 h-3.5 text-[#f59e0b]" />
                 Innovation Hub
               </motion.div>
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="font-editorial-serif text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-black leading-[1.1]"
+                className="font-serif-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-[#0c111d] uppercase leading-[0.9]"
               >
-                Featured <br className="hidden md:block" />
-                <span className="italic font-normal">Projects.</span>
+                FEATURED<br className="hidden md:block" />
+                PROJECTS.
               </motion.h1>
             </div>
             
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-neutral-600 font-mono text-xs uppercase tracking-wider font-medium max-w-sm"
+              className="text-[#0c111d] font-mono-code text-sm uppercase tracking-wider font-bold max-w-sm border-l-4 border-[#f59e0b] pl-4 text-left"
             >
-              Explore the incredible real-world applications and tools built by our student community during hackathons and workshops.
-            </motion.p>
+              "Explore the incredible real-world applications and tools built by our student community during hackathons and workshops."
+            </motion.div>
           </div>
 
           {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             {projects.map((project, index) => (
               <Link
                 key={project.id}
@@ -105,28 +104,30 @@ export default function ProjectsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.7, delay: index * 0.1, ease: "easeOut" }}
-                  className="group relative overflow-hidden border border-black bg-white isolate w-full h-full block"
+                  className="group relative overflow-hidden border-4 border-[#0c111d] bg-white shadow-[8px_8px_0px_0px_#0c111d] hover:shadow-[16px_16px_0px_0px_#f59e0b] hover:-translate-y-2 transition-all duration-300 w-full h-full block flex flex-col"
                 >
                   {/* Image Background */}
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="absolute inset-0 w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out" 
-                  />
+                  <div className="absolute inset-0 bg-[#0c111d]">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out opacity-80 group-hover:opacity-100 group-hover:scale-105" 
+                    />
+                  </div>
                   
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 bg-white/90 group-hover:bg-black/70 transition-colors duration-500 z-10 border-[10px] border-white group-hover:border-black"></div>
+                  {/* Overlay for contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0c111d]/90 via-[#0c111d]/40 to-transparent"></div>
                   
                   {/* Content */}
-                  <div className="absolute inset-0 z-30 p-8 md:p-10 flex flex-col justify-between">
+                  <div className="relative z-30 p-8 md:p-10 flex flex-col justify-between h-full">
                     {/* Top: Category Tag & Tech Stack */}
                     <div className="flex flex-col gap-3 items-start">
-                      <span className="inline-flex bg-black text-white px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase shadow-[2px_2px_0px_0px_#f59e0b]">
+                      <span className="inline-flex bg-[#0c111d] text-white px-3 py-1 font-mono-code text-[10px] font-black tracking-widest uppercase border-2 border-[#0c111d]">
                         {project.category}
                       </span>
                       <div className="flex flex-wrap gap-2">
                         {project.tech.map((t) => (
-                          <span key={t} className="px-2 py-0.5 bg-white border border-black text-black font-mono text-[9px] uppercase tracking-wider group-hover:bg-transparent group-hover:text-white group-hover:border-white transition-colors duration-500">
+                          <span key={t} className="px-3 py-1 bg-white border-2 border-[#0c111d] text-[#0c111d] font-mono-code text-[10px] font-black uppercase tracking-widest group-hover:bg-[#f59e0b] transition-colors duration-500">
                             {t}
                           </span>
                         ))}
@@ -135,16 +136,16 @@ export default function ProjectsPage() {
 
                     {/* Bottom: Text & Actions */}
                     <div className="mt-auto">
-                      <h3 className="font-editorial-serif text-3xl md:text-4xl font-bold text-black group-hover:text-white transition-colors duration-500 mb-3 leading-tight">
+                      <h3 className="font-serif-display text-4xl md:text-5xl font-black text-white group-hover:text-[#f59e0b] uppercase tracking-tight transition-colors duration-500 mb-4 leading-none line-clamp-2">
                         {project.title}
                       </h3>
-                      <p className="text-neutral-700 font-mono text-[11px] uppercase tracking-wide group-hover:text-neutral-300 transition-colors duration-500 max-w-lg mb-6 leading-relaxed">
+                      <p className="text-gray-300 font-mono-code text-xs uppercase tracking-wider font-bold max-w-lg mb-8 line-clamp-2">
                         {project.description}
                       </p>
                       
                       <div className="flex items-center gap-4">
-                        <button className="w-10 h-10 bg-black text-white flex items-center justify-center hover:bg-[#f59e0b] hover:text-black transition-colors shrink-0 group/btn shadow-[3px_3px_0px_0px_#000000] hover:shadow-none">
-                          <ArrowRight className="w-4 h-4 group-hover/btn:-rotate-45 transition-transform duration-300" />
+                        <button className="w-12 h-12 bg-white text-[#0c111d] border-4 border-[#0c111d] flex items-center justify-center group-hover:bg-[#f59e0b] transition-colors shrink-0 shadow-[4px_4px_0px_0px_#0c111d] group-hover:shadow-[6px_6px_0px_0px_#0c111d] group-hover:-translate-y-1">
+                          <ArrowUpRight className="w-6 h-6 group-hover:rotate-45 transition-transform duration-300" />
                         </button>
                       </div>
                     </div>

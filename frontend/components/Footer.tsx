@@ -16,6 +16,9 @@ export function Footer() {
             <div className="font-mono-code text-[11px] text-[#737688]">
               <p>DEPARTMENT OF CSE &amp; IT</p>
               <p>DURGAPUR, WEST BENGAL — 713212</p>
+              <p className="mt-2 text-[#0c111d] font-bold">
+                <a href="mailto:eclipse@csediatm.in" className="hover:text-[#f59e0b] transition-colors">ECLIPSE@CSEDIATM.IN</a>
+              </p>
             </div>
           </div>
           

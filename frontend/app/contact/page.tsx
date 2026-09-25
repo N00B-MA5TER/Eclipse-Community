@@ -45,8 +45,8 @@ export default function ContactPage() {
               </div>
               <h3 className="font-serif-display text-3xl font-black text-[#0c111d] uppercase tracking-tight mb-2">Email Us</h3>
               <p className="font-mono-code font-bold text-xs uppercase tracking-wider text-gray-600 mb-6">Our team is here to help.</p>
-              <a href="mailto:eclipse.community@csediatm.in" className="font-mono-code font-black text-xs md:text-sm uppercase tracking-wider md:tracking-widest text-[#f59e0b] hover:text-[#0c111d] hover:underline mt-auto break-all">
-                eclipse.community@csediatm.in
+              <a href="mailto:eclipse@csediatm.in" className="font-mono-code font-black text-xs md:text-sm uppercase tracking-wider md:tracking-widest text-[#f59e0b] hover:text-[#0c111d] hover:underline mt-auto break-all">
+                eclipse@csediatm.in
               </a>
             </motion.div>
             
