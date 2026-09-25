@@ -58,6 +58,9 @@ use App\Http\Controllers\AdminAlumniController;
 Route::get('/alumni', [AlumniController::class, 'index']);
 Route::post('/alumni', [AlumniController::class, 'store'])->middleware('throttle:5,1');
 
+// Public Calendar Routes
+Route::get('/calendar-events', [\App\Http\Controllers\CalendarEventController::class, 'index']);
+
 // Public Memberships Route (Moved to protected routes)
 
 
@@ -88,6 +91,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::patch('/memberships/{id}/approve', [\App\Http\Controllers\MembershipController::class, 'approve']);
         Route::patch('/memberships/{id}/reject', [\App\Http\Controllers\MembershipController::class, 'reject']);
         Route::delete('/memberships/{id}', [\App\Http\Controllers\MembershipController::class, 'destroy']);
+        
+        // Admin Calendar Routes
+        Route::post('/calendar-events', [\App\Http\Controllers\CalendarEventController::class, 'store']);
+        Route::put('/calendar-events/{id}', [\App\Http\Controllers\CalendarEventController::class, 'update']);
+        Route::delete('/calendar-events/{id}', [\App\Http\Controllers\CalendarEventController::class, 'destroy']);
     });
     // Teams
     Route::prefix('teams')->group(function () {
