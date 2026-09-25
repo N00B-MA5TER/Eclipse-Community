@@ -93,7 +93,7 @@ export default function FacultyPage() {
       <Navbar />
 
       <main className="pt-32 pb-24 min-h-screen">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8">
           
           <div className="text-center mb-16 md:mb-24">
             <motion.h1
@@ -114,7 +114,7 @@ export default function FacultyPage() {
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
             {faculty.map((member, index) => (
               <motion.div 
                 key={member.id}
@@ -132,24 +132,18 @@ export default function FacultyPage() {
                       className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
                     />
                   </div>
-                  <div className="bg-white p-5 border-t-4 border-[#0c111d] z-10 flex flex-col justify-center shrink-0 h-auto min-h-[100px]">
-                    <h3 className="font-serif-display text-xl sm:text-2xl uppercase tracking-tight font-black text-[#0c111d] mb-1 break-words">
+                  <div className="bg-white p-4 border-t-4 border-[#0c111d] z-10 flex flex-col justify-center shrink-0 min-h-[80px]">
+                    <h3 className="font-serif-display text-lg sm:text-xl uppercase tracking-tight font-black text-[#0c111d] break-words">
                       {member.name}
                     </h3>
-                    <p className="font-mono-code text-[10px] sm:text-xs font-bold text-[#f59e0b] uppercase tracking-widest break-words">
-                      {member.designation}
-                    </p>
                   </div>
                 </div>
 
                 {/* Back of Card: Solid Black Info Panel sliding up */}
-                <div className="absolute inset-0 bg-[#0c111d] p-8 flex flex-col justify-center z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                  <h3 className="font-serif-display text-2xl sm:text-3xl uppercase tracking-tight font-black text-white mb-2 line-clamp-2">
+                <div className="absolute inset-0 bg-[#0c111d] p-6 flex flex-col justify-center z-20 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]">
+                  <h3 className="font-serif-display text-xl sm:text-2xl uppercase tracking-tight font-black text-white mb-6 line-clamp-2">
                     {member.name}
                   </h3>
-                  <p className="font-mono-code text-xs font-black text-[#f59e0b] uppercase tracking-widest mb-8">
-                    {member.designation}
-                  </p>
                   
                   <div className="flex flex-col gap-6">
                     <div className="inline-flex w-fit px-3 py-1 bg-white text-[#0c111d] font-mono-code font-black text-[10px] uppercase tracking-widest">
