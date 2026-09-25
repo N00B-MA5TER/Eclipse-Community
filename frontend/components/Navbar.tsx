@@ -83,6 +83,7 @@ export function Navbar() {
           <NavLink href="/vision">Vision</NavLink>
           <NavLink href="/achievements">Achievements</NavLink>
           <NavLink href="/alumni">Alumni</NavLink>
+          <NavLink href="/calendar">Calendar</NavLink>
 
           
           <div 
@@ -283,6 +284,7 @@ export function Navbar() {
                 { href: "/vision", label: "Vision" },
                 { href: "/achievements", label: "Achievements" },
                 { href: "/alumni", label: "Alumni" },
+                { href: "/calendar", label: "Calendar" },
 
                 { 
                   label: "Gallery", 

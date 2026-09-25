@@ -94,6 +94,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <CalendarPlus className="w-5 h-5" />
             Manage Events
           </Link>
+          <Link href="/admin/calendar" className={`flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] font-medium transition-colors ${pathname.includes('/admin/calendar') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}>
+            <CalendarPlus className="w-5 h-5" />
+            Calendar Events
+          </Link>
           <Link href="/admin/teams" className={`flex items-center gap-3 px-4 py-3 rounded-xl text-[14px] font-medium transition-colors ${pathname.includes('/admin/teams') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}>
             <Users className="w-5 h-5" />
             All Teams
