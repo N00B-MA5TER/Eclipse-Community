@@ -1,16 +1,15 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Phone, Eye, EyeOff } from "lucide-react";
-import { motion } from "framer-motion";
+import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/lib/firebase/auth";
 
 function LoginContent() {
-  const { loginWithEmail, loginWithGoogle, loginWithGithub } = useAuth();
+  const { loginWithEmail, loginWithGoogle, loginWithGithub, verifyOtp, resendOtp } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect') || '/dashboard';
@@ -18,18 +17,70 @@ function LoginContent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const [step, setStep] = useState<"login" | "otp">("login");
+  const [otp, setOtp] = useState("");
+  const [resendCooldown, setResendCooldown] = useState(0);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (resendCooldown > 0) {
+      timer = setTimeout(() => setResendCooldown(c => c - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [resendCooldown]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
+    setSuccess("");
     try {
-      await loginWithEmail(email, password);
-      router.push(redirectUrl);
+      const result = await loginWithEmail(email, password);
+      if (result && result.requires_otp) {
+        setStep("otp");
+        setSuccess("Email not verified. OTP sent to your email.");
+        setResendCooldown(60);
+      } else {
+        router.push(redirectUrl);
+      }
     } catch (err: any) {
       setError(err.message || "Failed to log in");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSuccess("");
+    try {
+      await verifyOtp(email, otp);
+      router.push(redirectUrl);
+    } catch (err: any) {
+      setError(err.message || "Failed to verify OTP");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendOtp = async () => {
+    if (resendCooldown > 0) return;
+    setLoading(true);
+    setError("");
+    setSuccess("");
+    try {
+      const result = await resendOtp(email);
+      setSuccess(result.message || "OTP resent successfully.");
+      setResendCooldown(60);
+    } catch (err: any) {
+      setError(err.message || "Failed to resend OTP");
     } finally {
       setLoading(false);
     }
@@ -55,7 +106,6 @@ function LoginContent() {
 
   return (
     <div className="min-h-screen bg-white text-black flex flex-col font-mono selection:bg-[#f59e0b] selection:text-black">
-      {/* Navbar Minimal */}
       <header className="flex items-center justify-between px-4 sm:px-8 py-3 border-b border-black">
         <Link href="/" className="flex items-center">
           <img src="/logo.png" alt="Eclipse Logo" className="w-auto h-12 sm:h-[72px] object-contain" />
@@ -67,10 +117,7 @@ function LoginContent() {
         </Link>
       </header>
 
-      {/* Main Container */}
       <div className="flex-1 flex w-full max-w-container-max mx-auto border-x border-black">
-        
-        {/* Left Form */}
         <div className="w-full lg:w-1/2 flex flex-col border-r border-black p-8 md:p-12 lg:p-16">
           <div className="mb-8 font-mono text-[11px] font-bold uppercase tracking-widest text-neutral-500 border border-black w-fit px-3 py-1 bg-neutral-100">
             <span className="w-2 h-2 bg-black inline-block mr-2"></span>
@@ -83,58 +130,89 @@ function LoginContent() {
           <p className="text-neutral-600 font-mono text-xs uppercase tracking-wider mb-10">Authenticate to enter the chapter dashboard.</p>
 
           {error && <div className="text-black bg-red-100 border border-black p-3 text-xs font-bold font-mono uppercase mb-6">{error}</div>}
+          {success && <div className="text-black bg-[#f59e0b] border border-black p-3 text-xs font-bold font-mono uppercase mb-6">{success}</div>}
 
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            
-            {/* Email */}
-            <div className="space-y-2">
-              <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="email">Identity Vector (Email)</label>
-              <Input 
-                id="email" 
-                type="email" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="STUDENT@DIATM.EDU" 
-                required 
-                className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
-              />
-            </div>
-
-            {/* Password */}
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="password">Security Key</label>
-                <Link href="/forgot-password" className="text-[10px] font-bold text-neutral-500 hover:text-black uppercase underline">Override?</Link>
-              </div>
-              <div className="relative">
+          {step === "login" ? (
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              
+              <div className="space-y-2">
+                <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="email">Identity Vector (Email)</label>
                 <Input 
-                  id="password" 
-                  type={showPassword ? "text" : "password"} 
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••" 
+                  id="email" 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="STUDENT@DIATM.EDU" 
                   required 
-                  className="h-12 rounded-none border border-black bg-white px-4 pr-12 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
+                  className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-black transition-colors"
-                >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                </button>
               </div>
-            </div>
 
-            {/* Submit */}
-            <div className="pt-4">
-              <Button type="submit" disabled={loading} className="w-full rounded-none bg-black hover:bg-[#f59e0b] hover:text-black text-white border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors">
-                {loading ? 'INITIALIZING...' : 'ESTABLISH CONNECTION'}
-              </Button>
-            </div>
-          </form>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="password">Security Key</label>
+                  <Link href="/forgot-password" className="text-[10px] font-bold text-neutral-500 hover:text-black uppercase underline">Override?</Link>
+                </div>
+                <div className="relative">
+                  <Input 
+                    id="password" 
+                    type={showPassword ? "text" : "password"} 
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••" 
+                    required 
+                    className="h-12 rounded-none border border-black bg-white px-4 pr-12 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-black transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
 
-          {/* Social Logins */}
+              <div className="pt-4">
+                <Button type="submit" disabled={loading} className="w-full rounded-none bg-black hover:bg-[#f59e0b] hover:text-black text-white border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors">
+                  {loading ? 'INITIALIZING...' : 'ESTABLISH CONNECTION'}
+                </Button>
+              </div>
+            </form>
+          ) : (
+            <form className="space-y-6" onSubmit={handleVerifyOtp}>
+              <div className="space-y-2">
+                <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="otp">6-Digit Access Code</label>
+                <Input 
+                  id="otp" 
+                  type="text" 
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value.replace(/[^0-9]/g, '').substring(0, 6))}
+                  placeholder="000000" 
+                  required
+                  maxLength={6}
+                  className="h-12 rounded-none border border-black bg-white px-4 text-center text-lg tracking-widest font-mono font-black text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
+                />
+              </div>
+
+              <div className="pt-4 flex flex-col gap-4">
+                <Button type="submit" disabled={loading || otp.length !== 6} className="w-full rounded-none bg-black hover:bg-[#f59e0b] hover:text-black text-white border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors">
+                  {loading ? 'VERIFYING...' : 'VERIFY IDENTITY'}
+                </Button>
+                
+                <Button 
+                  type="button" 
+                  variant="outline"
+                  disabled={loading || resendCooldown > 0} 
+                  onClick={handleResendOtp}
+                  className="w-full rounded-none bg-transparent hover:bg-neutral-100 text-black border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors"
+                >
+                  {resendCooldown > 0 ? `RESEND CODE (${resendCooldown}S)` : 'RESEND CODE'}
+                </Button>
+              </div>
+            </form>
+          )}
+
           <div className="pt-10 mt-10 border-t border-black">
             <div className="flex items-center gap-4 mb-6">
               <span className="text-[10px] font-bold text-black uppercase tracking-wider">EXTERNAL AUTH NETWORKS</span>
@@ -152,7 +230,6 @@ function LoginContent() {
           </div>
         </div>
 
-        {/* Right Info Panel */}
         <div className="hidden lg:flex w-1/2 flex-col justify-between p-8 md:p-12 lg:p-16 bg-neutral-50">
           <div className="flex flex-col">
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-black text-[10px] font-bold font-mono uppercase tracking-widest text-neutral-500">

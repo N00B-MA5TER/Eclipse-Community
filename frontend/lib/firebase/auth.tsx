@@ -17,8 +17,10 @@ interface AuthContextType {
   loginWithGoogle: () => Promise<void>;
   loginWithGithub: () => Promise<void>;
   logout: () => Promise<void>;
-  registerWithEmail: (email: string, pass: string, name: string, phone: string) => Promise<void>;
-  loginWithEmail: (email: string, pass: string) => Promise<void>;
+  registerWithEmail: (email: string, pass: string, name: string, phone: string) => Promise<any>;
+  loginWithEmail: (email: string, pass: string) => Promise<any>;
+  verifyOtp: (email: string, otp: string) => Promise<any>;
+  resendOtp: (email: string) => Promise<any>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -29,6 +31,8 @@ const AuthContext = createContext<AuthContextType>({
   logout: async () => { },
   registerWithEmail: async () => { },
   loginWithEmail: async () => { },
+  verifyOtp: async () => { },
+  resendOtp: async () => { },
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -93,7 +97,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const data = await res.json();
     if (!res.ok) {
+      if (data.requires_otp) {
+        return data;
+      }
       throw new Error(data.message || data.error || "Registration failed");
+    }
+
+    if (data.requires_otp) {
+      return data;
     }
 
     // Automatically log them in by fetching /me using the new token
@@ -113,6 +124,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         });
       }
     }
+    return data;
   };
 
   const loginWithEmail = async (email: string, pass: string) => {
@@ -124,6 +136,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     const data = await res.json();
     if (!res.ok) {
+      if (data.requires_otp) {
+        return data; // Return it so frontend can handle OTP verification screen
+      }
       throw new Error(data.message || data.error || "Login failed");
     }
 
@@ -143,6 +158,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         });
       }
     }
+    return data;
   };
 
   const logout = async () => {
@@ -157,8 +173,53 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(null);
   };
 
+  const verifyOtp = async (email: string, otp: string) => {
+    const res = await fetch(`${getApiUrl()}/auth/verify-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, otp })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || data.error || "OTP Verification failed");
+    }
+
+    if (data.token) {
+      localStorage.setItem("auth_token", data.token);
+
+      const meRes = await fetch(`${getApiUrl()}/auth/me`, {
+        headers: { Authorization: `Bearer ${data.token}` }
+      });
+      if (meRes.ok) {
+        const meData = await meRes.json();
+        setUser({
+          ...meData,
+          uid: String(meData.id),
+          displayName: meData.name,
+          getIdToken: async () => data.token
+        });
+      }
+    }
+    return data;
+  };
+
+  const resendOtp = async (email: string) => {
+    const res = await fetch(`${getApiUrl()}/auth/resend-otp`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.message || data.error || "Failed to resend OTP");
+    }
+    return data;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, loginWithGoogle, loginWithGithub, logout, registerWithEmail, loginWithEmail }}>
+    <AuthContext.Provider value={{ user, loading, loginWithGoogle, loginWithGithub, logout, registerWithEmail, loginWithEmail, verifyOtp, resendOtp }}>
       {children}
     </AuthContext.Provider>
   );

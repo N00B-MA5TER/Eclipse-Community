@@ -28,50 +28,31 @@ function AdminLoginForm() {
     }
   }, [searchParams]);
 
-  const verifyAndRedirect = async () => {
-    try {
-      if (user) {
-        if (user.role === "admin") {
-          router.push("/admin/events");
-        } else {
-          setError("Access Denied: You do not have administrator privileges.");
-          const { logout } = await import("@/lib/firebase/auth");
-          await logout();
-        }
-      } else {
-        // We'll trust the /auth/me profile if they just logged in.
-        const token = localStorage.getItem("auth_token");
-        if (token) {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api'}/auth/me`, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          const profile = await res.json();
-          if (profile.role === "admin") {
-            router.push("/admin/events");
-          } else {
-            setError("Access Denied: You do not have administrator privileges.");
-            const { logout } = await import("@/lib/firebase/auth");
-            await logout();
-          }
-        }
-      }
-    } catch (err) {
-      setError("Failed to verify admin status.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleAdminLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
     
     try {
-      await loginWithEmail(email, password);
-      setTimeout(verifyAndRedirect, 1000);
+      const data = await loginWithEmail(email, password);
+      
+      if (data && data.user && data.user.role === "admin") {
+        router.push("/admin/events");
+      } else {
+        setError("Access Denied: You do not have administrator privileges.");
+        // Logout non-admin user
+        const token = localStorage.getItem("auth_token");
+        if (token) {
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8080/api'}/auth/logout`, {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${token}` }
+          });
+          localStorage.removeItem("auth_token");
+        }
+      }
     } catch (err: any) {
       setError(err.message || "Failed to log in");
+    } finally {
       setLoading(false);
     }
   };
