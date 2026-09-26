@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -72,5 +73,16 @@ class User extends Authenticatable
     public function ledTeams()
     {
         return $this->hasMany(Team::class, 'leader_id');
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $frontendUrl = env('FRONTEND_URL', 'http://localhost:3000');
+        
+        ResetPassword::createUrlUsing(function ($user, $token) use ($frontendUrl) {
+            return $frontendUrl . '/reset-password?token=' . $token . '&email=' . urlencode($user->email);
+        });
+        
+        $this->notify(new ResetPassword($token));
     }
 }

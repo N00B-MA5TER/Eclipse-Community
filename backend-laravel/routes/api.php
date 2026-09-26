@@ -21,6 +21,8 @@ Route::get('/user', function (Request $request) {
 // Auth Routes
 Route::prefix('auth')->group(function () {
     Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);
+    Route::post('/verify-otp', [\App\Http\Controllers\AuthController::class, 'verifyOtp']);
+    Route::post('/resend-otp', [\App\Http\Controllers\AuthController::class, 'resendOtp']);
     Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
     Route::post('/forgot-password', [\App\Http\Controllers\AuthController::class, 'forgotPassword']);
     Route::post('/reset-password', [\App\Http\Controllers\AuthController::class, 'resetPassword'])->name('password.reset');

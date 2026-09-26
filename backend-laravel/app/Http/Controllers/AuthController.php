@@ -4,58 +4,156 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\EmailOtp;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use App\Mail\VerifyEmailOtp;
 
 class AuthController extends Controller
 {
-    /**
-     * Register a new user.
-     * Equivalent to: POST /api/auth/register
-     */
+    private function generateAndSendOtp($user)
+    {
+        // Invalidate old OTPs
+        EmailOtp::where('user_id', $user->id)->delete();
+
+        // Generate 6-digit OTP
+        $otp = sprintf('%06d', mt_rand(100000, 999999));
+
+        EmailOtp::create([
+            'user_id' => $user->id,
+            'email' => $user->email,
+            'otp' => Hash::make($otp),
+            'expires_at' => now()->addMinutes(10)
+        ]);
+
+        Mail::to($user->email)->send(new VerifyEmailOtp($otp));
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
-            'phone' => 'nullable|string',
-            'bio' => 'nullable|string',
-            'course' => 'nullable|string',
-            'year' => 'nullable|string',
-            'techSkills' => 'nullable|string'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()->first()], 400);
         }
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'phone' => $request->phone,
-            'bio' => $request->bio,
-            'course' => $request->course,
-            'year' => $request->year,
-            'tech_skills' => $request->techSkills,
-            'role' => 'participant', // default role
+        // Check if user exists
+        $user = User::where('email', $request->email)->first();
+
+        if ($user) {
+            // If user exists and verified, throw error
+            if ($user->email_verified_at) {
+                return response()->json(['error' => 'Email already registered.'], 400);
+            }
+            // If user exists but not verified, update password and resend OTP
+            $user->password = Hash::make($request->password);
+            $user->name = $request->name;
+            $user->save();
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'participant', // default role
+            ]);
+        }
+
+        $this->generateAndSendOtp($user);
+
+        return response()->json([
+            'message' => 'Registration initiated. Please verify your email.',
+            'requires_otp' => true,
+            'email' => $user->email
+        ], 200);
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'otp' => 'required|string|size:6'
         ]);
 
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()], 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
+
+        $otpRecord = EmailOtp::where('user_id', $user->id)
+            ->whereNull('verified_at')
+            ->orderBy('created_at', 'desc')
+            ->first();
+
+        if (!$otpRecord || !Hash::check($request->otp, $otpRecord->otp)) {
+            return response()->json(['error' => 'Invalid OTP.'], 400);
+        }
+
+        if (now()->greaterThan($otpRecord->expires_at)) {
+            return response()->json(['error' => 'OTP has expired.'], 400);
+        }
+
+        // Verify user and OTP
+        $otpRecord->verified_at = now();
+        $otpRecord->save();
+
+        $user->email_verified_at = now();
+        $user->save();
+
+        // Create token
+        $user->tokens()->delete();
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'User profile created',
+            'message' => 'Email verified successfully',
             'token' => $token,
             'user' => $user
-        ], 201);
+        ], 200);
     }
 
-    /**
-     * Login user and create token.
-     * Equivalent to: POST /api/auth/login
-     */
+    public function resendOtp(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()->first()], 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
+
+        if ($user->email_verified_at) {
+            return response()->json(['error' => 'Email already verified.'], 400);
+        }
+
+        // Rate limit: check if last OTP was sent within 1 minute
+        $lastOtp = EmailOtp::where('user_id', $user->id)->orderBy('created_at', 'desc')->first();
+        if ($lastOtp && now()->diffInSeconds($lastOtp->created_at) < 60) {
+            return response()->json(['error' => 'Please wait 60 seconds before requesting a new OTP.'], 429);
+        }
+
+        $this->generateAndSendOtp($user);
+
+        return response()->json([
+            'message' => 'OTP resent successfully.'
+        ], 200);
+    }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -69,7 +167,15 @@ class AuthController extends Controller
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
-        // Revoke older tokens optionally, or just issue a new one
+        if (is_null($user->email_verified_at)) {
+            $this->generateAndSendOtp($user);
+            return response()->json([
+                'error' => 'Email not verified.', 
+                'requires_otp' => true,
+                'email' => $user->email
+            ], 403);
+        }
+
         $user->tokens()->delete();
         
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -81,10 +187,6 @@ class AuthController extends Controller
         ], 200);
     }
 
-    /**
-     * Logout user (Revoke the token).
-     * Equivalent to: POST /api/auth/logout
-     */
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
@@ -94,10 +196,6 @@ class AuthController extends Controller
         ], 200);
     }
 
-    /**
-     * Get the authenticated User.
-     * Equivalent to: GET /api/auth/me
-     */
     public function me(Request $request)
     {
         $user = $request->user();
@@ -107,10 +205,6 @@ class AuthController extends Controller
         return response()->json($user, 200);
     }
 
-    /**
-     * Update the authenticated user's profile.
-     * Equivalent to: PUT /api/auth/me
-     */
     public function updateProfile(Request $request)
     {
         $validator = Validator::make($request->all(), [
