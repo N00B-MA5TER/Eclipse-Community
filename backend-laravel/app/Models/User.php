@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Auth\Notifications\ResetPassword;
+use App\Mail\PasswordResetMail;
+use Illuminate\Support\Facades\Mail;
 
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -78,11 +79,8 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $frontendUrl = env('FRONTEND_URL', 'http://localhost:3000');
+        $resetUrl = $frontendUrl . '/reset-password?token=' . $token . '&email=' . urlencode($this->email);
         
-        ResetPassword::createUrlUsing(function ($user, $token) use ($frontendUrl) {
-            return $frontendUrl . '/reset-password?token=' . $token . '&email=' . urlencode($user->email);
-        });
-        
-        $this->notify(new ResetPassword($token));
+        Mail::to($this->email)->send(new PasswordResetMail($resetUrl));
     }
 }
