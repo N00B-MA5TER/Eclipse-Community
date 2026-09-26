@@ -92,7 +92,7 @@ export default function Home() {
             <div className="space-y-4 pt-4 border-t border-[#0c111d]/20">
               <div className="flex flex-wrap items-center gap-3">
                 <Link 
-                  className="h-12 px-6 bg-[#0c111d] text-[#fcfbf9] font-mono-code text-xs font-bold uppercase tracking-wider flex items-center justify-center hover:bg-[#0045cc] transition-colors shadow-[3px_3px_0px_0px_#f59e0b] border border-[#0c111d]" 
+                  className="h-12 px-6 bg-[#0c111d] text-[#fcfbf9] font-mono-code text-xs font-bold uppercase tracking-wider flex items-center justify-center hover:bg-[#f59e0b] hover:text-[#0c111d] transition-colors shadow-[3px_3px_0px_0px_#0c111d] border border-[#0c111d]" 
                   href={user ? "/dashboard" : "/register"}
                 >
                   GET STARTED
@@ -362,7 +362,7 @@ export default function Home() {
               </div>
               <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[#0c111d]/20 font-mono-code text-xs">
                 <span className="text-[#434656]">WINNER: TEAM CYBER-SYNTHESIS</span>
-                <Link className="bg-[#0c111d] text-[#fcfbf9] px-5 py-2.5 font-bold uppercase tracking-wider hover:bg-[#0045cc] transition-colors text-center" href="/achievements">
+                <Link className="bg-[#0c111d] text-[#fcfbf9] px-5 py-2.5 font-bold uppercase tracking-wider hover:bg-[#f59e0b] hover:text-[#0c111d] hover:shadow-[3px_3px_0px_0px_#0c111d] border border-[#0c111d] transition-colors text-center" href="/achievements">
                   VIEW EVENT RECAP &amp; SUBMISSIONS →
                 </Link>
               </div>

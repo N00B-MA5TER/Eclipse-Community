@@ -191,7 +191,7 @@ export default function AlumniPage() {
                         <img 
                           src={getImageUrl(person.photo_url)} 
                           alt={person.name} 
-                          className="w-full h-full object-cover object-top grayscale contrast-[1.2] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" 
+                          className="w-full h-full object-cover object-top contrast-[1.2] transition-all duration-500 group-hover:scale-105" 
                         />
                       ) : (
                         <div className="w-full h-full flex flex-col items-center justify-center bg-gray-200">

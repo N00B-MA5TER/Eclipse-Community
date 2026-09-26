@@ -20,8 +20,7 @@ export function Navbar() {
   const searchData = [
     { title: "Home", href: "/", category: "General", description: "The landing page and general overview." },
     { title: "About Us", href: "/about", category: "General", description: "Learn about ECLIPSE club and what we do." },
-    { title: "Mission", href: "/mission", category: "Identity", description: "Our mission to Learn, Create, Challenge, and Evolve." },
-    { title: "Vision", href: "/vision", category: "Identity", description: "We don't prepare for the future. We build it." },
+    { title: "Mission & Vision", href: "/mission", category: "Identity", description: "Our mission and vision: We don't prepare for the future. We build it." },
     { title: "Achievements", href: "/achievements", category: "Showcase", description: "Successful events, workshops, and hackathons." },
     { title: "Core Team", href: "/gallery/teams", category: "People", description: "Meet the passionate individuals behind ECLIPSE." },
     { title: "Faculty Members", href: "/gallery/faculty", category: "People", description: "Our guiding faculty and mentors." },
@@ -79,8 +78,7 @@ export function Navbar() {
         <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-1 px-4 h-12 md:h-14 bg-white border border-gray-200 shadow-xl rounded-full">
           <NavLink href="/" exact={true}>Home</NavLink>
           <NavLink href="/about">About Us</NavLink>
-          <NavLink href="/mission">Mission</NavLink>
-          <NavLink href="/vision">Vision</NavLink>
+          <NavLink href="/mission">Mission & Vision</NavLink>
           <NavLink href="/achievements">Achievements</NavLink>
           <NavLink href="/alumni">Alumni</NavLink>
           <NavLink href="/calendar">Calendar</NavLink>
@@ -280,8 +278,7 @@ export function Navbar() {
               {[
                 { href: "/", label: "Home" },
                 { href: "/about", label: "About Us" },
-                { href: "/mission", label: "Mission" },
-                { href: "/vision", label: "Vision" },
+                { href: "/mission", label: "Mission & Vision" },
                 { href: "/achievements", label: "Achievements" },
                 { href: "/alumni", label: "Alumni" },
                 { href: "/calendar", label: "Calendar" },

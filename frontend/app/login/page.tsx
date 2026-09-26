@@ -8,6 +8,9 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
 import { useAuth } from "@/lib/firebase/auth";
 
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+
 function LoginContent() {
   const { loginWithEmail, loginWithGoogle, loginWithGithub, verifyOtp, resendOtp } = useAuth();
   const router = useRouter();
@@ -105,38 +108,30 @@ function LoginContent() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col font-mono selection:bg-[#f59e0b] selection:text-black">
-      <header className="flex items-center justify-between px-4 sm:px-8 py-3 border-b border-black">
-        <Link href="/" className="flex items-center">
-          <img src="/logo.png" alt="Eclipse Logo" className="w-auto h-12 sm:h-[72px] object-contain" />
-        </Link>
-        <Link href="/register">
-          <Button variant="outline" className="rounded-none border-black text-black font-bold hover:bg-neutral-100 uppercase tracking-wider text-[11px] h-10 px-6">
-            CREATE DOSSIER
-          </Button>
-        </Link>
-      </header>
+    <div className="min-h-screen bg-[#fcfbf9] text-[#0c111d] flex flex-col font-mono selection:bg-[#f59e0b] selection:text-[#0c111d]">
+      <Navbar />
 
-      <div className="flex-1 flex w-full max-w-container-max mx-auto border-x border-black">
-        <div className="w-full lg:w-1/2 flex flex-col border-r border-black p-8 md:p-12 lg:p-16">
-          <div className="mb-8 font-mono text-[11px] font-bold uppercase tracking-widest text-neutral-500 border border-black w-fit px-3 py-1 bg-neutral-100">
-            <span className="w-2 h-2 bg-black inline-block mr-2"></span>
-            AUTHORIZATION PROTOCOL
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-8 py-12 lg:py-20 w-full max-w-2xl mx-auto">
+        <div className="w-full bg-[#ffffff] border-2 border-[#0c111d] shadow-[8px_8px_0px_0px_#0c111d] p-8 md:p-12 relative overflow-hidden">
+          
+          <div className="mb-8 flex items-center gap-2 border-b border-[#0c111d] pb-2 font-mono-code text-[11px]">
+            <span className="w-2 h-2 bg-[#0c111d]"></span>
+            <span className="font-bold tracking-wider text-[#0c111d] uppercase">ACCOUNT ACCESS</span>
           </div>
           
-          <h1 className="text-display-hero-mobile md:text-headline-lg font-bold text-black mb-2 font-heading tracking-tight uppercase leading-none">
-            System Access
+          <h1 className="font-serif-display text-4xl sm:text-5xl font-bold text-[#0c111d] mb-2 tracking-tight uppercase leading-none">
+            Login
           </h1>
-          <p className="text-neutral-600 font-mono text-xs uppercase tracking-wider mb-10">Authenticate to enter the chapter dashboard.</p>
+          <p className="text-[#434656] font-mono-code text-xs uppercase tracking-wider mb-10 border-l-4 border-[#0c111d] pl-4 py-1">Enter your details to access your account.</p>
 
-          {error && <div className="text-black bg-red-100 border border-black p-3 text-xs font-bold font-mono uppercase mb-6">{error}</div>}
-          {success && <div className="text-black bg-[#f59e0b] border border-black p-3 text-xs font-bold font-mono uppercase mb-6">{success}</div>}
+          {error && <div className="text-[#0c111d] bg-red-100 border border-[#0c111d] p-3 text-xs font-bold font-mono-code uppercase mb-6">{error}</div>}
+          {success && <div className="text-[#0c111d] bg-[#f59e0b] border border-[#0c111d] p-3 text-xs font-bold font-mono-code uppercase mb-6">{success}</div>}
 
           {step === "login" ? (
             <form className="space-y-6" onSubmit={handleSubmit}>
               
               <div className="space-y-2">
-                <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="email">Identity Vector (Email)</label>
+                <label className="text-[11px] font-bold text-[#0c111d] uppercase tracking-wider font-mono-code" htmlFor="email">Email Address</label>
                 <Input 
                   id="email" 
                   type="email" 
@@ -144,14 +139,14 @@ function LoginContent() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="STUDENT@DIATM.EDU" 
                   required 
-                  className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
+                  className="h-12 rounded-none border border-[#0c111d] bg-[#f5f4ef] px-4 text-xs font-mono-code font-bold text-[#0c111d] placeholder:text-[#737688] focus-visible:ring-0 focus-visible:border-[#f59e0b] focus-visible:bg-[#ffffff] focus-visible:shadow-[3px_3px_0px_0px_#0c111d] transition-all" 
                 />
               </div>
 
               <div className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="password">Security Key</label>
-                  <Link href="/forgot-password" className="text-[10px] font-bold text-neutral-500 hover:text-black uppercase underline">Override?</Link>
+                  <label className="text-[11px] font-bold text-[#0c111d] uppercase tracking-wider font-mono-code" htmlFor="password">Password</label>
+                  <Link href="/forgot-password" className="text-[10px] font-bold text-[#434656] hover:text-[#0c111d] uppercase underline font-mono-code">Forgot password?</Link>
                 </div>
                 <div className="relative">
                   <Input 
@@ -161,28 +156,31 @@ function LoginContent() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••" 
                     required 
-                    className="h-12 rounded-none border border-black bg-white px-4 pr-12 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
+                    className="h-12 rounded-none border border-[#0c111d] bg-[#f5f4ef] px-4 pr-12 text-xs font-mono-code font-bold text-[#0c111d] placeholder:text-[#737688] focus-visible:ring-0 focus-visible:border-[#f59e0b] focus-visible:bg-[#ffffff] focus-visible:shadow-[3px_3px_0px_0px_#0c111d] transition-all" 
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 hover:text-black transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#737688] hover:text-[#0c111d] transition-colors"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
               </div>
 
-              <div className="pt-4">
-                <Button type="submit" disabled={loading} className="w-full rounded-none bg-black hover:bg-[#f59e0b] hover:text-black text-white border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors">
-                  {loading ? 'INITIALIZING...' : 'ESTABLISH CONNECTION'}
+              <div className="pt-4 flex items-center justify-between gap-4">
+                <Button type="submit" disabled={loading} className="flex-1 rounded-none bg-[#0c111d] hover:bg-[#f59e0b] hover:text-[#0c111d] hover:shadow-[3px_3px_0px_0px_#0c111d] text-[#fcfbf9] border border-[#0c111d] h-12 font-mono-code font-bold uppercase tracking-widest text-[11px] transition-all">
+                  {loading ? 'LOGGING IN...' : 'LOGIN'}
                 </Button>
+                <Link href="/register" className="h-12 px-6 flex items-center justify-center rounded-none bg-[#ffffff] hover:bg-[#f5f4ef] hover:shadow-[3px_3px_0px_0px_#0c111d] text-[#0c111d] border border-[#0c111d] font-mono-code font-bold uppercase tracking-widest text-[11px] transition-all">
+                  REGISTER
+                </Link>
               </div>
             </form>
           ) : (
             <form className="space-y-6" onSubmit={handleVerifyOtp}>
               <div className="space-y-2">
-                <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="otp">6-Digit Access Code</label>
+                <label className="text-[11px] font-bold text-[#0c111d] uppercase tracking-wider font-mono-code" htmlFor="otp">6-Digit Access Code</label>
                 <Input 
                   id="otp" 
                   type="text" 
@@ -191,13 +189,13 @@ function LoginContent() {
                   placeholder="000000" 
                   required
                   maxLength={6}
-                  className="h-12 rounded-none border border-black bg-white px-4 text-center text-lg tracking-widest font-mono font-black text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
+                  className="h-16 rounded-none border border-[#0c111d] bg-[#f5f4ef] px-4 text-center text-2xl tracking-[0.5em] font-mono-code font-black text-[#0c111d] placeholder:text-[#737688] focus-visible:ring-0 focus-visible:border-[#f59e0b] focus-visible:bg-[#ffffff] focus-visible:shadow-[3px_3px_0px_0px_#0c111d] transition-all" 
                 />
               </div>
 
               <div className="pt-4 flex flex-col gap-4">
-                <Button type="submit" disabled={loading || otp.length !== 6} className="w-full rounded-none bg-black hover:bg-[#f59e0b] hover:text-black text-white border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors">
-                  {loading ? 'VERIFYING...' : 'VERIFY IDENTITY'}
+                <Button type="submit" disabled={loading || otp.length !== 6} className="w-full rounded-none bg-[#0c111d] hover:bg-[#f59e0b] hover:text-[#0c111d] hover:shadow-[3px_3px_0px_0px_#0c111d] text-[#fcfbf9] border border-[#0c111d] h-12 font-mono-code font-bold uppercase tracking-widest text-[11px] transition-all">
+                  {loading ? 'VERIFYING...' : 'VERIFY OTP'}
                 </Button>
                 
                 <Button 
@@ -205,7 +203,7 @@ function LoginContent() {
                   variant="outline"
                   disabled={loading || resendCooldown > 0} 
                   onClick={handleResendOtp}
-                  className="w-full rounded-none bg-transparent hover:bg-neutral-100 text-black border border-black h-12 font-mono font-bold uppercase tracking-widest text-[11px] transition-colors"
+                  className="w-full rounded-none bg-[#ffffff] hover:bg-[#f5f4ef] hover:shadow-[3px_3px_0px_0px_#0c111d] text-[#0c111d] border border-[#0c111d] h-12 font-mono-code font-bold uppercase tracking-widest text-[11px] transition-all"
                 >
                   {resendCooldown > 0 ? `RESEND CODE (${resendCooldown}S)` : 'RESEND CODE'}
                 </Button>
@@ -213,58 +211,32 @@ function LoginContent() {
             </form>
           )}
 
-          <div className="pt-10 mt-10 border-t border-black">
+          <div className="pt-10 mt-10 border-t border-[#0c111d]">
             <div className="flex items-center gap-4 mb-6">
-              <span className="text-[10px] font-bold text-black uppercase tracking-wider">EXTERNAL AUTH NETWORKS</span>
-              <div className="flex-1 h-px bg-black"></div>
+              <span className="text-[10px] font-bold text-[#0c111d] uppercase tracking-wider font-mono-code">OR LOGIN WITH</span>
+              <div className="flex-1 h-px bg-[#0c111d]/20"></div>
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              <Button onClick={handleGoogle} variant="outline" type="button" className="h-12 rounded-none font-mono font-bold text-[11px] uppercase tracking-wider text-black bg-neutral-50 hover:bg-neutral-100 border border-black flex items-center justify-center gap-2 transition-colors">
+              <Button onClick={handleGoogle} variant="outline" type="button" className="h-12 rounded-none font-mono-code font-bold text-[11px] uppercase tracking-wider text-[#0c111d] bg-[#ffffff] hover:bg-[#f5f4ef] hover:shadow-[3px_3px_0px_0px_#0c111d] border border-[#0c111d] flex items-center justify-center gap-2 transition-all">
                 Google
               </Button>
-              <Button onClick={handleGithub} variant="outline" type="button" className="h-12 rounded-none font-mono font-bold text-[11px] uppercase tracking-wider text-black bg-neutral-50 hover:bg-neutral-100 border border-black flex items-center justify-center gap-2 transition-colors">
+              <Button onClick={handleGithub} variant="outline" type="button" className="h-12 rounded-none font-mono-code font-bold text-[11px] uppercase tracking-wider text-[#0c111d] bg-[#ffffff] hover:bg-[#f5f4ef] hover:shadow-[3px_3px_0px_0px_#0c111d] border border-[#0c111d] flex items-center justify-center gap-2 transition-all">
                 GitHub
               </Button>
             </div>
           </div>
         </div>
-
-        <div className="hidden lg:flex w-1/2 flex-col justify-between p-8 md:p-12 lg:p-16 bg-neutral-50">
-          <div className="flex flex-col">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-black text-[10px] font-bold font-mono uppercase tracking-widest text-neutral-500">
-              <span>SYSTEM LOG</span>
-              <span className="text-black flex items-center gap-1.5"><span className="w-1.5 h-1.5 bg-[#f59e0b] animate-pulse"></span>ACTIVE</span>
-            </div>
-            
-            <h2 className="font-heading text-headline-lg font-bold text-black uppercase tracking-tight leading-none mb-4">
-              Restricted <br/> <span className="underline decoration-4 underline-offset-4">Sector</span>
-            </h2>
-            
-            <p className="font-mono text-sm text-neutral-600 leading-relaxed max-w-sm">
-              This portal is strictly for authorized cohort members of the DIATM Eclipse Chapter. If you require access, proceed to the recruitment dossier.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-2 gap-4 border-t border-black pt-8">
-            <div className="p-4 border border-black bg-white">
-              <span className="block text-[10px] font-bold text-neutral-500 font-mono uppercase tracking-wider mb-1">NODE</span>
-              <span className="font-bold text-black font-mono text-sm uppercase tracking-wider">RAJBANDH-01</span>
-            </div>
-            <div className="p-4 border border-black bg-white">
-              <span className="block text-[10px] font-bold text-neutral-500 font-mono uppercase tracking-wider mb-1">ENCRYPTION</span>
-              <span className="font-bold text-black font-mono text-sm uppercase tracking-wider">SEC-L4</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </main>
+      
+      <Footer />
     </div>
   );
 }
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-white flex items-center justify-center font-mono text-black font-bold text-xs uppercase tracking-widest">INITIALIZING...</div>}>
+    <Suspense fallback={<div className="min-h-screen bg-[#fcfbf9] flex items-center justify-center font-mono-code text-[#0c111d] font-bold text-xs uppercase tracking-widest">INITIALIZING...</div>}>
       <LoginContent />
     </Suspense>
   );

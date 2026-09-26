@@ -29,8 +29,8 @@ export default function MissionPage() {
               <span className="font-mono text-xs uppercase tracking-widest text-neutral-600 block mb-2">
                 FOUNDATIONAL DIRECTIVE // ARCHIVE ENTRY NO. 02
               </span>
-              <h1 className="font-serif text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[0.9] text-black">
-                Mission of
+              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[0.9] text-black">
+                Mission & Vision of
                 <br />
                 <span className="tracking-tight uppercase">ECLIPSE</span>
               </h1>
@@ -92,6 +92,41 @@ export default function MissionPage() {
                     — creating an ecosystem where every member has the freedom
                     to explore, fail, evolve, and create what comes next.
                   </p>
+                </div>
+
+                {/*  Vision Section  */}
+                <div className="mt-10 pt-8 border-t border-neutral-200">
+                  <div className="flex items-center justify-between pb-4 mb-6 border-b border-neutral-200">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
+                      ┌ OFFICIAL MANDATE // VISION STATEMENT ┐
+                    </span>
+                  </div>
+                  <blockquote className="font-serif text-2xl md:text-3xl font-bold leading-snug text-black mb-6">
+                    “ECLIPSE exists to build the future, not simply follow it.”
+                  </blockquote>
+                  <ul className="space-y-4 font-sans text-neutral-700 text-sm md:text-base leading-relaxed max-w-3xl list-none">
+                    <li className="flex items-start">
+                      <span className="mr-3 mt-1 text-[#f59e0b]">■</span>
+                      <span>
+                        <strong className="text-black font-bold uppercase tracking-wider text-xs">Converge & Speculate:</strong> 
+                        <br/>Uniting computing, design, and hardware to architect speculative systems before industry demand materializes.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-3 mt-1 text-[#f59e0b]">■</span>
+                      <span>
+                        <strong className="text-black font-bold uppercase tracking-wider text-xs">Fearless Experimentation:</strong> 
+                        <br/>Empowering builders to take high-stakes technical risks in autonomous sandboxes without fear of failure.
+                      </span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="mr-3 mt-1 text-[#f59e0b]">■</span>
+                      <span>
+                        <strong className="text-black font-bold uppercase tracking-wider text-xs">Beyond Convention:</strong> 
+                        <br/>Rejecting standard collegiate limitations to ship production-grade systems and published research globally.
+                      </span>
+                    </li>
+                  </ul>
                 </div>
               </div>
               {/*  Meta Information Row at Bottom  */}
@@ -338,123 +373,78 @@ export default function MissionPage() {
           </div>
         </section>
         {/*  END: FourCorePillarsSection  */}
-        {/*  BEGIN: ResearchImpactTelemetrySection  */}
-        {/*  Applied Impact & Photographic Sprint Archive matching Screen 2  */}
+        {/*  BEGIN: PhilosophyProtocolSection  */}
         <section className="border-t border-black py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
-            {/*  Section Title Header  */}
             <div className="flex flex-col md:flex-row md:items-end justify-between pb-4 mb-8 border-b border-black/20 gap-2">
               <div>
                 <span className="font-mono text-xs uppercase tracking-widest text-neutral-600 block mb-1">
-                  ■ RESEARCH &amp; COMPUTATION
+                  ■ PHILOSOPHY PROTOCOL
                 </span>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold tracking-tight text-black">
-                  COLLABORATIVE COGNITION
+                  OUR CORE DOCTRINE
                 </h2>
               </div>
               <span className="font-mono text-xs text-neutral-500 tracking-wider">
-                CAMPUS CENTRAL LAB // SPRINT ARCHIVE #04
+                DECENTRALIZED AUTONOMY // VERIFIED
               </span>
             </div>
-            {/*  2-Column Applied Showcase  */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/*  Left: Big Lab Photographic Card (7 cols)  */}
-              <div className="lg:col-span-7 border border-black p-2 bg-white relative">
-                <div className="relative bg-neutral-900 overflow-hidden aspect-[16/10]">
-                  <img
-                    alt="Engineering students working collaboratively in DIATM campus robotics laboratory"
-                    className="w-full h-full object-cover filter grayscale contrast-125 opacity-90"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpSN5kXuyuV-JJvpbFHX58ziTARidg3i9a2qtsYm_jNl-5dTmXuz0sN408Xo_t9Vn2F44Dk0qc4hBVa1NO04NFLxo0J0GwmF2p31rnMRs8Uels5h-DkabUHGfpWDM2fOXNXgNZZX_n6RHvGmlP_NBngBtMnaXt6VzE7YQgRL2pyVdK5qp4-eqDwjM_YABCOINoZIBShFLX3wnUVPxIwBBpZkJn7ew2A8xv6s_ZWNhGaUmrWdFCEY5xEA"
-                  />
-                  {/*  Telemetry Stamp Overlays  */}
-                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-1 border border-neutral-700">
-                    DIATM HACK-LAB // LIVE TELEMETRY
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Card 1 */}
+              <div className="border border-black bg-black text-white p-6 md:p-8 flex flex-col justify-between group hover:bg-[#0c111d] transition-colors">
+                <div>
+                  <div className="flex items-center justify-between font-mono text-[10px] text-neutral-400 mb-6 pb-4 border-b border-neutral-800">
+                    <span className="uppercase tracking-widest font-bold text-[#f59e0b]">
+                      PROTOCOL .01
+                    </span>
+                    <span>100% AUTONOMY</span>
                   </div>
-                  <div className="absolute bottom-3 right-3 bg-[#f59e0b] text-black font-mono font-bold text-[9px] px-2 py-0.5">
-                    CAMPUS CENTRAL LAB
-                  </div>
-                  <div className="absolute bottom-3 left-3 bg-black/80 backdrop-blur-sm text-white font-mono text-[9px] px-2 py-1">
-                    FIG 01.1 — SPRINT ARCHIVE #04
-                  </div>
+                  <h3 className="font-serif text-2xl font-bold tracking-tight mb-4 text-white">
+                    Student-Driven Autonomy
+                  </h3>
+                  <p className="font-sans text-sm text-neutral-300 leading-relaxed">
+                    Decentralized tracks owned, engineered, and executed by forward-thinking collegiate cohorts. No passive consumption, only active creation.
+                  </p>
                 </div>
               </div>
-              {/*  Right: Secondary Lab & Live Index Metric Matrices (5 cols)  */}
-              <div className="lg:col-span-5 flex flex-col space-y-6">
-                {/*  Secondary Frame with Mini Picture  */}
-                <div className="border border-black p-3 bg-white flex space-x-4 items-center">
-                  <div className="w-1/3 aspect-[4/3] bg-neutral-800 overflow-hidden relative border border-black">
-                    <img
-                      alt="Student workspace screen session"
-                      className="w-full h-full object-cover filter grayscale contrast-110"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkzhXvdzEAmccwibCFjUleI_bv_0cgJIeGMx12LHLkS4e4dwFqpU21_q78RpbMeGXJK_7vtkOPungIpsoCGVrrksuUMGK0l7rYoyNMhIQZfBTD0P3nav4mKFGzLeAIJ_sSDK04IqR1d2Q0lzELwPFgTOuyjCIIlUfibHDwyMjVuHPw3jCIcu_kKy4FCfxjYOE6aFuLNjubJOAV-ZZFHwMF6I0eX__fYKpgm-JCDDeksQqM4cx266O4rA"
-                    />
+              {/* Card 2 */}
+              <div className="border border-black bg-white text-black p-6 md:p-8 flex flex-col justify-between group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
+                <div>
+                  <div className="flex items-center justify-between font-mono text-[10px] text-neutral-500 mb-6 pb-4 border-b border-neutral-200">
+                    <span className="uppercase tracking-widest font-bold">
+                      PROTOCOL .02
+                    </span>
+                    <span>OPEN BY DEFAULT</span>
                   </div>
-                  <div className="w-2/3 font-mono">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-[9px] text-neutral-400">
-                        FIG 01.2 — WORKSPACE
-                      </span>
-                      <span className="bg-black text-white text-[9px] px-1.5 py-0.5">
-                        STATION
-                      </span>
-                    </div>
-                    <h4 className="font-serif font-bold text-sm text-black">
-                      ADVANCED RESEARCH SPACES
-                    </h4>
-                    <p className="text-[10px] text-neutral-500 mt-1">
-                      Equipped with high-performance edge compute, neural model
-                      training servers, and rapid prototyping benches.
-                    </p>
-                  </div>
+                  <h3 className="font-serif text-2xl font-bold tracking-tight mb-4 text-black">
+                    Open Source First
+                  </h3>
+                  <p className="font-sans text-sm text-neutral-600 leading-relaxed">
+                    We believe in the power of shared knowledge. Our infrastructure, curriculum, and internal tools are built in the open, for the community, by the community.
+                  </p>
                 </div>
-                {/*  Index Metrics Telemetry Box  */}
-                <div className="border border-black p-6 bg-white">
-                  <div className="flex justify-between items-center pb-3 border-b border-black mb-6 font-mono text-[10px]">
-                    <span className="font-bold tracking-wider uppercase text-black">
-                      ■ INDEX METRICS
+              </div>
+              {/* Card 3 */}
+              <div className="border border-black bg-white text-black p-6 md:p-8 flex flex-col justify-between group hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all">
+                <div>
+                  <div className="flex items-center justify-between font-mono text-[10px] text-neutral-500 mb-6 pb-4 border-b border-neutral-200">
+                    <span className="uppercase tracking-widest font-bold">
+                      PROTOCOL .03
                     </span>
-                    <span className="text-neutral-500 tracking-wider">
-                      TELEMETRY MATRIX
-                    </span>
+                    <span>IMPACT SCALING</span>
                   </div>
-                  {/*  3 Horizontal Stat Counters  */}
-                  <div className="grid grid-cols-3 divide-x divide-black text-center py-2">
-                    <div className="px-2">
-                      <div className="font-serif font-bold text-3xl md:text-4xl text-black">
-                        120+
-                      </div>
-                      <div className="font-mono text-[9px] uppercase tracking-wider text-neutral-500 mt-1">
-                        BUILDERS
-                      </div>
-                    </div>
-                    <div className="px-2">
-                      <div className="font-serif font-bold text-3xl md:text-4xl text-black">
-                        04
-                      </div>
-                      <div className="font-mono text-[9px] uppercase tracking-wider text-neutral-500 mt-1">
-                        CORE PILLARS
-                      </div>
-                    </div>
-                    <div className="px-2">
-                      <div className="font-serif font-bold text-3xl md:text-4xl text-[#b45309]">
-                        100%
-                      </div>
-                      <div className="font-mono text-[9px] uppercase tracking-wider text-neutral-500 mt-1">
-                        OPEN SOURCE
-                      </div>
-                    </div>
-                  </div>
-                  {/*  Status Telemetry Bar  */}
-                  <div className="mt-6 pt-4 border-t border-neutral-200 flex justify-between items-center font-mono text-[10px]">
-                    <span className="text-neutral-500">SYSTEM RUNTIME:</span>
-                    <span className="font-bold text-black">99.8% UPTIME</span>
-                  </div>
+                  <h3 className="font-serif text-2xl font-bold tracking-tight mb-4 text-black">
+                    Merit & Execution
+                  </h3>
+                  <p className="font-sans text-sm text-neutral-600 leading-relaxed">
+                    Talk is cheap. Code ships. We evaluate success not by years of experience or credentials, but by the tangible impact of the systems we build and deploy.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        {/*  END: ResearchImpactTelemetrySection  */}
+        {/*  END: PhilosophyProtocolSection  */}
         {/*  BEGIN: OperationalRadarSection  */}
         {/*  Operational Radar & Telemetry Matrix (From Screen 2)  */}
         <section className="border-t border-black py-16 bg-neutral-50/40">

@@ -256,7 +256,7 @@ export default function AlumniRegisterPage() {
                     onChange={(e) => setFormData({...formData, graduation_year: e.target.value})}
                     className="w-full px-4 py-3 bg-[#fcfbf9] border border-[#0c111d]/20 focus:border-[#0c111d] focus:outline-none focus:ring-0 font-mono-code text-sm transition-colors"
                   >
-                    {Array.from({length: 20}, (_, i) => new Date().getFullYear() - i + 4).map(year => (
+                    {Array.from({length: new Date().getFullYear() + 4 - 2002 + 1}, (_, i) => new Date().getFullYear() - i + 4).map(year => (
                       <option key={year} value={year}>{year}</option>
                     ))}
                   </select>
