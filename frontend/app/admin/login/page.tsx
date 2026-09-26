@@ -36,7 +36,8 @@ function AdminLoginForm() {
     try {
       const data = await loginWithEmail(email, password);
       
-      if (data && data.user && data.user.role === "admin") {
+      const role = data?.user?.role || data?.role || "";
+      if (role.toString().trim().toLowerCase() === "admin") {
         router.push("/admin/events");
       } else {
         setError("Access Denied: You do not have administrator privileges.");
@@ -69,15 +70,15 @@ function AdminLoginForm() {
         
         <div className="mb-10">
           <div className="mb-6 font-mono text-[10px] font-bold uppercase tracking-widest text-neutral-500 border border-black w-fit px-2 py-1 bg-neutral-100 flex items-center gap-2">
-            <ShieldAlert className="w-3 h-3 text-red-500" />
-            RESTRICTED SECTOR
+            <ShieldAlert className="w-3 h-3 text-black" />
+            ADMIN PORTAL
           </div>
-          <h1 className="text-3xl font-black font-heading text-black uppercase tracking-tight leading-none">Admin Override</h1>
-          <p className="text-neutral-600 mt-2 text-xs uppercase tracking-wider">Provide credentials to bypass.</p>
+          <h1 className="text-3xl font-black font-heading text-black uppercase tracking-tight leading-none">Admin Login</h1>
+          <p className="text-neutral-600 mt-2 text-xs uppercase tracking-wider">Sign in to access the dashboard.</p>
         </div>
 
         <div className="bg-neutral-100 text-black p-3 text-[11px] font-bold mb-6 border border-black uppercase tracking-wider">
-          Authentication is securely routed through Laravel Sanctum email/password.
+          Authentication is securely routed through Laravel Sanctum.
         </div>
 
         {error && (
@@ -88,22 +89,22 @@ function AdminLoginForm() {
 
         <form onSubmit={handleAdminLogin} className="space-y-6">
           <div className="space-y-2">
-            <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="email">Admin Identifier</label>
+            <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="email">Email Address</label>
             <Input 
               id="email" 
               type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required 
-              placeholder="ROOT@ADMIN.LOCAL"
+              placeholder="admin@eclipse.community"
               className="h-12 rounded-none border border-black bg-white px-4 text-xs font-mono font-medium text-black placeholder:text-neutral-400 focus-visible:ring-0 focus-visible:border-[#f59e0b] transition-all" 
             />
           </div>
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="password">Command Key</label>
-              <Link href="/forgot-password" className="text-[10px] font-bold text-neutral-500 hover:text-black uppercase underline">Override?</Link>
+              <label className="text-[11px] font-bold text-black uppercase tracking-wider" htmlFor="password">Password</label>
+              <Link href="/forgot-password" className="text-[10px] font-bold text-neutral-500 hover:text-black uppercase underline">Forgot Password?</Link>
             </div>
             <div className="relative">
               <Input 
@@ -126,7 +127,7 @@ function AdminLoginForm() {
           </div>
 
           <Button type="submit" disabled={loading} className="w-full h-12 rounded-none bg-black hover:bg-[#f59e0b] hover:text-black text-white font-bold font-mono text-[11px] uppercase tracking-widest border border-black transition-colors mt-2">
-            {loading ? 'EXECUTING...' : 'INITIATE OVERRIDE'}
+            {loading ? 'AUTHENTICATING...' : 'LOGIN TO DASHBOARD'}
           </Button>
         </form>
 
