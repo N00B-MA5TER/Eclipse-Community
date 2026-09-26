@@ -23,6 +23,24 @@ export default function AdminAlumniPage() {
   const [activeTab, setActiveTab] = useState<'pending' | 'approved' | 'rejected'>('pending');
   const [processingId, setProcessingId] = useState<string | null>(null);
 
+  const getImageUrl = (url: string | null) => {
+    if (!url) return '';
+    
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api';
+    const baseUrl = apiUrl.replace(/\/api\/?$/, '');
+    
+    if (url.includes('/api/storage/')) {
+      return `${baseUrl}${url.substring(url.indexOf('/storage/'))}`;
+    }
+    if (url.startsWith('/storage/')) {
+      return `${baseUrl}${url}`;
+    }
+    if (url.startsWith('http')) {
+      return url;
+    }
+    return `${baseUrl}/${url}`;
+  };
+
   const fetchAllAlumni = async () => {
     if (!user) return;
     try {
@@ -162,7 +180,7 @@ export default function AdminAlumniPage() {
               <div className="w-full h-48 bg-gray-100 border-b-2 border-black relative">
                 {person.photo_url ? (
                   <img 
-                    src={person.photo_url.startsWith('http') ? person.photo_url : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:8080'}${person.photo_url}`} 
+                    src={getImageUrl(person.photo_url)} 
                     alt={person.name} 
                     className="w-full h-full object-cover object-top" 
                   />

@@ -24,6 +24,24 @@ export default function AlumniPage() {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
 
+  const getImageUrl = (url: string | null) => {
+    if (!url) return '';
+    
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api';
+    const baseUrl = apiUrl.replace(/\/api\/?$/, '');
+    
+    if (url.includes('/api/storage/')) {
+      return `${baseUrl}${url.substring(url.indexOf('/storage/'))}`;
+    }
+    if (url.startsWith('/storage/')) {
+      return `${baseUrl}${url}`;
+    }
+    if (url.startsWith('http')) {
+      return url;
+    }
+    return `${baseUrl}/${url}`;
+  };
+
   const fetchAlumni = async (pageNum: number) => {
     try {
       setLoading(true);
@@ -171,7 +189,7 @@ export default function AlumniPage() {
                     <div className="w-full aspect-[4/5] relative overflow-hidden bg-[#0c111d] border-b-4 border-[#0c111d]">
                       {person.photo_url ? (
                         <img 
-                          src={person.photo_url.startsWith('http') ? person.photo_url : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:8080'}${person.photo_url}`} 
+                          src={getImageUrl(person.photo_url)} 
                           alt={person.name} 
                           className="w-full h-full object-cover object-top grayscale contrast-[1.2] group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" 
                         />
